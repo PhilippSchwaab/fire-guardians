@@ -1,0 +1,44 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+@import './colors';
+
+/* ======== Angular material custom themes ======== */
+$app-primary: mat.define-palette($octo-primary-palette);
+$app-accent: mat.define-palette($octo-accent-palette);
+$app-warn: mat.define-palette($octo-warn-palette);
+
+
+$default-typography: mat.define-typography-config(
+  $font-family: "Barlow, Arial, Helvetica, sans-serif",
+  // $body-1:  mat.define-typography-level(200px, 32px, 400),
+  // $body-2:  mat.define-typography-level(100px, 32px, 400),
+  // $button:  mat.define-typography-level(24px),
+  // $button:  mat.define-typography-level(24px),
+);
+
+$octo-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $app-primary,
+    accent: $app-accent,
+    warn: $app-warn,
+  ),
+  typography: $default-typography
+));
+
+//$octo-light-theme: mat.define-light-theme((
+//  color: (
+//    primary: $app-primary,
+//    accent: $app-accent,
+//    warn: $app-warn,
+//  ),
+//  //typography: $default-typography
+//));
+
+@include mat.all-component-themes($octo-dark-theme);
+// Apply the light theme only when the user prefers light themes.
+//@media (prefers-color-scheme: light) {
+//  // Use the `-color` mixins to only apply color styles without reapplying the same
+//  // typography and density styles.
+//  @include mat.all-component-themes($octo-light-theme);
+//}
