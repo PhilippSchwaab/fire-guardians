@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "century-gothic";
+  src: url("./../assets/fonts/century-gothic/gothic-bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "century-gothic";
+  src: url("./../assets/fonts/century-gothic/gothic-regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "opensans";
+  src: url("./../assets/fonts/open-sans/opensans-regular-webfont.woff2")
+      format("woff2"),
+    url("./../assets/fonts/open-sans/opensans-regular-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "opensans";
+  src: url("./../assets/fonts/open-sans/opensans-bold-webfont.woff2")
+      format("woff2"),
+    url("./../assets/fonts/open-sans/opensans-bold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}

@@ -1,1 +1,330 @@
-/* You can add global styles to this file, and also import other style files */
+///* You can add global styles to this file, and also import other style files */
+//
+//@use '@angular/material' as mat;
+//@use 'styles/palette-helper';
+//@use "styles/app-footer-component.theme" as footer;
+//
+//@import 'material-symbols';
+//
+//@include mat.core();
+//
+//$octo-dark-primary-text: rgba(black, 0.87);
+//$octo-light-primary-text: white;
+//$octo-primary-palette: (
+//  50: #e4f2f0,
+//  100: #bcdfd9,
+//  200: #94cbc0,
+//  300: #70b6a8,
+//  400: #5ca696,
+//  500: #4d9685,
+//  600: #478979,
+//  700: #41796a,
+//  800: #3a695c,
+//  900: #70b6a8,
+//  A100: #e4fff9,
+//  A200: #b1ffec,
+//  A400: #7effe0,
+//  A700: #64ffda,
+//  contrast: (
+//    50: $octo-dark-primary-text,
+//    100: $octo-dark-primary-text,
+//    200: $octo-dark-primary-text,
+//    300: $octo-dark-primary-text,
+//    400: $octo-dark-primary-text,
+//    500: $octo-light-primary-text,
+//    600: $octo-light-primary-text,
+//    700: $octo-light-primary-text,
+//    800: $octo-light-primary-text,
+//    900: $octo-light-primary-text,
+//    A100: $octo-dark-primary-text,
+//    A200: $octo-dark-primary-text,
+//    A400: $octo-light-primary-text,
+//    A700: $octo-light-primary-text,
+//  )
+//);
+//
+//$octo-accent-color: #9ba5cc;
+//$octo-accent-palette: (
+//  50: #eef0f6,
+//  100: #d4d8e9,
+//  200: #b8bfdb,
+//  300: $octo-accent-color,
+//  400: #8591c1,
+//  500: #707eb6,
+//  600: #6876af,
+//  700: #5d6ba6,
+//  800: #53619e,
+//  900: #414e8e,
+//  A100: #e4e8ff,
+//  A200: #b1bdff,
+//  A400: #7e93ff,
+//  A700: #647dff,
+//  contrast: (
+//    50: $octo-dark-primary-text,
+//    100: $octo-dark-primary-text,
+//    200: $octo-dark-primary-text,
+//    300: $octo-dark-primary-text,
+//    400: $octo-dark-primary-text,
+//    500: $octo-light-primary-text,
+//    600: $octo-light-primary-text,
+//    700: $octo-light-primary-text,
+//    800: $octo-light-primary-text,
+//    900: $octo-light-primary-text,
+//    A100: $octo-dark-primary-text,
+//    A200: $octo-dark-primary-text,
+//    A400: $octo-light-primary-text,
+//    A700: $octo-light-primary-text,
+//  )
+//);
+//
+//
+//$my-primary: mat.define-palette($octo-primary-palette, 500);
+//$my-accent: mat.define-palette($octo-accent-palette, A200, A100, A400);
+//
+//// Dark bg
+//$dark-background:     #121721;
+//$dark-modal-background: rgb(25, 33, 46);
+//
+//$default-typography: mat.define-typography-config(
+//  $font-family: "Barlow, Arial, Helvetica, sans-serif",
+//  // $body-1:  mat.define-typography-level(200px, 32px, 400),
+//  // $body-2:  mat.define-typography-level(100px, 32px, 400),
+//  // $button:  mat.define-typography-level(24px),
+//  // $button:  mat.define-typography-level(24px),
+//);
+//
+//$angular-default-theme: mat.define-dark-theme((
+//  color: (
+//    primary: $my-primary,
+//    accent: $my-accent,
+//  ),
+//  typography: $default-typography
+//));
+//$angular-default-theme: palette-helper.modify-background($angular-default-theme, $dark-background);
+//
+//@include mat.all-component-themes($angular-default-theme);
+//@include footer.theme($angular-default-theme);
+//
+//a:hover, a:active {
+//  cursor: pointer;
+//}
+//
+///* for sidenav to take a whole page */
+//html, body {
+//  height: 100%;
+//  box-sizing: border-box;
+//  margin: 0;
+//  background-image: url("./assets/MM-Logo-Schrift-MNT.svg");
+//  background-repeat: no-repeat;
+//  background-position: center;
+//  background-size: 50%;
+//  --bs-body-bg: #121721;
+//  --bs-body-color: #64ffda;
+//}
+//
+//.mm-loading-container{
+//  display: flex;
+//  flex-direction: row;
+//  justify-content: center;
+//
+//}
+//
+//.mm-loading {
+//  width: 20%
+//}
+//
+//main{
+//  background-image: url("./assets/OctoMesh-BG-Web-MM.svg");
+//  background-repeat: no-repeat;
+//  background-position: center;
+//  background-size: cover;
+//
+//}
+//
+////a{
+////  color: #8bc5bb !important;
+////}
+//.mat-bread-crumb-list-item {
+//  color: #8bc5bb !important;
+//}
+//
+//.input-filterToolbar {
+//  font-size: 14px;
+//  line-height: 32px;
+//  font-weight: 400;
+//}
+//
+///* Absolute Center Spinner */
+//.loading-indicator {
+//  position: fixed;
+//  z-index: 999;
+//  height: 2em;
+//  width: 2em;
+//  overflow: show;
+//  margin: auto;
+//  top: 0;
+//  left: 0;
+//  bottom: 0;
+//  right: 0;
+//}
+//
+///* Transparent Overlay */
+//.loading-indicator:before {
+//  content: '';
+//  display: block;
+//  position: fixed;
+//  top: 0;
+//  left: 0;
+//  width: 100%;
+//  height: 100%;
+//  background-color: rgba(0, 0, 0, 0.3);
+//}
+//.mat-mdc-table {
+//  overflow: auto;
+//  width: 100%;
+//}
+//
+//.mobile-label {
+//  display: none;
+//}
+//
+//.mobileCellHidden {
+//  display: flex;
+//}
+//
+//mat-form-field{
+//  width: 100%
+//}
+//
+//.mat-mdc-header-cell {
+//  white-space: unset !important;
+//  word-wrap: break-word !important;
+//  overflow-wrap: break-word;
+//  word-break: break-word;
+//  -ms-hyphens: auto;
+//  -moz-hyphens: auto;
+//  -webkit-hyphens: auto;
+//  hyphens: auto;
+//}
+//
+//.octo-button {
+//  padding: 20px;
+//  margin-right: 5px;
+//}
+//
+//.octo-toolbar{
+//
+//  .mat-mdc-text-field-wrapper{
+//    height: 40px;
+//  }
+//
+//  // This element reserves space for hints and error messages.
+//  // Hide it since we know that we won't need it.
+//  .mat-mdc-form-field-subscript-wrapper {
+//    display: none;
+//  }
+//
+//  // This code is to make search box smaller than normal
+//  .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label{
+//    top: 22px;
+//  }
+//  .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded
+//  .mdc-floating-label--float-above {
+//    --mat-mdc-form-field-label-transform: translateY(
+//        -29px)
+//    scale(var(--mat-mdc-form-field-floating-label-scale, 0.75));
+//    transform: var(--mat-mdc-form-field-label-transform);
+//  }
+//
+//  .mat-mdc-form-field-infix{
+//    top: -8px;
+//  }
+//
+//  .mat-mdc-form-field-flex {
+//    top: -8px;
+//  }
+//}
+//
+//.octo-toolbar .octo-spacer{
+//  flex: 1 1 auto;
+//}
+//
+//.octo-toolbar button {
+//  padding: 20px;
+//  margin-right: 5px;
+//}
+//
+//.octo-toolbar .octo-toolbar-search{
+//  padding-top: 5px;
+//}
+//
+////.octo-toolbar-search mat-form-field {
+////  width: 30%;
+////}
+//
+//
+//@media (max-width: 959px) {
+//
+//  .mat-mdc-table {
+//    max-height: 800px;
+//  }
+//
+//  .mat-mdc-table mat-row, .mat-table mat-header-row, .mat-table mat-footer-row {
+//    padding-left: 24px;
+//    padding-right: 24px;
+//  }
+//
+//  .mat-mdc-table mat-cell:first-child {
+//    padding-left: 16px;
+//  }
+//
+//  .mat-mdc-table .mat-column-actions {
+//    display: flex;
+//    justify-content: flex-end;
+//    border-bottom-width: 2px;
+//    border-color: $octo-accent-color;
+//  }
+//
+//  .mobile-label {
+//    width: 140px;
+//    display: inline-block;
+//    font-weight: bold;
+//  }
+//
+//  .mat-mdc-footer-row::after, .mat-mdc-header-row::after, .mat-mdc-row::after {
+//    min-height: 0;
+//  }
+//
+//  .mat-mdc-header-row {
+//    display: none;
+//  }
+//
+//  .mat-mdc-row {
+//    flex-direction: column;
+//    align-items: start;
+//    padding: 8px 24px;
+//  }
+//
+//  .mat-mdc-cell {
+//    min-height: auto;
+//    width: 100%;
+//    display: inline-block;
+//  }
+//
+//  .mobileCellHidden {
+//    display: none;
+//  }
+//
+//}
+//
+//.flex-container {
+//  display: flex;
+//}
+//
+//.flex-container > div {
+//  margin: 10px;
+//  padding: 20px;
+//  font-size: 30px;
+//}
+//
+//
