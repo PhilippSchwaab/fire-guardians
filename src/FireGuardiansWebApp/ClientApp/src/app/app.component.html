@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+<!--    <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>-->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="mm-content">
+      <!--    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>-->
+      <!--    <ia-notification-bar></ia-notification-bar>-->
+      <main>
+        <!--      <ia-mat-breadcrumb></ia-mat-breadcrumb>-->
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

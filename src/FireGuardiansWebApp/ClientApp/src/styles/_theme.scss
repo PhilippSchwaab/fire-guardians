@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-
+@use './palette-helper';
 @include mat.core();
 @import './colors';
 
@@ -26,6 +26,8 @@ $octo-dark-theme: mat.define-dark-theme((
   typography: $default-typography
 ));
 
+$octo-dark-theme: palette-helper.modify-background($octo-dark-theme, $dark-background);
+
 //$octo-light-theme: mat.define-light-theme((
 //  color: (
 //    primary: $app-primary,
@@ -35,6 +37,7 @@ $octo-dark-theme: mat.define-dark-theme((
 //  //typography: $default-typography
 //));
 
+//@include mat.angular-material-theme($octo-dark-theme);
 @include mat.all-component-themes($octo-dark-theme);
 // Apply the light theme only when the user prefers light themes.
 //@media (prefers-color-scheme: light) {
