@@ -1,0 +1,30 @@
+overwrite: true
+schema:
+  - https://localhost:5001/tenants/meshtest/graphQL:
+      headers:
+        Authorization: ${OCTO-ACCESS-TOKEN}
+documents: "src/app/graphQL/*.graphql"
+generates:
+  src/app/graphQL/globalTypes.ts:
+    plugins:
+      - typescript
+    config:
+      typesSuffix: Dto
+      enumPrefix: false
+      scalars:
+        OctoObjectId: string
+        CkAttributeId: string
+        CkEnumId: string
+        CkRecordId: string
+        CkTypeId: string
+  src/app/graphQL/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .ts
+      baseTypesPath: globalTypes.ts
+    plugins:
+      - "typescript-operations"
+      - "typescript-apollo-angular"
+    config:
+      typesSuffix: Dto
+      addExplicitOverride: true
