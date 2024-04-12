@@ -1,0 +1,26 @@
+query getRestaurants {
+  runtime {
+    fireGuardiansRestaurant(
+      first: 1
+      sortOrder: [
+        { sortOrder: DESCENDING, attributeName: "rtCreationDateTime" }
+      ]
+    ) {
+      items {
+        rtId
+        rtCreationDateTime
+        name
+        description
+        location {
+          point {
+            coordinates {
+              latitude
+              longitude
+              altitude
+            }
+          }
+        }
+      }
+    }
+  }
+}
