@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="octo-toolbar">
+  <div>
+    <button (click)="onToggleSidenav()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <span>Fire Guardians</span>
+
+  <div class="octo-spacer"></div>
+
+  <img src="/assets/fire-guardians-dark.svg" width="50px"  alt="fire guardians logo">
+
+  <button mat-icon-button aria-label="Profile menu" [matMenuTriggerFor]="profileMenu" >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #profileMenu="matMenu">
+    <button *ngIf="!(isAuthenticated | async)" (click)="login()" mat-menu-item>Login</button>
+    <button *ngIf="(isAuthenticated | async)" (click)="logout()" mat-menu-item>Logout</button>
+  </mat-menu>
+</mat-toolbar>

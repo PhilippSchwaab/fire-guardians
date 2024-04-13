@@ -1,10 +1,13 @@
-query getRestaurants {
+query getRestaurants($position:PositionInput!, $minDistance:Float, $maxDistance:Float) {
   runtime {
     fireGuardiansRestaurant(
-      first: 1
-      sortOrder: [
-        { sortOrder: DESCENDING, attributeName: "rtCreationDateTime" }
-      ]
+      first: 200,
+      geoNearFilter: {
+        attributeName: "location"
+        minDistance: $minDistance
+        maxDistance: $maxDistance
+        point: { coordinates: $position }
+      }
     ) {
       items {
         rtId
@@ -12,6 +15,7 @@ query getRestaurants {
         name
         description
         location {
+          distance
           point {
             coordinates {
               latitude

@@ -1,10 +1,15 @@
+<mat-progress-bar *ngIf="!(apiLoaded | async) || isLoading" mode="indeterminate">
+</mat-progress-bar>
 <div class="content" *ngIf="apiLoaded | async">
-  <google-map width="100%"
+  <google-map width="100%" #map
               height="100%"
               [zoom]="zoom"
-              [center]="center">
-    <!--  <map-marker *ngFor="let markerPosition of markerPositions"-->
-    <!--              [position]="markerPosition"-->
-    <!--              [options]="markerOptions"></map-marker>-->
+              [center]="center"
+              (mapInitialized)="mapInitialized($event)"
+              (mapClick)="click($event)">
+      <map-marker [position]="center"></map-marker>
+      <map-marker *ngFor="let marker of markerPositions"
+                  [position]="marker.position"
+                  [options]="marker.options"></map-marker>
   </google-map>
 </div>

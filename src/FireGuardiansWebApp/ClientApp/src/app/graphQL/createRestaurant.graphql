@@ -1,0 +1,28 @@
+﻿mutation createRestaurant($position:PositionInput!, $name:String!, $description:String) {
+  runtime {
+    fireGuardiansRestaurants {
+      create(
+        entities: [
+          {
+            name: $name,
+            description:$description
+            location: { coordinates: $position }
+          }
+        ]
+      ) {
+        rtId
+        name
+        description
+        location {
+          point {
+            coordinates {
+              latitude
+              longitude
+              altitude
+            }
+          }
+        }
+      }
+    }
+  }
+}
