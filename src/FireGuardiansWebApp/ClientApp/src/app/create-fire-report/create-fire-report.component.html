@@ -1,1 +1,28 @@
-<p>create-fire-report works!</p>
+<div class="details-container">
+  <div>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  </div>
+  <mat-toolbar class="octo-toolbar">
+    <div class="octo-spacer"></div>
+
+    <button mat-raised-button color="accent" class="ms-2" (click)="save()" [disabled]="ownerForm.invalid">
+      <mat-icon>save</mat-icon>
+      <span>Save</span>
+    </button>
+
+  </mat-toolbar>
+  <form [formGroup]="ownerForm" novalidate>
+
+    <div class="m-3">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Name" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+

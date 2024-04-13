@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Meshmakers.Octo.Communication.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

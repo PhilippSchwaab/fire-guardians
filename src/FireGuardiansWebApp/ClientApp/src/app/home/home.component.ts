@@ -11,11 +11,12 @@ import {ConfirmationService} from "@meshmakers/shared-ui";
 import {MessageService} from "@meshmakers/shared-services";
 import {GetFireReportsDtoGQL} from "../graphQL/getFireReports";
 import {CreateFireReportDtoGQL, CreateFireReportMutationVariablesDto} from "../graphQL/createFireReport";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, CommonModule, HttpClientModule, HttpClientJsonpModule, NgOptimizedImage, GoogleMapsModule, AsyncPipe, MatProgressBar],
+  imports: [MatButtonModule, CommonModule, HttpClientModule, HttpClientJsonpModule, NgOptimizedImage, GoogleMapsModule, AsyncPipe, MatProgressBar, MatIcon],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -26,8 +27,11 @@ export class HomeComponent implements OnInit {
   protected apiLoaded: BehaviorSubject<boolean>;
   protected zoom = 8;
   protected center: google.maps.LatLngLiteral;
+  protected newCenter: google.maps.LatLngLiteral;
   protected markerPositions: Marker[] = [];
   protected isLoading: boolean = true;
+  protected createFireReportEnabled: boolean = false;
+  protected newMarkerOptions: google.maps.marker.AdvancedMarkerElementOptions = { gmpDraggable: true};
 
   //protected markerOptions: google.maps.marker.AdvancedMarkerElementOptions = {gmpDraggable: false};
 
@@ -41,6 +45,7 @@ export class HomeComponent implements OnInit {
 
     this.apiLoaded = new BehaviorSubject<boolean>(false);
     this.center = {lat: 0, lng: 0};
+    this.newCenter = {lat: 0, lng: 0};
   }
 
   async ngOnInit(): Promise<void> {
@@ -48,6 +53,7 @@ export class HomeComponent implements OnInit {
     try {
       const position = await this.locationService.getCurrentLocation();
       this.center = {lat: position.latitude, lng: position.longitude};
+      this.newCenter = this.center;
     } catch (e) {
       console.error('HomeComponent.ngOnInit() - e: ', e);
     }
@@ -108,8 +114,41 @@ export class HomeComponent implements OnInit {
 
   }
 
-  async click(event: google.maps.MapMouseEvent): Promise<void> {
-    console.log(event, this.googleMap);
+  mapInitialized($event: google.maps.Map) {
+    this.changeDetector.detectChanges();
+    this.googleMap?.boundsChanged.subscribe(async () => {
+      await this.loadMarkers();
+    });
+  }
+
+  calculateDistance(point1: google.maps.LatLng, point2: google.maps.LatLng): number {
+    const R = 6371e3; // Radius of earth in meter
+    const lat1 = this.radians(point1.lat());
+    const lat2 = this.radians(point2.lat());
+    const deltaLat = this.radians(point2.lat() - point1.lat());
+    const deltaLng = this.radians(point2.lng() - point1.lng());
+
+    const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) *
+      Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c; // Distance in meter
+  }
+
+  radians(degrees: number): number {
+    return degrees * Math.PI / 180;
+  }
+
+  createFireReport() {
+    this.createFireReportEnabled = true;
+  }
+
+  public onDragend(event: any){
+    this.newCenter = {lat: event.latLng.lat(), lng: event.latLng.lng()};
+  }
+
+  async confirmFireReport() : Promise<void> {
 
     const confirmResult = await firstValueFrom(
       this.confirmationService.showYesNoConfirmationDialog(
@@ -119,10 +158,12 @@ export class HomeComponent implements OnInit {
     );
 
     if (confirmResult) {
+
+      const geo = await this.locationService.getLocationName(new google.maps.LatLng(this.newCenter.lat, this.newCenter.lng));
       const v = <CreateFireReportMutationVariablesDto>{
-        position: {latitude: event.latLng?.lat(), longitude: event.latLng?.lng()},
-        name: "demo",
-        description: "demo"
+        position: {latitude: this.newCenter.lat, longitude: this.newCenter.lng},
+        name: geo,
+        description: ""
       };
 
       const r = await firstValueFrom(this.createFireReportDtoGQL.mutate(v));
@@ -139,34 +180,10 @@ export class HomeComponent implements OnInit {
             }
           });
 
+        this.createFireReportEnabled = false;
+        this.newCenter = this.center;
         this.messageService.showInformation('Fire report created');
-      }
+     }
     }
-  }
-
-  mapInitialized($event: google.maps.Map) {
-    this.changeDetector.detectChanges();
-    this.googleMap?.boundsChanged.subscribe(async () => {
-      await this.loadMarkers();
-    });
-  }
-
-  calculateDistance(point1: google.maps.LatLng, point2: google.maps.LatLng): number {
-    const R = 6371e3; // Erdradius in Metern
-    const lat1 = this.radians(point1.lat());
-    const lat2 = this.radians(point2.lat());
-    const deltaLat = this.radians(point2.lat() - point1.lat());
-    const deltaLng = this.radians(point2.lng() - point1.lng());
-
-    const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-      Math.cos(lat1) * Math.cos(lat2) *
-      Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c; // Distanz in Metern
-  }
-
-  radians(degrees: number): number {
-    return degrees * Math.PI / 180;
   }
 }

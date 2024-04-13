@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {XLocation} from "../../models/location";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
-  constructor() {}
+  constructor() {
+  }
 
-  public getCurrentLocation() : Promise<XLocation> {
+  public getCurrentLocation(): Promise<XLocation> {
 
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
@@ -32,5 +33,19 @@ export class LocationService {
         reject('Geolocation is not supported by this browser.');
       }
     });
+  }
+
+
+  public async getLocationName(lngLat: google.maps.LatLng): Promise<string> {
+    let geocoder = new google.maps.Geocoder();
+    let locationName = '';
+
+    const response = await geocoder.geocode({location: lngLat});
+    if (response.results[0]) {
+      locationName = response.results[0].formatted_address;
+    } else {
+      locationName = 'Unknown location';
+    }
+    return locationName;
   }
 }
