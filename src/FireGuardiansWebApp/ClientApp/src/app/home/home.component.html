@@ -2,14 +2,14 @@
 </mat-progress-bar>
 <div class="content" *ngIf="apiLoaded | async">
   <google-map width="100%" #map
-              height="100%"
+              height="100%" mapId="871348944e6aa7e7"
               [zoom]="zoom"
               [center]="center"
               (mapInitialized)="mapInitialized($event)"
               (mapClick)="click($event)">
-      <map-marker [position]="center"></map-marker>
-      <map-marker *ngFor="let marker of markerPositions"
-                  [position]="marker.position"
-                  [options]="marker.options"></map-marker>
+      <map-advanced-marker [position]="center"></map-advanced-marker>
+      <map-advanced-marker *ngFor="let marker of markerPositions"
+                  [position]="marker.position" type="info"
+                  [options]="marker.options"></map-advanced-marker>
   </google-map>
 </div>

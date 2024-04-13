@@ -5,12 +5,12 @@ import {HttpClient, HttpClientJsonpModule, HttpClientModule} from "@angular/comm
 import {AsyncPipe, CommonModule, NgOptimizedImage} from "@angular/common";
 import {GoogleMap, GoogleMapsModule} from "@angular/google-maps";
 import {LocationService} from "../services/location/location.service";
-import {GetRestaurantsDtoGQL} from "../graphQL/getRestaurants";
 import {Marker} from "../shared/marker";
-import {CreateRestaurantDtoGQL, CreateRestaurantMutationVariablesDto} from "../graphQL/createRestaurant";
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {ConfirmationService} from "@meshmakers/shared-ui";
 import {MessageService} from "@meshmakers/shared-services";
+import {GetFireReportsDtoGQL} from "../graphQL/getFireReports";
+import {CreateFireReportDtoGQL, CreateFireReportMutationVariablesDto} from "../graphQL/createFireReport";
 
 @Component({
   selector: 'app-home',
@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit {
               private readonly locationService: LocationService,
               private readonly confirmationService: ConfirmationService,
               private readonly messageService: MessageService,
-              private readonly getRestaurantsDtoGQL: GetRestaurantsDtoGQL,
-              private readonly createRestaurantDtoGQL: CreateRestaurantDtoGQL,
+              private readonly getFireReportsDtoGQL: GetFireReportsDtoGQL,
+              private readonly createFireReportDtoGQL: CreateFireReportDtoGQL,
               private changeDetector: ChangeDetectorRef) {
 
     this.apiLoaded = new BehaviorSubject<boolean>(false);
@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
       const dist = this.calculateDistance(ne, sw);
       const c = bounds.getCenter(); // Südwest-Ecke
       try {
-        const r = await firstValueFrom(this.getRestaurantsDtoGQL.fetch({
+        const r = await firstValueFrom(this.getFireReportsDtoGQL.fetch({
           position: {
             latitude: c.lat(),
             longitude: c.lng()
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
           maxDistance: dist / 2
         }));
         this.markerPositions = [];
-        r.data.runtime?.fireGuardiansRestaurant?.items?.forEach((item) => {
+        r.data.runtime?.fireGuardiansFireReport?.items?.forEach((item) => {
           if (item) {
             this.markerPositions.push(<Marker>
               {
@@ -113,20 +113,20 @@ export class HomeComponent implements OnInit {
 
     const confirmResult = await firstValueFrom(
       this.confirmationService.showYesNoConfirmationDialog(
-        'Create Restaurant',
-        `Do you really want to create a restaurant at this location?`
+        'Report fire',
+        `Do you really want to report fire at this location?`
       )
     );
 
     if (confirmResult) {
-      const v = <CreateRestaurantMutationVariablesDto>{
+      const v = <CreateFireReportMutationVariablesDto>{
         position: {latitude: event.latLng?.lat(), longitude: event.latLng?.lng()},
         name: "demo",
         description: "demo"
       };
 
-      const r = await firstValueFrom(this.createRestaurantDtoGQL.mutate(v));
-      const entity = r.data?.runtime?.fireGuardiansRestaurants?.create?.at(0);
+      const r = await firstValueFrom(this.createFireReportDtoGQL.mutate(v));
+      const entity = r.data?.runtime?.fireGuardiansFireReports?.create?.at(0);
       if (entity) {
         this.markerPositions.push(<Marker>
           {
@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
             }
           });
 
-        this.messageService.showInformation('Restaurant created');
+        this.messageService.showInformation('Fire report created');
       }
     }
   }

@@ -1453,13 +1453,14 @@ export enum FieldFilterOperatorsDto {
   NotInDto = 'NOT_IN'
 }
 
-/** Runtime entities of construction kit type 'FireGuardians/Restaurant' */
-export type FireGuardiansRestaurantDto = {
-  __typename?: 'FireGuardiansRestaurant';
+/** Runtime entities of construction kit type 'FireGuardians/FireReport' */
+export type FireGuardiansFireReportDto = {
+  __typename?: 'FireGuardiansFireReport';
   ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
-  configuredBy?: Maybe<FireGuardiansRestaurant_ConfiguredByUnionDto>;
+  configuredBy?: Maybe<FireGuardiansFireReport_ConfiguredByUnionDto>;
   constructionKitType?: Maybe<CkTypeDto>;
   description?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['OctoObjectId']['output']>;
   location?: Maybe<RtGeospatialValueDtoTypeDto>;
   name?: Maybe<Scalars['String']['output']>;
   rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
@@ -1468,91 +1469,92 @@ export type FireGuardiansRestaurantDto = {
   rtWellKnownName?: Maybe<Scalars['String']['output']>;
 };
 
-/** A connection to `FireGuardiansRestaurant`. */
-export type FireGuardiansRestaurantConnectionDto = {
-  __typename?: 'FireGuardiansRestaurantConnection';
+/** A connection to `FireGuardiansFireReport`. */
+export type FireGuardiansFireReportConnectionDto = {
+  __typename?: 'FireGuardiansFireReportConnection';
   /** Information to aid in pagination. */
-  edges?: Maybe<Array<Maybe<FireGuardiansRestaurantEdgeDto>>>;
+  edges?: Maybe<Array<Maybe<FireGuardiansFireReportEdgeDto>>>;
   /** Result of grouping the items by attributes. */
   groupings?: Maybe<Array<Maybe<GroupingDto>>>;
   /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
-  items?: Maybe<Array<Maybe<FireGuardiansRestaurantDto>>>;
+  items?: Maybe<Array<Maybe<FireGuardiansFireReportDto>>>;
   /** Information to aid in pagination. */
   pageInfo?: Maybe<PageInfoDto>;
   /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
   totalCount?: Maybe<Scalars['Int']['output']>;
 };
 
-/** An edge in a connection from an object to another object of type `FireGuardiansRestaurant`. */
-export type FireGuardiansRestaurantEdgeDto = {
-  __typename?: 'FireGuardiansRestaurantEdge';
+/** An edge in a connection from an object to another object of type `FireGuardiansFireReport`. */
+export type FireGuardiansFireReportEdgeDto = {
+  __typename?: 'FireGuardiansFireReportEdge';
   /** A cursor for use in pagination */
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge */
-  node?: Maybe<FireGuardiansRestaurantDto>;
+  node?: Maybe<FireGuardiansFireReportDto>;
 };
 
-export type FireGuardiansRestaurantInputDto = {
+export type FireGuardiansFireReportInputDto = {
   configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   description?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['OctoObjectId']['input']>;
   location?: InputMaybe<PointInputDto>;
   name?: InputMaybe<Scalars['String']['input']>;
   rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type FireGuardiansRestaurantInputUpdateDto = {
+export type FireGuardiansFireReportInputUpdateDto = {
   /** Item to update */
-  item: FireGuardiansRestaurantInputDto;
+  item: FireGuardiansFireReportInputDto;
   rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
 };
 
-export type FireGuardiansRestaurantMutationsDto = {
-  __typename?: 'FireGuardiansRestaurantMutations';
-  /** Creates new entities of type 'FireGuardiansRestaurant'. */
-  create?: Maybe<Array<Maybe<FireGuardiansRestaurantDto>>>;
-  /** Deletes an entity of type 'FireGuardiansRestaurant'. */
+export type FireGuardiansFireReportMutationsDto = {
+  __typename?: 'FireGuardiansFireReportMutations';
+  /** Creates new entities of type 'FireGuardiansFireReport'. */
+  create?: Maybe<Array<Maybe<FireGuardiansFireReportDto>>>;
+  /** Deletes an entity of type 'FireGuardiansFireReport'. */
   delete?: Maybe<Scalars['Boolean']['output']>;
-  /** Updates existing entity of type 'FireGuardiansRestaurant'. */
-  update?: Maybe<Array<Maybe<FireGuardiansRestaurantDto>>>;
+  /** Updates existing entity of type 'FireGuardiansFireReport'. */
+  update?: Maybe<Array<Maybe<FireGuardiansFireReportDto>>>;
 };
 
 
-export type FireGuardiansRestaurantMutationsCreateArgsDto = {
-  entities: Array<InputMaybe<FireGuardiansRestaurantInputDto>>;
+export type FireGuardiansFireReportMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<FireGuardiansFireReportInputDto>>;
 };
 
 
-export type FireGuardiansRestaurantMutationsDeleteArgsDto = {
+export type FireGuardiansFireReportMutationsDeleteArgsDto = {
   entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
 };
 
 
-export type FireGuardiansRestaurantMutationsUpdateArgsDto = {
-  entities: Array<InputMaybe<FireGuardiansRestaurantInputUpdateDto>>;
+export type FireGuardiansFireReportMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<FireGuardiansFireReportInputUpdateDto>>;
 };
 
-export type FireGuardiansRestaurantUpdateDto = {
-  __typename?: 'FireGuardiansRestaurantUpdate';
+export type FireGuardiansFireReportUpdateDto = {
+  __typename?: 'FireGuardiansFireReportUpdate';
   /** The corresponding item */
-  item?: Maybe<FireGuardiansRestaurantDto>;
+  item?: Maybe<FireGuardiansFireReportDto>;
   updateState?: Maybe<UpdateTypeDto>;
 };
 
-export type FireGuardiansRestaurantUpdateMessageDto = {
-  __typename?: 'FireGuardiansRestaurantUpdateMessage';
+export type FireGuardiansFireReportUpdateMessageDto = {
+  __typename?: 'FireGuardiansFireReportUpdateMessage';
   /** The corresponding items */
-  items?: Maybe<Array<Maybe<FireGuardiansRestaurantUpdateDto>>>;
+  items?: Maybe<Array<Maybe<FireGuardiansFireReportUpdateDto>>>;
 };
 
-/** Association System.Bot/Configures (Inbound) of entity type FireGuardiansRestaurant */
-export type FireGuardiansRestaurant_ConfiguredByUnionDto = {
-  __typename?: 'FireGuardiansRestaurant_ConfiguredByUnion';
+/** Association System.Bot/Configures (Inbound) of entity type FireGuardiansFireReport */
+export type FireGuardiansFireReport_ConfiguredByUnionDto = {
+  __typename?: 'FireGuardiansFireReport_ConfiguredByUnion';
   systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
 };
 
 
-/** Association System.Bot/Configures (Inbound) of entity type FireGuardiansRestaurant */
-export type FireGuardiansRestaurant_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+/** Association System.Bot/Configures (Inbound) of entity type FireGuardiansFireReport */
+export type FireGuardiansFireReport_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -4437,7 +4439,7 @@ export type OctoSubscriptionsDto = {
   basicEquipmentGroupEvents?: Maybe<BasicEquipmentGroupUpdateMessageDto>;
   basicEquipmentModelEvents?: Maybe<BasicEquipmentModelUpdateMessageDto>;
   basicNamedEntityEvents?: Maybe<BasicNamedEntityUpdateMessageDto>;
-  fireGuardiansRestaurantEvents?: Maybe<FireGuardiansRestaurantUpdateMessageDto>;
+  fireGuardiansFireReportEvents?: Maybe<FireGuardiansFireReportUpdateMessageDto>;
   industryBasicAlarmEvents?: Maybe<IndustryBasicAlarmUpdateMessageDto>;
   industryBasicEventEvents?: Maybe<IndustryBasicEventUpdateMessageDto>;
   industryBasicMachineEvents?: Maybe<IndustryBasicMachineUpdateMessageDto>;
@@ -4501,7 +4503,7 @@ export type OctoSubscriptionsBasicNamedEntityEventsArgsDto = {
 };
 
 
-export type OctoSubscriptionsFireGuardiansRestaurantEventsArgsDto = {
+export type OctoSubscriptionsFireGuardiansFireReportEventsArgsDto = {
   rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
   updateTypes: Array<InputMaybe<UpdateTypeDto>>;
 };
@@ -4821,8 +4823,8 @@ export type RuntimeDto = {
   basicEquipmentGroups?: Maybe<BasicEquipmentGroupMutationsDto>;
   /** Mutation for entities of type 'BasicEquipmentModel'. */
   basicEquipmentModels?: Maybe<BasicEquipmentModelMutationsDto>;
-  /** Mutation for entities of type 'FireGuardiansRestaurant'. */
-  fireGuardiansRestaurants?: Maybe<FireGuardiansRestaurantMutationsDto>;
+  /** Mutation for entities of type 'FireGuardiansFireReport'. */
+  fireGuardiansFireReports?: Maybe<FireGuardiansFireReportMutationsDto>;
   /** Mutation for entities of type 'IndustryBasicAlarm'. */
   industryBasicAlarms?: Maybe<IndustryBasicAlarmMutationsDto>;
   /** Mutation for entities of type 'IndustryBasicEvent'. */
@@ -4884,7 +4886,7 @@ export type RuntimeModelQueryDto = {
   basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
   basicEquipmentModel?: Maybe<BasicEquipmentModelConnectionDto>;
   basicNamedEntity?: Maybe<BasicNamedEntityConnectionDto>;
-  fireGuardiansRestaurant?: Maybe<FireGuardiansRestaurantConnectionDto>;
+  fireGuardiansFireReport?: Maybe<FireGuardiansFireReportConnectionDto>;
   industryBasicAlarm?: Maybe<IndustryBasicAlarmConnectionDto>;
   industryBasicEvent?: Maybe<IndustryBasicEventConnectionDto>;
   industryBasicMachine?: Maybe<IndustryBasicMachineConnectionDto>;
@@ -4984,7 +4986,7 @@ export type RuntimeModelQueryBasicNamedEntityArgsDto = {
 };
 
 
-export type RuntimeModelQueryFireGuardiansRestaurantArgsDto = {
+export type RuntimeModelQueryFireGuardiansFireReportArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -5660,7 +5662,7 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionDto = {
   basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
   basicEquipmentModel?: Maybe<BasicEquipmentModelConnectionDto>;
   basicNamedEntity?: Maybe<BasicNamedEntityConnectionDto>;
-  fireGuardiansRestaurant?: Maybe<FireGuardiansRestaurantConnectionDto>;
+  fireGuardiansFireReport?: Maybe<FireGuardiansFireReportConnectionDto>;
   industryBasicAlarm?: Maybe<IndustryBasicAlarmConnectionDto>;
   industryBasicEvent?: Maybe<IndustryBasicEventConnectionDto>;
   industryBasicMachine?: Maybe<IndustryBasicMachineConnectionDto>;
@@ -5760,7 +5762,7 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicNamedEn
 
 
 /** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
-export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionFireGuardiansRestaurantArgsDto = {
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionFireGuardiansFireReportArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;

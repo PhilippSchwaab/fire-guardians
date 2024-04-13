@@ -1,0 +1,28 @@
+﻿mutation createFireReport($position:PositionInput!, $name:String!, $description:String) {
+  runtime {
+    fireGuardiansFireReports {
+      create(
+        entities: [
+          {
+            name: $name,
+            description:$description
+            location: { coordinates: $position }
+          }
+        ]
+      ) {
+        rtId
+        name
+        description
+        location {
+          point {
+            coordinates {
+              latitude
+              longitude
+              altitude
+            }
+          }
+        }
+      }
+    }
+  }
+}

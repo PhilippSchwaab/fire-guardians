@@ -1,6 +1,6 @@
-query getRestaurants($position:PositionInput!, $minDistance:Float, $maxDistance:Float) {
+query getFireReports($position:PositionInput!, $minDistance:Float, $maxDistance:Float) {
   runtime {
-    fireGuardiansRestaurant(
+    fireGuardiansFireReport(
       first: 200,
       geoNearFilter: {
         attributeName: "location"

@@ -1,7 +1,10 @@
 $schema: https://schemas.meshmakers.cloud/construction-kit-elements.schema.json
 types:
-- typeId: Restaurant
+- typeId: FireReport
   derivedFromCkTypeId: Basic/NamedEntity
   attributes:
   - id: ${thisModel}/Location
     name: Location
+  - id: ${thisModel}/Image
+    name: Image
+    isOptional: true

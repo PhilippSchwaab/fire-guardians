@@ -2,3 +2,5 @@ $schema: https://schemas.meshmakers.cloud/construction-kit-elements.schema.json
 attributes:
 - id: Location
   valueType: GeospatialPoint
+- id: Image
+  valueType: BinaryLinked

@@ -1,0 +1,10 @@
+﻿query getBinary($binaryId:OctoObjectId!) {
+  sysLargeBinaries(largeBinaryId:$binaryId) {
+    items {
+      binaryId
+      contentType
+      filename
+      downloadUri
+    }
+  }
+}

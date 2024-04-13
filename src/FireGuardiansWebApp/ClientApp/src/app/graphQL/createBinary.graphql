@@ -1,0 +1,3 @@
+﻿mutation createBinary($binaryData: LargeBinary!) {
+  sysCreateLargeBinary(binaryData: $binaryData)
+}
