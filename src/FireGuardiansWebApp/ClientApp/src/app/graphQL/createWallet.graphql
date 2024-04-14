@@ -1,0 +1,19 @@
+mutation createWallet($walletInput: FireGuardiansWalletInput!) {
+  runtime {
+    fireGuardiansWallets {
+      create(entities:[$walletInput]) {
+        rtId
+        identityId
+        name
+        location {
+          point {
+            coordinates {
+              latitude
+              longitude
+            }
+          }
+        }
+      }
+    }
+  }
+}

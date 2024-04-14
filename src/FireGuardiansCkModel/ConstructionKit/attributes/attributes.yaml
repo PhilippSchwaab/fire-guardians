@@ -4,3 +4,5 @@ attributes:
   valueType: GeospatialPoint
 - id: Image
   valueType: BinaryLinked
+- id: IdentityId
+  valueType: String  

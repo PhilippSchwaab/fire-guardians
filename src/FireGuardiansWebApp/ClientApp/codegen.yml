@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-  - https://localhost:5001/tenants/meshtest/graphQL:
+  - https://localhost:5001/tenants/fireguardians/graphQL:
       headers:
         Authorization: ${OCTO-ACCESS-TOKEN}
 documents: "src/app/graphQL/*.graphql"

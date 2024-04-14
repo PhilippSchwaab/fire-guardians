@@ -1,0 +1,19 @@
+﻿mutation updateWalletLocation($rtId:OctoObjectId!, $position:PositionInput!) {
+  runtime {
+    fireGuardiansWallets {
+      update(entities:[{rtId:$rtId, item:{location: {coordinates:$position}}}]) {
+        rtId
+        identityId
+        name
+        location {
+          point {
+            coordinates {
+              latitude
+              longitude
+            }
+          }
+        }
+      }
+    }
+  }
+}

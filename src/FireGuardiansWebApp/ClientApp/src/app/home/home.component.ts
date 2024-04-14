@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
-import {BehaviorSubject, firstValueFrom, lastValueFrom} from "rxjs";
+import {BehaviorSubject, firstValueFrom, lastValueFrom, Observable, of} from "rxjs";
 import {HttpClient, HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {AsyncPipe, CommonModule, NgOptimizedImage} from "@angular/common";
 import {GoogleMap, GoogleMapsModule} from "@angular/google-maps";
@@ -12,6 +12,10 @@ import {MessageService} from "@meshmakers/shared-services";
 import {GetFireReportsDtoGQL} from "../graphQL/getFireReports";
 import {CreateFireReportDtoGQL, CreateFireReportMutationVariablesDto} from "../graphQL/createFireReport";
 import {MatIcon} from "@angular/material/icon";
+import {AuthorizeService} from "@meshmakers/shared-auth";
+import {GetWalletDtoGQL} from "../graphQL/getWallet";
+import {CreateWalletDtoGQL} from "../graphQL/createWallet";
+import {UpdateWalletLocationDtoGQL} from "../graphQL/updateWalletLocation";
 
 @Component({
   selector: 'app-home',
@@ -32,6 +36,7 @@ export class HomeComponent implements OnInit {
   protected isLoading: boolean = true;
   protected createFireReportEnabled: boolean = false;
   protected newMarkerOptions: google.maps.marker.AdvancedMarkerElementOptions = { gmpDraggable: true};
+  protected isAuthenticated: Observable<boolean>;
 
   //protected markerOptions: google.maps.marker.AdvancedMarkerElementOptions = {gmpDraggable: false};
 
@@ -41,14 +46,21 @@ export class HomeComponent implements OnInit {
               private readonly messageService: MessageService,
               private readonly getFireReportsDtoGQL: GetFireReportsDtoGQL,
               private readonly createFireReportDtoGQL: CreateFireReportDtoGQL,
+              private readonly getWalletDtoGQL: GetWalletDtoGQL,
+              private readonly createWallet: CreateWalletDtoGQL,
+              private readonly updateWalletLocation: UpdateWalletLocationDtoGQL,
+              private readonly authorizeService: AuthorizeService,
               private changeDetector: ChangeDetectorRef) {
 
     this.apiLoaded = new BehaviorSubject<boolean>(false);
     this.center = {lat: 0, lng: 0};
     this.newCenter = {lat: 0, lng: 0};
+    this.isAuthenticated = of(false);
   }
 
   async ngOnInit(): Promise<void> {
+
+    this.isAuthenticated = this.authorizeService.getIsAuthenticated();
 
     try {
       const position = await this.locationService.getCurrentLocation();
@@ -56,6 +68,36 @@ export class HomeComponent implements OnInit {
       this.newCenter = this.center;
     } catch (e) {
       console.error('HomeComponent.ngOnInit() - e: ', e);
+    }
+
+    const u = await firstValueFrom(this.authorizeService.getUser());
+    if (u) {
+      const id = (<any>u).sub;
+      console.log("user", id);
+
+      const x = await firstValueFrom(this.getWalletDtoGQL.fetch({identityId: id}));
+      if (x.data.runtime?.fireGuardiansWallet?.items?.length) {
+        const rtId = x.data.runtime?.fireGuardiansWallet.items[0]?.rtId;
+        if (rtId) {
+
+          console.log("test", rtId);
+          await firstValueFrom(this.updateWalletLocation.mutate({
+            rtId: rtId, position: {latitude: this.center.lat, longitude: this.center.lng}
+          }));
+        }
+      } else {
+        await firstValueFrom(this.createWallet.mutate({
+          walletInput:
+            {
+              identityId: id,
+              name: u.name,
+              location:
+                {
+                  coordinates: {latitude: this.center.lat, longitude: this.center.lng}
+                }
+            }
+        }));
+      }
     }
 
     try {
@@ -185,5 +227,9 @@ export class HomeComponent implements OnInit {
         this.messageService.showInformation('Fire report created');
      }
     }
+  }
+
+  public login(): void {
+    this.authorizeService.login();
   }
 }

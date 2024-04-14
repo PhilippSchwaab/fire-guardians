@@ -37,12 +37,16 @@
       </map-advanced-marker>
   </google-map>
 
-  <button class="add-fire-report" *ngIf="!createFireReportEnabled" mat-fab extended color="warn" (click)="createFireReport()">
+  <button class="add-fire-report" *ngIf="(isAuthenticated | async) && !createFireReportEnabled" mat-fab extended color="warn" (click)="createFireReport()">
     <mat-icon class="material-symbols-outlined">e911_emergency</mat-icon>
     Report Fire
   </button>
-  <button class="add-fire-report" *ngIf="createFireReportEnabled" mat-fab extended color="warn" (click)="confirmFireReport()">
+  <button class="add-fire-report" *ngIf="(isAuthenticated | async) && createFireReportEnabled" mat-fab extended color="warn" (click)="confirmFireReport()">
     <mat-icon class="material-symbols-outlined">check</mat-icon>
     Confirm position of fire report
+  </button>
+  <button class="add-fire-report" *ngIf="!(isAuthenticated | async)" mat-fab extended color="primary" (click)="login()">
+    <mat-icon class="material-symbols-outlined">login</mat-icon>
+    Login to report fire
   </button>
 </div>
