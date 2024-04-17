@@ -16,6 +16,7 @@ import {AuthorizeService} from "@meshmakers/shared-auth";
 import {GetWalletDtoGQL} from "../graphQL/getWallet";
 import {CreateWalletDtoGQL} from "../graphQL/createWallet";
 import {UpdateWalletLocationDtoGQL} from "../graphQL/updateWalletLocation";
+import {HOME} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
   protected zoom = 8;
   protected center: google.maps.LatLngLiteral;
   protected newCenter: google.maps.LatLngLiteral;
+  protected homeCenter: google.maps.LatLngLiteral | null;
   protected markerPositions: Marker[] = [];
   protected isLoading: boolean = true;
   protected createFireReportEnabled: boolean = false;
@@ -53,8 +55,9 @@ export class HomeComponent implements OnInit {
               private changeDetector: ChangeDetectorRef) {
 
     this.apiLoaded = new BehaviorSubject<boolean>(false);
-    this.center = {lat: 0, lng: 0};
-    this.newCenter = {lat: 0, lng: 0};
+    this.center = {lat: 49.843, lng: 9.902056}; // 49.843, 9.902056
+    this.homeCenter = null;
+    this.newCenter = {lat: 49.843, lng: 9.902056};
     this.isAuthenticated = of(false);
   }
 
@@ -65,24 +68,24 @@ export class HomeComponent implements OnInit {
     try {
       const position = await this.locationService.getCurrentLocation();
       this.center = {lat: position.latitude, lng: position.longitude};
+      this.homeCenter = this.center;
       this.newCenter = this.center;
     } catch (e) {
       console.error('HomeComponent.ngOnInit() - e: ', e);
     }
 
+    // This code create a wallet for the user with the current location
     const u = await firstValueFrom(this.authorizeService.getUser());
-    if (u) {
+    if (u && this.homeCenter) {
       const id = (<any>u).sub;
-      console.log("user", id);
 
       const x = await firstValueFrom(this.getWalletDtoGQL.fetch({identityId: id}));
       if (x.data.runtime?.fireGuardiansWallet?.items?.length) {
         const rtId = x.data.runtime?.fireGuardiansWallet.items[0]?.rtId;
         if (rtId) {
 
-          console.log("test", rtId);
           await firstValueFrom(this.updateWalletLocation.mutate({
-            rtId: rtId, position: {latitude: this.center.lat, longitude: this.center.lng}
+            rtId: rtId, position: {latitude: this.homeCenter.lat, longitude: this.homeCenter.lng}
           }));
         }
       } else {
@@ -93,7 +96,7 @@ export class HomeComponent implements OnInit {
               name: u.name,
               location:
                 {
-                  coordinates: {latitude: this.center.lat, longitude: this.center.lng}
+                  coordinates: {latitude: this.homeCenter.lat, longitude: this.homeCenter.lng}
                 }
             }
         }));
@@ -119,10 +122,10 @@ export class HomeComponent implements OnInit {
     const bounds = this.googleMap.getBounds();
     if (bounds) {
       this.isLoading = true;
-      const ne = bounds.getNorthEast(); // Nordost-Ecke
-      const sw = bounds.getSouthWest(); // Südwest-Ecke
+      const ne = bounds.getNorthEast(); // northeast corner
+      const sw = bounds.getSouthWest(); // southwest corner
       const dist = this.calculateDistance(ne, sw);
-      const c = bounds.getCenter(); // Südwest-Ecke
+      const c = bounds.getCenter();
       try {
         const r = await firstValueFrom(this.getFireReportsDtoGQL.fetch({
           position: {
@@ -232,4 +235,6 @@ export class HomeComponent implements OnInit {
   public login(): void {
     this.authorizeService.login();
   }
+
+  protected readonly HOME = HOME;
 }

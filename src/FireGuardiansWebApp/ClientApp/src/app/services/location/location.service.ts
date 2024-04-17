@@ -27,7 +27,7 @@ export class LocationService {
               resolve(<XLocation>{latitude: lat, longitude: lng});
             }
           },
-          (error) => console.log(error)
+          (error) => reject(error)
         );
       } else {
         reject('Geolocation is not supported by this browser.');
