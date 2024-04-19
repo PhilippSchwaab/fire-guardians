@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, ApplicationConfig, importProvidersFrom} from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -15,37 +15,37 @@ import {IaSharedUIModule} from "@meshmakers/shared-ui";
 import {Apollo, ApolloModule} from "apollo-angular";
 import {HttpLink} from "apollo-angular/http";
 import { InMemoryCache } from '@apollo/client/core';
+import { provideServiceWorker } from '@angular/service-worker';
+import {NotificationService} from "./services/notification/notification.service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     ConfigurationService,
     provideRouter(routes),
-    importProvidersFrom(
-      ApolloModule,
-      SharedServicesModule.forRoot(),
-      OctoServicesModule.forRoot(defaultOctoServiceOptions),
-      SharedAuthModule.forRoot(defaultAuthorizeOptions),
-      IaSharedUIModule,
-    ),
+    importProvidersFrom(ApolloModule, SharedServicesModule.forRoot(), OctoServicesModule.forRoot(defaultOctoServiceOptions), SharedAuthModule.forRoot(defaultAuthorizeOptions), IaSharedUIModule),
     provideAnimations(),
     {
-      provide: APP_INITIALIZER,
-      useFactory: initServices,
-      deps: [ConfigurationService, AuthorizeService, HttpLink, Apollo],
-      multi: true
+        provide: APP_INITIALIZER,
+        useFactory: initServices,
+        deps: [ConfigurationService, AuthorizeService, HttpLink, Apollo, NotificationService],
+        multi: true
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      deps: [MessageService],
-      multi: true
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpErrorInterceptor,
+        deps: [MessageService],
+        multi: true
     },
-  ]
+    provideServiceWorker('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000'
+    })
+]
 };
 
 export function initServices(configurationService: ConfigurationService, authorizeService: AuthorizeService, httpLink: HttpLink,
-                             apollo: Apollo) {
+                             apollo: Apollo, notificationService: NotificationService) {
   return async () => {
     await configurationService.loadConfig();
 
@@ -77,5 +77,7 @@ export function initServices(configurationService: ConfigurationService, authori
         uri
       })
     });
+
+    await notificationService.subscribeToNotifications();
   };
 }
