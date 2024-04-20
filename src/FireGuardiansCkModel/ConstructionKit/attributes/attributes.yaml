@@ -6,3 +6,11 @@ attributes:
   valueType: BinaryLinked
 - id: IdentityId
   valueType: String  
+- id: Endpoint
+  valueType: String
+- id: SubscriptionConfiguration
+  valueType: String   
+- id: InitialNotificationSent
+  valueType: Boolean
+- id: LastNotificationUpdate
+  valueType: DateTime

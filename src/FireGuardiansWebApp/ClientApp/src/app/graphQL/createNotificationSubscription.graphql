@@ -1,0 +1,25 @@
+mutation createNotificationSubscription($endpoint: String!, $config: String, $parentWalletRtId:OctoObjectId!) {
+  runtime {
+    fireGuardiansNotificationSubscriptions {
+      create(
+        entities: [
+          {
+            endpoint: $endpoint
+            subscriptionConfiguration: $config
+            parent: {
+              target: {
+                rtId: $parentWalletRtId
+                ckTypeId: "FireGuardians/Wallet"
+              }
+              modOption: CREATE
+            }
+          }
+        ]
+      ) {
+        rtId
+        endpoint
+        subscriptionConfiguration
+      }
+    }
+  }
+}

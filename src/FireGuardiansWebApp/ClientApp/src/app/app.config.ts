@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     {
         provide: APP_INITIALIZER,
         useFactory: initServices,
-        deps: [ConfigurationService, AuthorizeService, HttpLink, Apollo, NotificationService],
+        deps: [ConfigurationService, AuthorizeService, HttpLink, Apollo],
         multi: true
     },
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
@@ -45,7 +45,7 @@ export const appConfig: ApplicationConfig = {
 };
 
 export function initServices(configurationService: ConfigurationService, authorizeService: AuthorizeService, httpLink: HttpLink,
-                             apollo: Apollo, notificationService: NotificationService) {
+                             apollo: Apollo) {
   return async () => {
     await configurationService.loadConfig();
 
@@ -54,7 +54,6 @@ export function initServices(configurationService: ConfigurationService, authori
       configurationService.config.issuer
     ];
 
-    console.info(configurationService.config.assetServices)
     defaultOctoServiceOptions.assetServices = configurationService.config.assetServices;
 
     defaultAuthorizeOptions.issuer = configurationService.config.issuer;
@@ -77,7 +76,5 @@ export function initServices(configurationService: ConfigurationService, authori
         uri
       })
     });
-
-    await notificationService.subscribeToNotifications();
   };
 }

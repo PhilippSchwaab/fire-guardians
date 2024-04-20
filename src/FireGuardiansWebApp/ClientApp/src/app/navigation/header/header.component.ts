@@ -8,6 +8,8 @@ import {MatIcon} from "@angular/material/icon";
 import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatIconButton} from "@angular/material/button";
+import {MatTooltip} from "@angular/material/tooltip";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-header',
@@ -21,7 +23,8 @@ import {MatIconButton} from "@angular/material/button";
     MatIconButton,
     NgIf,
     NgOptimizedImage,
-    MatMenuItem
+    MatMenuItem,
+    MatTooltip
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -37,6 +40,7 @@ export class HeaderComponent {
   constructor(
     activatedRoute: ActivatedRoute,
     private readonly authorizeService: AuthorizeService,
+    private readonly notificationService: NotificationService,
     public configurationService: ConfigurationService
   ) {
     this.isAuthenticated = of(false);
@@ -63,4 +67,7 @@ export class HeaderComponent {
     this.sidenavToggle.emit();
   }
 
+  public async addNotification() :Promise<void> {
+    await this.notificationService.subscribeToNotifications();
+  }
 }

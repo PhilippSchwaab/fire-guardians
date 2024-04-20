@@ -1,0 +1,29 @@
+query getWalletSubscription($walletRtId: OctoObjectId!, $endpoint: SimpleScalarType!) {
+  runtime {
+    fireGuardiansWallet(rtId: $walletRtId) {
+      totalCount
+      pageInfo {
+        endCursor
+      }
+      items {
+        rtChangedDateTime
+        name
+        children {
+          fireGuardiansNotificationSubscription(
+            fieldFilter: [
+              {
+                attributeName: "endpoint"
+                operator: EQUALS
+                comparisonValue: $endpoint
+              }
+            ]
+          ) {
+            items {
+              rtId
+            }
+          }
+        }
+      }
+    }
+  }
+}

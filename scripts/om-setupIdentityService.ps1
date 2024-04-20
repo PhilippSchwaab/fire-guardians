@@ -6,4 +6,9 @@ octo-cli -c AddAuthorizationCodeClient --clienturi https://localhost:44486/ --cl
 octo-cli -c AddScopeToClient --clientid fire-guardians-app --name "systemAPI.full_access"
 octo-cli -c AddScopeToClient --clientid fire-guardians-app-debug --name "systemAPI.full_access"
 
+octo-cli -c AddClientCredentialsClient --clientId "fire-guardians-app-backend" --name "Fire Guardians App Backend" --secret "l8L@w5iEv*Ym"
+octo-cli -c AddScopeToClient --clientid fire-guardians-app-backend --name "systemAPI.full_access"
+
+
+
 

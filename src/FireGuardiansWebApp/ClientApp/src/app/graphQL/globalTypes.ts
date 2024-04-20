@@ -1262,9 +1262,139 @@ export type FireGuardiansFireReport_ConfiguredByUnionSystemBotAttributeAggregate
   sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
 };
 
+/** Runtime entities of construction kit type 'FireGuardians/NotificationSubscription' */
+export type FireGuardiansNotificationSubscriptionDto = {
+  __typename?: 'FireGuardiansNotificationSubscription';
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<FireGuardiansNotificationSubscription_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  endpoint?: Maybe<Scalars['String']['output']>;
+  parent?: Maybe<FireGuardiansNotificationSubscription_ParentUnionDto>;
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+  subscriptionConfiguration?: Maybe<Scalars['String']['output']>;
+};
+
+/** A connection to `FireGuardiansNotificationSubscription`. */
+export type FireGuardiansNotificationSubscriptionConnectionDto = {
+  __typename?: 'FireGuardiansNotificationSubscriptionConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<FireGuardiansNotificationSubscriptionEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<FireGuardiansNotificationSubscriptionDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `FireGuardiansNotificationSubscription`. */
+export type FireGuardiansNotificationSubscriptionEdgeDto = {
+  __typename?: 'FireGuardiansNotificationSubscriptionEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<FireGuardiansNotificationSubscriptionDto>;
+};
+
+export type FireGuardiansNotificationSubscriptionInputDto = {
+  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  endpoint?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
+  subscriptionConfiguration?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FireGuardiansNotificationSubscriptionInputUpdateDto = {
+  /** Item to update */
+  item: FireGuardiansNotificationSubscriptionInputDto;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+};
+
+export type FireGuardiansNotificationSubscriptionMutationsDto = {
+  __typename?: 'FireGuardiansNotificationSubscriptionMutations';
+  /** Creates new entities of type 'FireGuardiansNotificationSubscription'. */
+  create?: Maybe<Array<Maybe<FireGuardiansNotificationSubscriptionDto>>>;
+  /** Deletes an entity of type 'FireGuardiansNotificationSubscription'. */
+  delete?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates existing entity of type 'FireGuardiansNotificationSubscription'. */
+  update?: Maybe<Array<Maybe<FireGuardiansNotificationSubscriptionDto>>>;
+};
+
+
+export type FireGuardiansNotificationSubscriptionMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<FireGuardiansNotificationSubscriptionInputDto>>;
+};
+
+
+export type FireGuardiansNotificationSubscriptionMutationsDeleteArgsDto = {
+  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
+};
+
+
+export type FireGuardiansNotificationSubscriptionMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<FireGuardiansNotificationSubscriptionInputUpdateDto>>;
+};
+
+export type FireGuardiansNotificationSubscriptionUpdateDto = {
+  __typename?: 'FireGuardiansNotificationSubscriptionUpdate';
+  /** The corresponding item */
+  item?: Maybe<FireGuardiansNotificationSubscriptionDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type FireGuardiansNotificationSubscriptionUpdateMessageDto = {
+  __typename?: 'FireGuardiansNotificationSubscriptionUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<FireGuardiansNotificationSubscriptionUpdateDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type FireGuardiansNotificationSubscription */
+export type FireGuardiansNotificationSubscription_ConfiguredByUnionDto = {
+  __typename?: 'FireGuardiansNotificationSubscription_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type FireGuardiansNotificationSubscription */
+export type FireGuardiansNotificationSubscription_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System/ParentChild (Outbound) of entity type FireGuardiansNotificationSubscription */
+export type FireGuardiansNotificationSubscription_ParentUnionDto = {
+  __typename?: 'FireGuardiansNotificationSubscription_ParentUnion';
+  fireGuardiansWallet?: Maybe<FireGuardiansWalletConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type FireGuardiansNotificationSubscription */
+export type FireGuardiansNotificationSubscription_ParentUnionFireGuardiansWalletArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
 /** Runtime entities of construction kit type 'FireGuardians/Wallet' */
 export type FireGuardiansWalletDto = {
   __typename?: 'FireGuardiansWallet';
+  children?: Maybe<FireGuardiansWallet_ChildrenUnionDto>;
   ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
   configuredBy?: Maybe<FireGuardiansWallet_ConfiguredByUnionDto>;
   constructionKitType?: Maybe<CkTypeDto>;
@@ -1303,6 +1433,7 @@ export type FireGuardiansWalletEdgeDto = {
 };
 
 export type FireGuardiansWalletInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   description?: InputMaybe<Scalars['String']['input']>;
   identityId?: InputMaybe<Scalars['String']['input']>;
@@ -1353,6 +1484,25 @@ export type FireGuardiansWalletUpdateMessageDto = {
   __typename?: 'FireGuardiansWalletUpdateMessage';
   /** The corresponding items */
   items?: Maybe<Array<Maybe<FireGuardiansWalletUpdateDto>>>;
+};
+
+/** Association System/ParentChild (Inbound) of entity type FireGuardiansWallet */
+export type FireGuardiansWallet_ChildrenUnionDto = {
+  __typename?: 'FireGuardiansWallet_ChildrenUnion';
+  fireGuardiansNotificationSubscription?: Maybe<FireGuardiansNotificationSubscriptionConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type FireGuardiansWallet */
+export type FireGuardiansWallet_ChildrenUnionFireGuardiansNotificationSubscriptionArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
 };
 
 /** Association System.Bot/Configures (Inbound) of entity type FireGuardiansWallet */
@@ -1462,6 +1612,7 @@ export type OctoSubscriptionsDto = {
   basicEquipmentModelEvents?: Maybe<BasicEquipmentModelUpdateMessageDto>;
   basicNamedEntityEvents?: Maybe<BasicNamedEntityUpdateMessageDto>;
   fireGuardiansFireReportEvents?: Maybe<FireGuardiansFireReportUpdateMessageDto>;
+  fireGuardiansNotificationSubscriptionEvents?: Maybe<FireGuardiansNotificationSubscriptionUpdateMessageDto>;
   fireGuardiansWalletEvents?: Maybe<FireGuardiansWalletUpdateMessageDto>;
   systemAutoIncrementEvents?: Maybe<SystemAutoIncrementUpdateMessageDto>;
   systemBotAttributeAggregateConfigurationEvents?: Maybe<SystemBotAttributeAggregateConfigurationUpdateMessageDto>;
@@ -1506,6 +1657,12 @@ export type OctoSubscriptionsBasicNamedEntityEventsArgsDto = {
 
 
 export type OctoSubscriptionsFireGuardiansFireReportEventsArgsDto = {
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  updateTypes: Array<InputMaybe<UpdateTypeDto>>;
+};
+
+
+export type OctoSubscriptionsFireGuardiansNotificationSubscriptionEventsArgsDto = {
   rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
   updateTypes: Array<InputMaybe<UpdateTypeDto>>;
 };
@@ -1707,6 +1864,8 @@ export type RuntimeDto = {
   basicEquipmentModels?: Maybe<BasicEquipmentModelMutationsDto>;
   /** Mutation for entities of type 'FireGuardiansFireReport'. */
   fireGuardiansFireReports?: Maybe<FireGuardiansFireReportMutationsDto>;
+  /** Mutation for entities of type 'FireGuardiansNotificationSubscription'. */
+  fireGuardiansNotificationSubscriptions?: Maybe<FireGuardiansNotificationSubscriptionMutationsDto>;
   /** Mutation for entities of type 'FireGuardiansWallet'. */
   fireGuardiansWallets?: Maybe<FireGuardiansWalletMutationsDto>;
   /** Mutation for entities of type 'SystemAutoIncrement'. */
@@ -1735,6 +1894,7 @@ export type RuntimeModelQueryDto = {
   basicEquipmentModel?: Maybe<BasicEquipmentModelConnectionDto>;
   basicNamedEntity?: Maybe<BasicNamedEntityConnectionDto>;
   fireGuardiansFireReport?: Maybe<FireGuardiansFireReportConnectionDto>;
+  fireGuardiansNotificationSubscription?: Maybe<FireGuardiansNotificationSubscriptionConnectionDto>;
   fireGuardiansWallet?: Maybe<FireGuardiansWalletConnectionDto>;
   runtimeEntities?: Maybe<RtEntityGenericDtoConnectionDto>;
   systemAutoIncrement?: Maybe<SystemAutoIncrementConnectionDto>;
@@ -1815,6 +1975,19 @@ export type RuntimeModelQueryBasicNamedEntityArgsDto = {
 
 
 export type RuntimeModelQueryFireGuardiansFireReportArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  geoNearFilter?: InputMaybe<NearGeospatialFilterDto>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+export type RuntimeModelQueryFireGuardiansNotificationSubscriptionArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2225,6 +2398,7 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionDto = {
   basicEquipmentModel?: Maybe<BasicEquipmentModelConnectionDto>;
   basicNamedEntity?: Maybe<BasicNamedEntityConnectionDto>;
   fireGuardiansFireReport?: Maybe<FireGuardiansFireReportConnectionDto>;
+  fireGuardiansNotificationSubscription?: Maybe<FireGuardiansNotificationSubscriptionConnectionDto>;
   fireGuardiansWallet?: Maybe<FireGuardiansWalletConnectionDto>;
   systemAutoIncrement?: Maybe<SystemAutoIncrementConnectionDto>;
   systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
@@ -2305,6 +2479,19 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicNamedEn
 
 /** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
 export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionFireGuardiansFireReportArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionFireGuardiansNotificationSubscriptionArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;

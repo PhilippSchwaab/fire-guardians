@@ -22,4 +22,5 @@ public class ClientDto(string clientId, FireGuardiansOptions fireGuardiansOption
         DefaultScopes.UserDefault | DefaultScopes.OfflineAccess);
 
     [JsonPropertyName("tenantId")] public string TenantId { get; set; } = fireGuardiansOptions.TenantId;
+    [JsonPropertyName("vapidPublicKey")] public string VapidPublicKey { get; set; } = fireGuardiansOptions.VapidPublicKey;
 }

@@ -6,4 +6,5 @@ export interface ConfigurationDto {
   postLogoutRedirectUri: string;
   scope: string;
   tenantId: string;
+  vapidPublicKey: string;
 }

@@ -1,4 +1,12 @@
 using FireGuardians;
+using FireGuardians.Repository.FireReports;
+using FireGuardians.Repository.Wallets;
+using FireGuardians.Services;
+using Lib.Net.Http.WebPush;
+using Meshmakers.Octo.Sdk.ServiceClient.AssetRepositoryServices.Tenants;
+using Meshmakers.Octo.Sdk.ServiceClient.Authentication;
+using Meshmakers.Octo.Sdk.ServiceClient.IdentityServices;
+using Microsoft.Extensions.Options;
 using NLog;
 using NLog.Web;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
@@ -28,6 +36,42 @@ try
 
     // Add services to the container.
     builder.Services.AddControllersWithViews();
+    
+    builder.Services.AddOptions<IdentityServiceClientOptions>()
+        .Configure<IOptions<FireGuardiansOptions>>(
+            (options, fireGuardiansOptions) => { options.EndpointUri = fireGuardiansOptions.Value.AuthorityUrl; });
+
+    builder.Services.AddOptions<AuthenticatorOptions>()
+        .Configure<IOptions<FireGuardiansOptions>>(
+            (options, fireGuardiansOptions) =>
+            {
+                options.IssuerUri = fireGuardiansOptions.Value.AuthorityUrl;
+                options.ClientId = fireGuardiansOptions.Value.ClientId;
+                options.ClientSecret = fireGuardiansOptions.Value.ClientSecret;
+            });
+    
+    builder.Services.AddOptions<TenantClientOptions>()
+        .Configure<IOptions<FireGuardiansOptions>>(
+            (options, backendOptions) =>
+            {
+                options.TenantId = backendOptions.Value.TenantId;
+                options.EndpointUri = backendOptions.Value.AssetServiceUrl;
+            });
+
+    builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
+    builder.Services.AddTransient<IAuthenticatorClient, AuthenticatorClient>();
+
+    builder.Services.AddTransient<IIdentityServiceClientAccessToken, ServiceClientAccessToken>();
+    builder.Services.AddTransient<IIdentityServicesClient, IdentityServicesClient>();
+
+    builder.Services.AddTransient<ITenantClient, TenantClient>();
+    builder.Services.AddTransient<ITenantClientAccessToken, ServiceClientAccessToken>();
+
+    builder.Services.AddTransient<IFireReportsRepository, FireReportsRepository>();
+    builder.Services.AddTransient<IWalletRepository, WalletRepository>();
+
+    builder.Services.AddHttpClient<PushServiceClient>();
+    builder.Services.AddHostedService<FireNotificationsProducer>();
 
     var app = builder.Build();
 

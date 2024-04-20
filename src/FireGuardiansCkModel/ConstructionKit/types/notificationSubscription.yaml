@@ -1,0 +1,13 @@
+$schema: https://schemas.meshmakers.cloud/construction-kit-elements.schema.json
+types:
+- typeId: NotificationSubscription
+  derivedFromCkTypeId: System/Entity
+  attributes:
+  - id: ${thisModel}/Endpoint
+    name: Endpoint
+  - id: ${thisModel}/SubscriptionConfiguration
+    name: SubscriptionConfiguration
+    isOptional: true
+  associations:
+    - id: System/ParentChild
+      targetCkTypeId: ${thisModel}/Wallet    

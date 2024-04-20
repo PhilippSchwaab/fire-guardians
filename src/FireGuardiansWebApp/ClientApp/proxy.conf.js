@@ -7,6 +7,7 @@ const PROXY_CONFIG = [
   {
     context: [
       "/_configuration",
+      "/api/PushSubscriptions"
     ],
     target: target,
     secure: false,

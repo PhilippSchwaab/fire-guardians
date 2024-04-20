@@ -8,3 +8,7 @@ types:
   - id: ${thisModel}/Image
     name: Image
     isOptional: true
+  - id: ${thisModel}/InitialNotificationSent
+    name: InitialNotificationSent
+    isOptional: true
+   

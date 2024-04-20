@@ -8,4 +8,7 @@ types:
   - id: ${thisModel}/Location
     name: Location
     isOptional: true
+  - id: ${thisModel}/LastNotificationUpdate
+    name: LastNotificationUpdate
+    isOptional: true
     

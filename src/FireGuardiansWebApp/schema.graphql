@@ -1011,8 +1011,109 @@ type FireGuardiansFireReport_ConfiguredByUnion {
     ): SystemBotAttributeAggregateConfigurationConnection
 }
 
+"Runtime entities of construction kit type 'FireGuardians/NotificationSubscription'"
+type FireGuardiansNotificationSubscription {
+    ckTypeId: CkTypeId
+    configuredBy: FireGuardiansNotificationSubscription_ConfiguredByUnion
+    constructionKitType: CkType
+    endpoint: String
+    parent: FireGuardiansNotificationSubscription_ParentUnion
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtWellKnownName: String
+    subscriptionConfiguration: String
+}
+
+"A connection to `FireGuardiansNotificationSubscription`."
+type FireGuardiansNotificationSubscriptionConnection {
+    "Information to aid in pagination."
+    edges: [FireGuardiansNotificationSubscriptionEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [FireGuardiansNotificationSubscription]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `FireGuardiansNotificationSubscription`."
+type FireGuardiansNotificationSubscriptionEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: FireGuardiansNotificationSubscription
+}
+
+type FireGuardiansNotificationSubscriptionMutations {
+    "Creates new entities of type 'FireGuardiansNotificationSubscription'."
+    create(entities: [FireGuardiansNotificationSubscriptionInput]!): [FireGuardiansNotificationSubscription]
+    "Deletes an entity of type 'FireGuardiansNotificationSubscription'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'FireGuardiansNotificationSubscription'."
+    update(entities: [FireGuardiansNotificationSubscriptionInputUpdate]!): [FireGuardiansNotificationSubscription]
+}
+
+type FireGuardiansNotificationSubscriptionUpdate {
+    "The corresponding item"
+    item: FireGuardiansNotificationSubscription
+    updateState: UpdateType
+}
+
+type FireGuardiansNotificationSubscriptionUpdateMessage {
+    "The corresponding items"
+    items: [FireGuardiansNotificationSubscriptionUpdate]
+}
+
+"Association System.Bot/Configures (Inbound) of entity type FireGuardiansNotificationSubscription"
+type FireGuardiansNotificationSubscription_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Association System/ParentChild (Outbound) of entity type FireGuardiansNotificationSubscription"
+type FireGuardiansNotificationSubscription_ParentUnion {
+    fireGuardiansWallet(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): FireGuardiansWalletConnection
+}
+
 "Runtime entities of construction kit type 'FireGuardians/Wallet'"
 type FireGuardiansWallet {
+    children: FireGuardiansWallet_ChildrenUnion
     ckTypeId: CkTypeId
     configuredBy: FireGuardiansWallet_ConfiguredByUnion
     constructionKitType: CkType
@@ -1066,6 +1167,28 @@ type FireGuardiansWalletUpdate {
 type FireGuardiansWalletUpdateMessage {
     "The corresponding items"
     items: [FireGuardiansWalletUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type FireGuardiansWallet"
+type FireGuardiansWallet_ChildrenUnion {
+    fireGuardiansNotificationSubscription(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): FireGuardiansNotificationSubscriptionConnection
 }
 
 "Association System.Bot/Configures (Inbound) of entity type FireGuardiansWallet"
@@ -1152,6 +1275,7 @@ type OctoSubscriptions {
     basicEquipmentModelEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentModelUpdateMessage
     basicNamedEntityEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicNamedEntityUpdateMessage
     fireGuardiansFireReportEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansFireReportUpdateMessage
+    fireGuardiansNotificationSubscriptionEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansNotificationSubscriptionUpdateMessage
     fireGuardiansWalletEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansWalletUpdateMessage
     systemAutoIncrementEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemAutoIncrementUpdateMessage
     systemBotAttributeAggregateConfigurationEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemBotAttributeAggregateConfigurationUpdateMessage
@@ -1264,6 +1388,8 @@ type Runtime {
     basicEquipmentModels: BasicEquipmentModelMutations
     "Mutation for entities of type 'FireGuardiansFireReport'."
     fireGuardiansFireReports: FireGuardiansFireReportMutations
+    "Mutation for entities of type 'FireGuardiansNotificationSubscription'."
+    fireGuardiansNotificationSubscriptions: FireGuardiansNotificationSubscriptionMutations
     "Mutation for entities of type 'FireGuardiansWallet'."
     fireGuardiansWallets: FireGuardiansWalletMutations
     "Mutation for entities of type 'SystemAutoIncrement'."
@@ -1405,6 +1531,26 @@ type RuntimeModelQuery {
         "Sort order for items"
         sortOrder: [Sort]
     ): FireGuardiansFireReportConnection
+    fireGuardiansNotificationSubscription(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): FireGuardiansNotificationSubscriptionConnection
     fireGuardiansWallet(
         "Only return edges after the specified cursor."
         after: String,
@@ -1894,6 +2040,24 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         "Sort order for items"
         sortOrder: [Sort]
     ): FireGuardiansFireReportConnection
+    fireGuardiansNotificationSubscription(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): FireGuardiansNotificationSubscriptionConnection
     fireGuardiansWallet(
         "Only return edges after the specified cursor."
         after: String,
@@ -2884,7 +3048,22 @@ input FireGuardiansFireReportInputUpdate {
     rtId: OctoObjectId
 }
 
+input FireGuardiansNotificationSubscriptionInput {
+    configuredBy: [RtAssociationInput]
+    endpoint: String
+    parent: [RtAssociationInput]
+    rtWellKnownName: String
+    subscriptionConfiguration: String
+}
+
+input FireGuardiansNotificationSubscriptionInputUpdate {
+    "Item to update"
+    item: FireGuardiansNotificationSubscriptionInput!
+    rtId: OctoObjectId
+}
+
 input FireGuardiansWalletInput {
+    children: [RtAssociationInput]
     configuredBy: [RtAssociationInput]
     description: String
     identityId: String

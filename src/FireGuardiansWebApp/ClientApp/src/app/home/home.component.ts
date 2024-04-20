@@ -13,10 +13,8 @@ import {GetFireReportsDtoGQL} from "../graphQL/getFireReports";
 import {CreateFireReportDtoGQL, CreateFireReportMutationVariablesDto} from "../graphQL/createFireReport";
 import {MatIcon} from "@angular/material/icon";
 import {AuthorizeService} from "@meshmakers/shared-auth";
-import {GetWalletDtoGQL} from "../graphQL/getWallet";
-import {CreateWalletDtoGQL} from "../graphQL/createWallet";
-import {UpdateWalletLocationDtoGQL} from "../graphQL/updateWalletLocation";
 import {HOME} from "@angular/cdk/keycodes";
+import {WalletService} from "../services/wallet/wallet.service";
 
 @Component({
   selector: 'app-home',
@@ -48,10 +46,8 @@ export class HomeComponent implements OnInit {
               private readonly messageService: MessageService,
               private readonly getFireReportsDtoGQL: GetFireReportsDtoGQL,
               private readonly createFireReportDtoGQL: CreateFireReportDtoGQL,
-              private readonly getWalletDtoGQL: GetWalletDtoGQL,
-              private readonly createWallet: CreateWalletDtoGQL,
-              private readonly updateWalletLocation: UpdateWalletLocationDtoGQL,
               private readonly authorizeService: AuthorizeService,
+              private readonly walletService: WalletService,
               private changeDetector: ChangeDetectorRef) {
 
     this.apiLoaded = new BehaviorSubject<boolean>(false);
@@ -74,33 +70,9 @@ export class HomeComponent implements OnInit {
       console.error('HomeComponent.ngOnInit() - e: ', e);
     }
 
-    // This code create a wallet for the user with the current location
-    const u = await firstValueFrom(this.authorizeService.getUser());
-    if (u && this.homeCenter) {
-      const id = (<any>u).sub;
-
-      const x = await firstValueFrom(this.getWalletDtoGQL.fetch({identityId: id}));
-      if (x.data.runtime?.fireGuardiansWallet?.items?.length) {
-        const rtId = x.data.runtime?.fireGuardiansWallet.items[0]?.rtId;
-        if (rtId) {
-
-          await firstValueFrom(this.updateWalletLocation.mutate({
-            rtId: rtId, position: {latitude: this.homeCenter.lat, longitude: this.homeCenter.lng}
-          }));
-        }
-      } else {
-        await firstValueFrom(this.createWallet.mutate({
-          walletInput:
-            {
-              identityId: id,
-              name: u.name,
-              location:
-                {
-                  coordinates: {latitude: this.homeCenter.lat, longitude: this.homeCenter.lng}
-                }
-            }
-        }));
-      }
+    // This code creates or updates a wallet for the user with the current location
+    if (this.homeCenter){
+      await this.walletService.createUpdateWalletLocation(this.homeCenter);
     }
 
     try {
