@@ -10,7 +10,7 @@
 
   <div class="octo-spacer"></div>
 
-  <button class="add-notification" mat-icon-button (click)="addNotification()" matTooltip="Enable notifications">
+  <button class="add-notification" *ngIf="(isAuthenticated | async)" mat-icon-button (click)="addNotification()" matTooltip="Enable notifications">
     <mat-icon class="material-symbols-outlined">notifications</mat-icon>
   </button>
 
