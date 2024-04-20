@@ -5,6 +5,7 @@ import {firstValueFrom} from "rxjs";
 import {CreateNotificationSubscriptionDtoGQL} from "../../graphQL/createNotificationSubscription";
 import {WalletService} from "../wallet/wallet.service";
 import {GetWalletSubscriptionDtoGQL} from "../../graphQL/getWalletSubscription";
+import {MessageService} from "@meshmakers/shared-services";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import {GetWalletSubscriptionDtoGQL} from "../../graphQL/getWalletSubscription";
 export class NotificationService {
 
   constructor(private readonly swPush: SwPush,
+              private readonly messageService: MessageService,
               private readonly walletService: WalletService,
               private readonly configurationService: ConfigurationService,
               private readonly getWalletSubscriptionDtoGQL: GetWalletSubscriptionDtoGQL,
@@ -36,7 +38,7 @@ export class NotificationService {
       if (r){
         const subscription = r.data.runtime?.fireGuardiansWallet?.items?.[0]?.children?.fireGuardiansNotificationSubscription?.items?.[0];
         if (subscription) {
-          console.info('Subscription already exists');
+          this.messageService.showInformation("Notification subscription already exists. You are already subscribed to notifications.");
           return;
         }
       }
@@ -51,11 +53,10 @@ export class NotificationService {
 
       }
 
-   //   await firstValueFrom(this.httpClient.post('/api/PushSubscriptions', subscription, this.httpOptions));
-      console.info('PushSubscription sent to server');
+      this.messageService.showInformation("Notification subscription successful");
 
     } catch (e) {
-      console.error('Notification permission denied', e);
+      this.messageService.showError("Notification subscription failed. Please allow notifications in your browser settings.", "Notification Subscription Error");
     }
   }
 }
