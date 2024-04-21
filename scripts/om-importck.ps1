@@ -1,5 +1,5 @@
 param (
-    [string]$configuration = "Release"
+    [string]$configuration = "Debug"
 )
 
 if (!(Test-Path -Path $PSScriptRoot/../src/FireGuardiansCkModel//bin/$configuration/net8.0/octo-ck-libraries/FireGuardiansCkModel/out/ck-fireguardians.yaml)) {
