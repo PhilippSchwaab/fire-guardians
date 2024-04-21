@@ -8,4 +8,5 @@ if (!(Test-Path -Path $PSScriptRoot/../src/FireGuardiansCkModel//bin/$configurat
 }
 
 
+octo-cli -c importck -f ck-basic.yaml -w
 octo-cli -c importck -f ../src/FireGuardiansCkModel//bin/$configuration/net8.0/octo-ck-libraries/FireGuardiansCkModel/out/ck-fireguardians.yaml -w
