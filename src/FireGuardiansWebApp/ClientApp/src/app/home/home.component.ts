@@ -19,11 +19,7 @@ import {WalletService} from "../services/wallet/wallet.service";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, CommonModule, 
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule, HttpClientJsonpModule, NgOptimizedImage, GoogleMapsModule, AsyncPipe, MatProgressBar, MatIcon],
+  imports: [MatButtonModule, CommonModule, NgOptimizedImage, GoogleMapsModule, AsyncPipe, MatProgressBar, MatIcon],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
