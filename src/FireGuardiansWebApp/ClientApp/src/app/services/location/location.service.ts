@@ -18,7 +18,7 @@ export class LocationService {
               console.log(
                 'Latitude: ' +
                 position.coords.latitude +
-                'Longitude: ' +
+                ' Longitude: ' +
                 position.coords.longitude
               );
               let lat = position.coords.latitude;

@@ -8,21 +8,21 @@ import {AuthorizeInterceptor, AuthorizeService, SharedAuthModule} from "@meshmak
 import {defaultAuthorizeOptions} from "./config/defaultAuthorizeOptions";
 import {defaultOctoServiceOptions} from "./config/defaultOctoServiceOptions";
 import {MessageService, SharedServicesModule} from "@meshmakers/shared-services";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, provideHttpClient, withJsonpSupport} from "@angular/common/http";
 import {HttpErrorInterceptor} from "./shared/httpErrorInterceptor";
 import {OctoServicesModule} from "@meshmakers/octo-services";
-import {IaSharedUIModule} from "@meshmakers/shared-ui";
+import {MmSharedUiModule} from "@meshmakers/shared-ui";
 import {Apollo, ApolloModule} from "apollo-angular";
 import {HttpLink} from "apollo-angular/http";
 import { InMemoryCache } from '@apollo/client/core';
 import { provideServiceWorker } from '@angular/service-worker';
-import {NotificationService} from "./services/notification/notification.service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(withJsonpSupport()),
     ConfigurationService,
     provideRouter(routes),
-    importProvidersFrom(ApolloModule, SharedServicesModule.forRoot(), OctoServicesModule.forRoot(defaultOctoServiceOptions), SharedAuthModule.forRoot(defaultAuthorizeOptions), IaSharedUIModule),
+    importProvidersFrom(ApolloModule, SharedServicesModule.forRoot(), OctoServicesModule.forRoot(defaultOctoServiceOptions), SharedAuthModule.forRoot(defaultAuthorizeOptions), MmSharedUiModule),
     provideAnimations(),
     {
         provide: APP_INITIALIZER,
