@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {BehaviorSubject, firstValueFrom, lastValueFrom, Observable, of} from "rxjs";
-import {HttpClient, HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {AsyncPipe, CommonModule, NgOptimizedImage} from "@angular/common";
 import {GoogleMap, GoogleMapsModule} from "@angular/google-maps";
 import {LocationService} from "../services/location/location.service";
@@ -19,7 +19,11 @@ import {WalletService} from "../services/wallet/wallet.service";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, CommonModule, HttpClientModule, HttpClientJsonpModule, NgOptimizedImage, GoogleMapsModule, AsyncPipe, MatProgressBar, MatIcon],
+  imports: [MatButtonModule, CommonModule, 
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule, HttpClientJsonpModule, NgOptimizedImage, GoogleMapsModule, AsyncPipe, MatProgressBar, MatIcon],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

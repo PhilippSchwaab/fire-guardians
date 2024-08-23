@@ -8,7 +8,7 @@ import {AuthorizeInterceptor, AuthorizeService, SharedAuthModule} from "@meshmak
 import {defaultAuthorizeOptions} from "./config/defaultAuthorizeOptions";
 import {defaultOctoServiceOptions} from "./config/defaultOctoServiceOptions";
 import {MessageService, SharedServicesModule} from "@meshmakers/shared-services";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import {HttpErrorInterceptor} from "./shared/httpErrorInterceptor";
 import {OctoServicesModule} from "@meshmakers/octo-services";
 import {IaSharedUIModule} from "@meshmakers/shared-ui";
