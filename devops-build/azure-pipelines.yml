@@ -11,6 +11,7 @@ trigger:
       - refs/tags/r*
 
 variables:
+  - group: ApiKeys
   - group: GitSSHGroup
   - group: OctoDefault
   - name: solutionFile
@@ -37,6 +38,7 @@ stages:
               sshPassphrase: '$(SSHPassphrase)'
               sshKeySecureFile: '$(SSHPrivateKeyFile)'            
           - template: set-version.yml
+          - template: download-ca.yml
           - task: NodeTool@0
             displayName: Using latest NodeJS 20.x version
             inputs:
