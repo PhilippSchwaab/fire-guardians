@@ -55,7 +55,6 @@ stages:
               testRunTitle: 'CI'
           - template: buildAndPushDockerImage.yml
             parameters:
-              ContainerRegistry: 'dockerhub@ianitor'
               Repository: meshmakers/fire-guardians-app
               Dockerfile: src/FireGuardiansWebApp/Dockerfile
               IsRelease: ${{ variables.isRelease }}
