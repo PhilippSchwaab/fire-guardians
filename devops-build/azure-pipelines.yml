@@ -39,12 +39,6 @@ stages:
               sshKeySecureFile: '$(SSHPrivateKeyFile)'            
           - template: set-version.yml
           - template: download-ca.yml
-          - task: NodeTool@0
-            displayName: Using latest NodeJS 20.x version
-            inputs:
-              versionSource: 'spec'
-              versionSpec: '20.x'
-              checkLatest: true
           - task: DotNetCoreCLI@2
             displayName: 'Running tests'
             inputs:
