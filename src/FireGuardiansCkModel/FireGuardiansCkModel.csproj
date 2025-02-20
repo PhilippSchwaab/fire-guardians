@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Meshmakers.Octo.ConstructionKit.MsBuildTasks" Version="3.1.192" PrivateAssets="all" />
+        <PackageReference Include="Meshmakers.Octo.ConstructionKit.MsBuildTasks" Version="3.2.25" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>

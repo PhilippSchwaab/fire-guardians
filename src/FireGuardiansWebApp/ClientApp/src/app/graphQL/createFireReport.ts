@@ -10,7 +10,7 @@ export type CreateFireReportMutationVariablesDto = Types.Exact<{
 }>;
 
 
-export type CreateFireReportMutationDto = { __typename?: 'OctoMutation', runtime?: { __typename?: 'Runtime', fireGuardiansFireReports?: { __typename?: 'FireGuardiansFireReportMutations', create?: Array<{ __typename?: 'FireGuardiansFireReport', rtId: any, name?: string | null, description?: string | null, location?: { __typename?: 'RtGeospatialValueDtoType', point?: { __typename?: 'Point', coordinates?: { __typename?: 'Position', latitude: number, longitude: number, altitude?: number | null } | null } | null } | null } | null> | null } | null } | null };
+export type CreateFireReportMutationDto = { __typename?: 'OctoMutation', runtime?: { __typename?: 'Runtime', fireGuardiansFireReports?: { __typename?: 'FireGuardiansFireReportMutations', create?: Array<{ __typename?: 'FireGuardiansFireReport', rtId: any, name: string, description?: string | null, location: { __typename?: 'RtGeospatialValueDto', point?: { __typename?: 'Point', coordinates?: { __typename?: 'Position', latitude: number, longitude: number, altitude?: number | null } | null } | null } } | null> | null } | null } | null };
 
 export const CreateFireReportDocumentDto = gql`
     mutation createFireReport($position: PositionInput!, $name: String!, $description: String) {

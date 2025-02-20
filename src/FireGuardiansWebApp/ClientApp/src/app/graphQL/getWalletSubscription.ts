@@ -5,14 +5,14 @@ import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type GetWalletSubscriptionQueryVariablesDto = Types.Exact<{
   walletRtId: Types.Scalars['OctoObjectId']['input'];
-  endpoint: Types.Scalars['SimpleScalarType']['input'];
+  endpoint: Types.Scalars['SimpleScalar']['input'];
 }>;
 
 
-export type GetWalletSubscriptionQueryDto = { __typename?: 'OctoQuery', runtime?: { __typename?: 'RuntimeModelQuery', fireGuardiansWallet?: { __typename?: 'FireGuardiansWalletConnection', totalCount?: number | null, pageInfo?: { __typename?: 'PageInfo', endCursor?: string | null } | null, items?: Array<{ __typename?: 'FireGuardiansWallet', rtChangedDateTime?: any | null, name?: string | null, children?: { __typename?: 'FireGuardiansWallet_ChildrenUnion', fireGuardiansNotificationSubscription?: { __typename?: 'FireGuardiansNotificationSubscriptionConnection', items?: Array<{ __typename?: 'FireGuardiansNotificationSubscription', rtId: any } | null> | null } | null } | null } | null> | null } | null } | null };
+export type GetWalletSubscriptionQueryDto = { __typename?: 'OctoQuery', runtime?: { __typename?: 'RuntimeModelQuery', fireGuardiansWallet?: { __typename?: 'FireGuardiansWalletConnection', totalCount?: number | null, pageInfo?: { __typename?: 'PageInfo', endCursor?: string | null } | null, items?: Array<{ __typename?: 'FireGuardiansWallet', rtChangedDateTime?: any | null, name: string, children?: { __typename?: 'FireGuardiansWallet_ChildrenUnion', fireGuardiansNotificationSubscription?: { __typename?: 'FireGuardiansNotificationSubscriptionConnection', items?: Array<{ __typename?: 'FireGuardiansNotificationSubscription', rtId: any } | null> | null } | null } | null } | null> | null } | null } | null };
 
 export const GetWalletSubscriptionDocumentDto = gql`
-    query getWalletSubscription($walletRtId: OctoObjectId!, $endpoint: SimpleScalarType!) {
+    query getWalletSubscription($walletRtId: OctoObjectId!, $endpoint: SimpleScalar!) {
   runtime {
     fireGuardiansWallet(rtId: $walletRtId) {
       totalCount
@@ -24,7 +24,7 @@ export const GetWalletSubscriptionDocumentDto = gql`
         name
         children {
           fireGuardiansNotificationSubscription(
-            fieldFilter: [{attributeName: "endpoint", operator: EQUALS, comparisonValue: $endpoint}]
+            fieldFilter: [{attributePath: "endpoint", operator: EQUALS, comparisonValue: $endpoint}]
           ) {
             items {
               rtId

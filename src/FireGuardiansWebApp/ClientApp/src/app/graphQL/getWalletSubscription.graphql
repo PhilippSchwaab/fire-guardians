@@ -1,4 +1,4 @@
-query getWalletSubscription($walletRtId: OctoObjectId!, $endpoint: SimpleScalarType!) {
+query getWalletSubscription($walletRtId: OctoObjectId!, $endpoint: SimpleScalar!) {
   runtime {
     fireGuardiansWallet(rtId: $walletRtId) {
       totalCount
@@ -12,7 +12,7 @@ query getWalletSubscription($walletRtId: OctoObjectId!, $endpoint: SimpleScalarT
           fireGuardiansNotificationSubscription(
             fieldFilter: [
               {
-                attributeName: "endpoint"
+                attributePath: "endpoint"
                 operator: EQUALS
                 comparisonValue: $endpoint
               }

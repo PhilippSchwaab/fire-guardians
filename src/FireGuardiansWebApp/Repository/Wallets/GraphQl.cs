@@ -17,7 +17,7 @@ internal static class GraphQl
               fireGuardiansNotificationSubscription(
                 fieldFilter: [
                   {
-                    attributeName: ""endpoint""
+                    attributePath: ""endpoint""
                     operator: EQUALS
                     comparisonValue: $endpoint
                   }
@@ -40,7 +40,7 @@ internal static class GraphQl
         fireGuardiansWallet(
           fieldFilter: [
             {
-              attributeName: ""lastNotificationUpdate""
+              attributePath: ""lastNotificationUpdate""
               operator: EQUALS
               comparisonValue: null
             }
@@ -81,7 +81,7 @@ internal static class GraphQl
     public const string GetWalletsNotificationUpdateCandidates = @"
       query getWallets {
         runtime {
-          fireGuardiansWallet(fieldFilter:[{attributeName:""lastNotificationUpdate"", operator:LESS_THAN, comparisonValue:""@now(-360)""}]) {
+          fireGuardiansWallet(fieldFilter:[{attributePath:""lastNotificationUpdate"", operator:LESS_THAN, comparisonValue:""@now(-360)""}]) {
             totalCount
             pageInfo {
               endCursor

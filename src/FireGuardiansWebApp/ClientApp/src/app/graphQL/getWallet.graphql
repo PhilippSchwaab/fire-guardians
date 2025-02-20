@@ -1,6 +1,6 @@
-﻿query getWallet($identityId: SimpleScalarType!) {
+﻿query getWallet($identityId: SimpleScalar!) {
   runtime {
-    fireGuardiansWallet(fieldFilter:[{attributeName:"identityId", operator:EQUALS, comparisonValue: $identityId}]) {
+    fireGuardiansWallet(fieldFilter:[{attributePath:"identityId", operator:EQUALS, comparisonValue: $identityId}]) {
       items {
         rtId
         identityId

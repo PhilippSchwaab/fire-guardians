@@ -9,34 +9,57 @@ schema {
 "Runtime entities of construction kit record 'Basic/Address'"
 type BasicAddress {
     addressOfAdditionalLink: String
-    addressRemarks: [String]
-    cityTown: String
+    addressRemarks: [String!]
+    cityTown: String!
     constructionKitType: CkType
     department: String
     eMail: BasicEMail
     fax: BasicFaxNumber
-    nationalCode: String
+    nationalCode: String!
     pOBox: String
     phone: BasicPhoneNumber
     stateCounty: String
-    street: String
+    street: String!
     vATnumber: String
     zipOfPOBox: String
-    zipcode: Int
+    zipcode: Int!
 }
 
 "Runtime entities of construction kit type 'Basic/Asset'"
 type BasicAsset {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: BasicAsset_ConfiguredByUnion
     constructionKitType: CkType
     description: String
-    name: String
+    name: String!
     parent: BasicAsset_ParentUnion
-    relatesTo: BasicAsset_RelatesToUnion
+    relatesFrom: BasicAsset_RelatesFromUnion
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -127,7 +150,7 @@ type BasicAsset_ParentUnion {
 }
 
 "Association Basic/RelatedEquipment (Outbound) of entity type BasicAsset"
-type BasicAsset_RelatesToUnion {
+type BasicAsset_RelatesFromUnion {
     basicEquipmentGroup(
         "Only return edges after the specified cursor."
         after: String,
@@ -151,7 +174,7 @@ type BasicAsset_RelatesToUnion {
 "Runtime entities of construction kit record 'Basic/EMail'"
 type BasicEMail {
     constructionKitType: CkType
-    eMail: String
+    eMail: String!
     publicKey: String
     typeOfEMail: BasicTypeOfTelephoneBasic
     typeOfPublicKey: String
@@ -159,15 +182,38 @@ type BasicEMail {
 
 "Runtime entities of construction kit type 'Basic/Equipment'"
 type BasicEquipment {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: BasicEquipment_ConfiguredByUnion
     constructionKitType: CkType
     description: String
-    name: String
+    name: String!
     parent: BasicEquipment_ParentUnion
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -195,17 +241,40 @@ type BasicEquipmentEdge {
 
 "Runtime entities of construction kit type 'Basic/EquipmentGroup'"
 type BasicEquipmentGroup {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     children: BasicEquipmentGroup_ChildrenUnion
     ckTypeId: CkTypeId
     configuredBy: BasicEquipmentGroup_ConfiguredByUnion
     constructionKitType: CkType
     description: String
-    name: String
+    name: String!
     parent: BasicEquipmentGroup_ParentUnion
-    relatesFrom: BasicEquipmentGroup_RelatesFromUnion
+    relatesTo: BasicEquipmentGroup_RelatesToUnion
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -372,7 +441,7 @@ type BasicEquipmentGroup_ParentUnion {
 }
 
 "Association Basic/RelatedEquipment (Inbound) of entity type BasicEquipmentGroup"
-type BasicEquipmentGroup_RelatesFromUnion {
+type BasicEquipmentGroup_RelatesToUnion {
     basicAsset(
         "Only return edges after the specified cursor."
         after: String,
@@ -395,15 +464,38 @@ type BasicEquipmentGroup_RelatesFromUnion {
 
 "Runtime entities of construction kit type 'Basic/EquipmentModel'"
 type BasicEquipmentModel {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     children: BasicEquipmentModel_ChildrenUnion
     ckTypeId: CkTypeId
     configuredBy: BasicEquipmentModel_ConfiguredByUnion
     constructionKitType: CkType
     description: String
-    name: String
+    name: String!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -551,7 +643,7 @@ type BasicEquipment_ParentUnion {
 "Runtime entities of construction kit record 'Basic/FaxNumber'"
 type BasicFaxNumber {
     constructionKitType: CkType
-    number: String
+    number: String!
     type: BasicTypeOfTelephoneBasic
 }
 
@@ -559,33 +651,56 @@ type BasicFaxNumber {
 type BasicMarking {
     additionalText: String
     constructionKitType: CkType
-    file: OctoObjectId
-    name: String
+    file: OctoObjectId!
+    name: String!
 }
 
 "Runtime entities of construction kit record 'Basic/NamePlate'"
 type BasicNamePlate {
     address: BasicAddress
-    assetSpecificProperties: [BasicMarking]
+    assetSpecificProperties: [BasicMarking!]
     constructionKitType: CkType
-    manufacturerName: String
-    manufacturerProductDesignation: String
-    manufacturerProductFamily: String
-    markings: [BasicMarking]
+    manufacturerName: String!
+    manufacturerProductDesignation: String!
+    manufacturerProductFamily: String!
+    markings: [BasicMarking!]
     serialNumber: String
-    yearOfConstruction: String
+    yearOfConstruction: String!
 }
 
 "Runtime entities of construction kit type 'Basic/NamedEntity'"
 type BasicNamedEntity {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: BasicNamedEntity_ConfiguredByUnion
     constructionKitType: CkType
     description: String
-    name: String
+    name: String!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -647,7 +762,7 @@ type BasicNamedEntity_ConfiguredByUnion {
 "Runtime entities of construction kit record 'Basic/PhoneNumber'"
 type BasicPhoneNumber {
     constructionKitType: CkType
-    number: String
+    number: String!
     type: BasicTypeOfTelephoneEnhanced
 }
 
@@ -662,7 +777,7 @@ type CkAttribute {
     "Optional record id of the attribute value type."
     ckRecord: CkRecord
     "Default values of the attribute."
-    defaultValues: [SimpleScalarType]
+    defaultValues: [SimpleScalar]
     "Optional description of the attribute."
     description: String
     "Optional flag that tells if an attribute is a data stream."
@@ -701,13 +816,17 @@ type CkAttributeMetaData {
     value: String
 }
 
-"A construction kit enum"
+"Definition of a construction kit record with name and attributes."
 type CkEnum {
-    "Unique id of the enum."
+    "Construction kit enum id, the unique identifier of the enum."
     ckEnumId: CkEnumId!
-    "Use flags for the enum."
+    "Optional description of the record."
+    description: String
+    "Whether the enum is extensible for customization."
+    isExtensible: Boolean!
+    "Whether the enum is a flags enum"
     useFlags: Boolean!
-    "Value of the enum"
+    "Values of the enum."
     values: [CkEnumValue]!
 }
 
@@ -731,36 +850,147 @@ type CkEnumDtoEdge {
     node: CkEnum
 }
 
+type CkEnumMutations {
+    "Updates customizations of enum extensions."
+    updateValueExtensions(
+        "The ID of the enum."
+        values: [CkEnumUpdate]!
+    ): [CkEnum]
+}
+
 "A construction kit enum value"
 type CkEnumValue {
-    "Description of the enum"
+    "Description of enum value"
     description: String
-    "Key of the enum"
+    "True, when the enum value is a custom extension, otherwise false"
+    isExtension: Boolean
+    "Unique key of enum value"
     key: Int
-    "Value of the enum"
+    "Name of enum value"
     name: String
 }
 
-"A construction kit record"
+"A construction kit model"
+type CkModel {
+    attributes(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Returns the entity with the given attribute id."
+        ckId: String,
+        "Returns entities with the given attribute ids."
+        ckIds: [String],
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): CkAttributeDtoConnection
+    dependencies: [CkModelId]
+    "Optional description of the model."
+    description: String
+    enums(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Returns the enum with the given enum id."
+        ckId: String,
+        "Returns enums with the given enum ids."
+        ckIds: [String],
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): CkEnumDtoConnection
+    "Construction kit model id, the unique identifier of the model."
+    id: CkModelId!
+    "Availability of the model within the repository."
+    modelState: ModelState
+    records(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Returns the record with the given record id."
+        ckId: String,
+        "Returns records with the given record ids."
+        ckIds: [String],
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): CkRecordDtoConnection
+    types(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Returns the construction kit type with the given id."
+        ckId: String,
+        "Returns the construction kit types with the given ids."
+        ckIds: [String],
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): CkTypeDtoConnection
+}
+
+"A connection from an object to a list of objects of type `CkModelDto`."
+type CkModelDtoConnection {
+    "A list of all of the edges returned in the connection."
+    edges: [CkModelDtoEdge]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [CkModel]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `CkModelDto`."
+type CkModelDtoEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: CkModel
+}
+
+"Definition of a construction kit record with name and attributes."
 type CkRecord {
     attributes(
         "Only return edges after the specified cursor."
         after: String,
-        "Filter of attribute names"
+        "Allows to filter for specific attribute names within construction kit records."
         attributeNames: [String],
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
         first: Int
     ): CkTypeAttributeDtoConnection
+    "The base record the current record is derived from."
     baseRecordTypes: CkType
-    "Unique id of the object."
+    "Construction kit record id, the unique identifier of the record."
     ckRecordId: CkRecordId!
+    "Lists types that are derived from the current construction kit record."
     derivedRecordTypes(
         "Only return edges after the specified cursor."
         after: String,
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
         first: Int
     ): CkTypeDtoConnection
+    "Optional description of the record."
+    description: String
+    "Indicates if the record is abstract."
     isAbstract: Boolean!
+    "Indicates if the record is final."
     isFinal: Boolean!
 }
 
@@ -784,26 +1014,44 @@ type CkRecordDtoEdge {
     node: CkRecord
 }
 
-"A construction kit type"
+"Definition of a construction kit type with name, associations and attributes."
 type CkType {
     attributes(
         "Only return edges after the specified cursor."
         after: String,
-        "Filter of attribute names"
+        "Filters for attributes containing the given termin as attribute name."
+        attributeNameContains: String,
+        "Allows to filter for specific attribute names within construction kit types."
         attributeNames: [String],
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
         first: Int
     ): CkTypeAttributeDtoConnection
+    availableQueryColumns(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters for attributes containing the given termin as attribute name."
+        attributeNameContains: String,
+        "Allows to filter for specific attribute names within construction kit types."
+        attributeNames: [String],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int
+    ): CkTypeQueryColumnDtoConnection
+    "The base type the current type is derived from."
     baseType: CkType
-    "Unique id of the object."
+    "Construction kit type id, the unique identifier of the type."
     ckTypeId: CkTypeId!
+    "Lists types that are derived from the current construction kit type."
     derivedTypes(
         "Only return edges after the specified cursor."
         after: String,
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
         first: Int
     ): CkTypeDtoConnection
+    "Optional description of the type."
+    description: String
+    "Indicates if the type is abstract."
     isAbstract: Boolean!
+    "Indicates if the type is final."
     isFinal: Boolean!
 }
 
@@ -865,7 +1113,45 @@ type CkTypeDtoEdge {
     node: CkType
 }
 
-type ConstructionKit {
+"Represents a possible column in a query result."
+type CkTypeQueryColumn {
+    "Attribute path within the entity."
+    attributePath: String!
+    "Value type of the attribute."
+    attributeValueType: AttributeValueType!
+}
+
+"A connection from an object to a list of objects of type `CkTypeQueryColumnDto`."
+type CkTypeQueryColumnDtoConnection {
+    "A list of all of the edges returned in the connection."
+    edges: [CkTypeQueryColumnDtoEdge]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [CkTypeQueryColumn]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `CkTypeQueryColumnDto`."
+type CkTypeQueryColumnDtoEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: CkTypeQueryColumn
+}
+
+"Construction Kit element mutations"
+type ConstructionKitMutations {
+    enums(
+        "CkEnumId to filter for"
+        ckId: String,
+        "CkEnumIds to filter for"
+        ckIds: [String]
+    ): CkEnumMutations
+}
+
+type ConstructionKitQuery {
     attributes(
         "Only return edges after the specified cursor."
         after: String,
@@ -873,6 +1159,8 @@ type ConstructionKit {
         ckId: String,
         "Returns entities with the given attribute ids."
         ckIds: [String],
+        "Filters items based on model ids"
+        ckModelIds: [String],
         "Filters items based on field compare"
         fieldFilter: [FieldFilter],
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
@@ -889,6 +1177,8 @@ type ConstructionKit {
         ckId: String,
         "Returns enums with the given enum ids."
         ckIds: [String],
+        "Filters items based on model ids"
+        ckModelIds: [String],
         "Filters items based on field compare"
         fieldFilter: [FieldFilter],
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
@@ -898,6 +1188,22 @@ type ConstructionKit {
         "Sort order for items"
         sortOrder: [Sort]
     ): CkEnumDtoConnection
+    models(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Returns the construction kit model with the given id."
+        ckId: String,
+        "Returns the construction kit models with the given ids."
+        ckIds: [String],
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): CkModelDtoConnection
     records(
         "Only return edges after the specified cursor."
         after: String,
@@ -905,6 +1211,8 @@ type ConstructionKit {
         ckId: String,
         "Returns records with the given record ids."
         ckIds: [String],
+        "Filters items based on model ids"
+        ckModelIds: [String],
         "Filters items based on field compare"
         fieldFilter: [FieldFilter],
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
@@ -921,6 +1229,8 @@ type ConstructionKit {
         ckId: String,
         "Returns the construction kit types with the given ids."
         ckIds: [String],
+        "Filters items based on model ids"
+        ckModelIds: [String],
         "Filters items based on field compare"
         fieldFilter: [FieldFilter],
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
@@ -934,16 +1244,40 @@ type ConstructionKit {
 
 "Runtime entities of construction kit type 'FireGuardians/FireReport'"
 type FireGuardiansFireReport {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: FireGuardiansFireReport_ConfiguredByUnion
     constructionKitType: CkType
     description: String
     image: OctoObjectId
-    location: RtGeospatialValueDtoType
-    name: String
+    initialNotificationSent: Boolean
+    location: RtGeospatialValueDto!
+    name: String!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -1013,14 +1347,37 @@ type FireGuardiansFireReport_ConfiguredByUnion {
 
 "Runtime entities of construction kit type 'FireGuardians/NotificationSubscription'"
 type FireGuardiansNotificationSubscription {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: FireGuardiansNotificationSubscription_ConfiguredByUnion
     constructionKitType: CkType
-    endpoint: String
+    endpoint: String!
     parent: FireGuardiansNotificationSubscription_ParentUnion
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
     subscriptionConfiguration: String
 }
@@ -1113,17 +1470,41 @@ type FireGuardiansNotificationSubscription_ParentUnion {
 
 "Runtime entities of construction kit type 'FireGuardians/Wallet'"
 type FireGuardiansWallet {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     children: FireGuardiansWallet_ChildrenUnion
     ckTypeId: CkTypeId
     configuredBy: FireGuardiansWallet_ConfiguredByUnion
     constructionKitType: CkType
     description: String
-    identityId: String
-    location: RtGeospatialValueDtoType
-    name: String
+    identityId: String!
+    lastNotificationUpdate: DateTime
+    location: RtGeospatialValueDto
+    name: String!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -1250,13 +1631,14 @@ type LargeBinaryInfoDtoEdge {
 }
 
 type OctoMutation {
+    constructionKit: ConstructionKitMutations
     runtime: Runtime
     "Uploads a large binary and stores it. ID of file is returned."
     sysCreateLargeBinary(binaryData: LargeBinary!): OctoObjectId
 }
 
 type OctoQuery {
-    constructionKit: ConstructionKit
+    constructionKit: ConstructionKitQuery
     runtime: RuntimeModelQuery
     sysLargeBinaries(
         "Only return edges after the specified cursor."
@@ -1269,23 +1651,30 @@ type OctoQuery {
 }
 
 type OctoSubscriptions {
-    basicAssetEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicAssetUpdateMessage
-    basicEquipmentEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentUpdateMessage
-    basicEquipmentGroupEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentGroupUpdateMessage
-    basicEquipmentModelEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentModelUpdateMessage
-    basicNamedEntityEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicNamedEntityUpdateMessage
-    fireGuardiansFireReportEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansFireReportUpdateMessage
-    fireGuardiansNotificationSubscriptionEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansNotificationSubscriptionUpdateMessage
-    fireGuardiansWalletEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansWalletUpdateMessage
-    systemAutoIncrementEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemAutoIncrementUpdateMessage
-    systemBotAttributeAggregateConfigurationEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemBotAttributeAggregateConfigurationUpdateMessage
-    systemBotServiceHookEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemBotServiceHookUpdateMessage
-    systemConfigurationEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemConfigurationUpdateMessage
-    systemEntityEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemEntityUpdateMessage
-    systemNotificationNotificationMessageEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemNotificationNotificationMessageUpdateMessage
-    systemNotificationNotificationTemplateEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemNotificationNotificationTemplateUpdateMessage
-    systemQueryEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemQueryUpdateMessage
-    systemTenantEvents(rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemTenantUpdateMessage
+    basicAssetEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicAssetUpdateMessage
+    basicEquipmentEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentUpdateMessage
+    basicEquipmentGroupEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentGroupUpdateMessage
+    basicEquipmentModelEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentModelUpdateMessage
+    basicNamedEntityEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicNamedEntityUpdateMessage
+    fireGuardiansFireReportEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansFireReportUpdateMessage
+    fireGuardiansNotificationSubscriptionEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansNotificationSubscriptionUpdateMessage
+    fireGuardiansWalletEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansWalletUpdateMessage
+    systemAutoIncrementEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemAutoIncrementUpdateMessage
+    systemBotAttributeAggregateConfigurationEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemBotAttributeAggregateConfigurationUpdateMessage
+    systemBotServiceHookEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemBotServiceHookUpdateMessage
+    systemConfigurationEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemConfigurationUpdateMessage
+    systemEntityEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemEntityUpdateMessage
+    systemNotificationCssTemplateConfigurationEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemNotificationCssTemplateConfigurationUpdateMessage
+    systemNotificationEventEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemNotificationEventUpdateMessage
+    systemNotificationNotificationTemplateEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemNotificationNotificationTemplateUpdateMessage
+    systemNotificationStatefulEventEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemNotificationStatefulEventUpdateMessage
+    systemQueryEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemQueryUpdateMessage
+    systemTenantConfigurationEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemTenantConfigurationUpdateMessage
+    systemTenantEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemTenantUpdateMessage
+    systemUIPageEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemUIPageUpdateMessage
+    systemUIStudioRootEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemUIStudioRootUpdateMessage
+    systemUIStudioTreeItemEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemUIStudioTreeItemUpdateMessage
+    systemUIUIElementEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): SystemUIUIElementUpdateMessage
 }
 
 "Information about pagination in a connection."
@@ -1312,6 +1701,28 @@ type Position {
 
 "A runtime entity type of Octo"
 type RtEntity {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     attributes(
         "Only return edges after the specified cursor."
         after: String,
@@ -1320,9 +1731,11 @@ type RtEntity {
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
         first: Int
     ): RtEntityAttributeDtoConnection
+    ckTypeId: CkTypeId
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -1331,7 +1744,7 @@ type RtEntityAttribute {
     "Attribute name within the entity."
     attributeName: String
     "Value of a scalar attribute."
-    value: SimpleScalarType
+    value: SimpleScalar
 }
 
 "A connection from an object to a list of objects of type `RtEntityAttributeDto`."
@@ -1374,9 +1787,155 @@ type RtEntityGenericDtoEdge {
     node: RtEntity
 }
 
-type RtGeospatialValueDtoType {
+type RtGeospatialValueDto {
     distance: Float
     point: Point
+}
+
+"Represents a runtime query exection."
+type RtQuery {
+    associatedCkTypeId: CkTypeId!
+    columns: [RtQueryColumn!]!
+    queryRtId: OctoObjectId!
+    rows(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int
+    ): RtQueryRowDtoConnection
+}
+
+"Represents a cell of a row within a runtime query execution."
+type RtQueryCell {
+    "Path of the attribute within an entity."
+    attributePath: String!
+    "Value of the cell."
+    value: SimpleScalar
+}
+
+"A connection from an object to a list of objects of type `RtQueryCellDto`."
+type RtQueryCellDtoConnection {
+    "A list of all of the edges returned in the connection."
+    edges: [RtQueryCellDtoEdge]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [RtQueryCell!]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `RtQueryCellDto`."
+type RtQueryCellDtoEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: RtQueryCell!
+}
+
+"Represents a column within a query"
+type RtQueryColumn {
+    attributePath: String
+    attributeValueType: AttributeValueType
+}
+
+"A connection from an object to a list of objects of type `RtQueryDto`."
+type RtQueryDtoConnection {
+    "A list of all of the edges returned in the connection."
+    edges: [RtQueryDtoEdge]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [RtQuery!]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `RtQueryDto`."
+type RtQueryDtoEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: RtQuery!
+}
+
+type RtQueryMutations {
+    "Create entities of a runtime query."
+    create(entities: [RtQueryRowInput!]!): [RtQueryRow!]!
+    "Deletes entities of a runtime query."
+    delete(entities: [RtEntityId!]!): Boolean!
+    "Updates entities of a runtime query."
+    update(entities: [RtQueryRowUpdate!]!): [RtQueryRow!]!
+}
+
+"Represents a row within a runtime query execution"
+type RtQueryRow {
+    cells(
+        "Only return edges after the specified cursor."
+        after: String,
+        "List of attribute paths to filter for."
+        attributePaths: [String],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int
+    ): RtQueryCellDtoConnection
+    ckTypeId: CkTypeId
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection from an object to a list of objects of type `RtQueryRowDto`."
+type RtQueryRowDtoConnection {
+    "A list of all of the edges returned in the connection."
+    edges: [RtQueryRowDtoEdge]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [RtQueryRow!]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `RtQueryRowDto`."
+type RtQueryRowDtoEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: RtQueryRow!
+}
+
+"Represents a runtime query exection."
+type RtTransientQuery {
+    associatedCkTypeId: CkTypeId!
+    columns: [RtQueryColumn!]!
+    rows(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int
+    ): RtQueryRowDtoConnection
+}
+
+"A connection from an object to a list of objects of type `RtTransientQueryDto`."
+type RtTransientQueryDtoConnection {
+    "A list of all of the edges returned in the connection."
+    edges: [RtTransientQueryDtoEdge]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [RtTransientQuery!]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `RtTransientQueryDto`."
+type RtTransientQueryDtoEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: RtTransientQuery!
 }
 
 type Runtime {
@@ -1392,22 +1951,36 @@ type Runtime {
     fireGuardiansNotificationSubscriptions: FireGuardiansNotificationSubscriptionMutations
     "Mutation for entities of type 'FireGuardiansWallet'."
     fireGuardiansWallets: FireGuardiansWalletMutations
+    runtimeQuery(
+        "The query runtime id."
+        rtId: OctoObjectId!
+    ): RtQueryMutations
     "Mutation for entities of type 'SystemAutoIncrement'."
     systemAutoIncrements: SystemAutoIncrementMutations
     "Mutation for entities of type 'SystemBotAttributeAggregateConfiguration'."
     systemBotAttributeAggregateConfigurations: SystemBotAttributeAggregateConfigurationMutations
     "Mutation for entities of type 'SystemBotServiceHook'."
     systemBotServiceHooks: SystemBotServiceHookMutations
-    "Mutation for entities of type 'SystemConfiguration'."
-    systemConfigurations: SystemConfigurationMutations
-    "Mutation for entities of type 'SystemNotificationNotificationMessage'."
-    systemNotificationNotificationMessages: SystemNotificationNotificationMessageMutations
+    "Mutation for entities of type 'SystemNotificationCssTemplateConfiguration'."
+    systemNotificationCssTemplateConfigurations: SystemNotificationCssTemplateConfigurationMutations
+    "Mutation for entities of type 'SystemNotificationEvent'."
+    systemNotificationEvents: SystemNotificationEventMutations
     "Mutation for entities of type 'SystemNotificationNotificationTemplate'."
     systemNotificationNotificationTemplates: SystemNotificationNotificationTemplateMutations
+    "Mutation for entities of type 'SystemNotificationStatefulEvent'."
+    systemNotificationStatefulEvents: SystemNotificationStatefulEventMutations
     "Mutation for entities of type 'SystemQuery'."
     systemQuerys: SystemQueryMutations
+    "Mutation for entities of type 'SystemTenantConfiguration'."
+    systemTenantConfigurations: SystemTenantConfigurationMutations
     "Mutation for entities of type 'SystemTenant'."
     systemTenants: SystemTenantMutations
+    "Mutation for entities of type 'SystemUIPage'."
+    systemUIPages: SystemUIPageMutations
+    "Mutation for entities of type 'SystemUIStudioRoot'."
+    systemUIStudioRoots: SystemUIStudioRootMutations
+    "Mutation for entities of type 'SystemUIStudioTreeItem'."
+    systemUIStudioTreeItems: SystemUIStudioTreeItemMutations
 }
 
 type RuntimeModelQuery {
@@ -1591,6 +2164,14 @@ type RuntimeModelQuery {
         "Sort order for items"
         sortOrder: [Sort]
     ): RtEntityGenericDtoConnection
+    runtimeQuery(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "The query runtime id."
+        rtId: OctoObjectId!
+    ): RtQueryDtoConnection
     systemAutoIncrement(
         "Only return edges after the specified cursor."
         after: String,
@@ -1691,7 +2272,7 @@ type RuntimeModelQuery {
         "Sort order for items"
         sortOrder: [Sort]
     ): SystemEntityConnection
-    systemNotificationNotificationMessage(
+    systemNotificationCssTemplateConfiguration(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -1710,7 +2291,27 @@ type RuntimeModelQuery {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): SystemNotificationNotificationMessageConnection
+    ): SystemNotificationCssTemplateConfigurationConnection
+    systemNotificationEvent(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemNotificationEventConnection
     systemNotificationNotificationTemplate(
         "Only return edges after the specified cursor."
         after: String,
@@ -1731,6 +2332,26 @@ type RuntimeModelQuery {
         "Sort order for items"
         sortOrder: [Sort]
     ): SystemNotificationNotificationTemplateConnection
+    systemNotificationStatefulEvent(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemNotificationStatefulEventConnection
     systemQuery(
         "Only return edges after the specified cursor."
         after: String,
@@ -1771,20 +2392,166 @@ type RuntimeModelQuery {
         "Sort order for items"
         sortOrder: [Sort]
     ): SystemTenantConnection
+    systemTenantConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemTenantConfigurationConnection
+    systemUIPage(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIPageConnection
+    systemUIStudioRoot(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioRootConnection
+    systemUIStudioTreeItem(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioTreeItemConnection
+    systemUIUIElement(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIUIElementConnection
+    transientRuntimeQuery(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The column paths to include in the result."
+        columnPaths: [String!]!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtTransientQueryDtoConnection
+}
+
+"Runtime entities of construction kit record 'System/AttributeSearchFilter'"
+type SystemAttributeSearchFilter {
+    attributePaths: [String!]!
+    constructionKitType: CkType
+    searchValue: String!
 }
 
 "Runtime entities of construction kit type 'System/AutoIncrement'"
 type SystemAutoIncrement {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: SystemAutoIncrement_ConfiguredByUnion
     constructionKitType: CkType
     currentValue: Int
-    end: Int
+    end: Int!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
-    start: Int
+    start: Int!
 }
 
 "A connection to `SystemAutoIncrement`."
@@ -1853,16 +2620,39 @@ type SystemAutoIncrement_ConfiguredByUnion {
 
 "Runtime entities of construction kit type 'System.Bot/AttributeAggregateConfiguration'"
 type SystemBotAttributeAggregateConfiguration {
-    autoCompleteFilter: String
-    autoCompleteLimit: Int
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    autoCompleteFilter: String!
+    autoCompleteLimit: Int!
     ckTypeId: CkTypeId
     configuredBy: SystemBotAttributeAggregateConfiguration_ConfiguredByUnion
     configures: SystemBotAttributeAggregateConfiguration_ConfiguresUnion
     constructionKitType: CkType
-    isAutoCompleteEnabled: Boolean
+    isAutoCompleteEnabled: Boolean!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -2166,7 +2956,7 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         "Sort order for items"
         sortOrder: [Sort]
     ): SystemEntityConnection
-    systemNotificationNotificationMessage(
+    systemNotificationCssTemplateConfiguration(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -2183,7 +2973,25 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): SystemNotificationNotificationMessageConnection
+    ): SystemNotificationCssTemplateConfigurationConnection
+    systemNotificationEvent(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemNotificationEventConnection
     systemNotificationNotificationTemplate(
         "Only return edges after the specified cursor."
         after: String,
@@ -2202,6 +3010,24 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         "Sort order for items"
         sortOrder: [Sort]
     ): SystemNotificationNotificationTemplateConnection
+    systemNotificationStatefulEvent(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemNotificationStatefulEventConnection
     systemQuery(
         "Only return edges after the specified cursor."
         after: String,
@@ -2238,24 +3064,137 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         "Sort order for items"
         sortOrder: [Sort]
     ): SystemTenantConnection
+    systemTenantConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemTenantConfigurationConnection
+    systemUIPage(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIPageConnection
+    systemUIStudioRoot(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioRootConnection
+    systemUIStudioTreeItem(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioTreeItemConnection
+    systemUIUIElement(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIUIElementConnection
 }
 
 "Runtime entities of construction kit type 'System.Bot/ServiceHook'"
 type SystemBotServiceHook {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: SystemBotServiceHook_ConfiguredByUnion
     constructionKitType: CkType
-    enabled: Boolean
-    fieldFilter: String
-    name: String
-    queryCkTypeId: String
+    enabled: Boolean!
+    fieldFilter: [SystemFieldFilter!]!
+    name: String!
+    queryCkTypeId: String!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
-    serviceHookAction: String
+    serviceHookAction: String!
     serviceHookApiKey: String
-    serviceHookBaseUri: String
+    serviceHookBaseUri: String!
 }
 
 "A connection to `SystemBotServiceHook`."
@@ -2324,13 +3263,35 @@ type SystemBotServiceHook_ConfiguredByUnion {
 
 "Runtime entities of construction kit type 'System/Configuration'"
 type SystemConfiguration {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
-    configurationValue: String
     configuredBy: SystemConfiguration_ConfiguredByUnion
     constructionKitType: CkType
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -2354,15 +3315,6 @@ type SystemConfigurationEdge {
     cursor: String!
     "The item at the end of the edge"
     node: SystemConfiguration
-}
-
-type SystemConfigurationMutations {
-    "Creates new entities of type 'SystemConfiguration'."
-    create(entities: [SystemConfigurationInput]!): [SystemConfiguration]
-    "Deletes an entity of type 'SystemConfiguration'."
-    delete(entities: [OctoObjectId]!): Boolean
-    "Updates existing entity of type 'SystemConfiguration'."
-    update(entities: [SystemConfigurationInputUpdate]!): [SystemConfiguration]
 }
 
 type SystemConfigurationUpdate {
@@ -2400,12 +3352,35 @@ type SystemConfiguration_ConfiguredByUnion {
 
 "Runtime entities of construction kit type 'System/Entity'"
 type SystemEntity {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: SystemEntity_ConfiguredByUnion
     constructionKitType: CkType
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
 }
 
@@ -2464,69 +3439,194 @@ type SystemEntity_ConfiguredByUnion {
     ): SystemBotAttributeAggregateConfigurationConnection
 }
 
-"Runtime entities of construction kit type 'System.Notification/NotificationMessage'"
-type SystemNotificationNotificationMessage {
-    bodyText: String
-    ckTypeId: CkTypeId
-    configuredBy: SystemNotificationNotificationMessage_ConfiguredByUnion
+"Runtime entities of construction kit record 'System/FieldFilter'"
+type SystemFieldFilter {
+    attributePath: String!
+    comparisonValue: String
     constructionKitType: CkType
-    errorText: String
-    lastTryDateTime: DateTime
-    notificationType: SystemNotificationNotificationTypes
-    recipientAddress: String
+    operator: SystemFieldFilterOperator!
+}
+
+"Runtime entities of construction kit type 'System.Notification/CssTemplateConfiguration'"
+type SystemNotificationCssTemplateConfiguration {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    ckTypeId: CkTypeId
+    configuredBy: SystemNotificationCssTemplateConfiguration_ConfiguredByUnion
+    constructionKitType: CkType
+    cssStyle: String!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
-    sendStatus: SystemNotificationNotificationStates
-    sentDateTime: DateTime
-    subjectText: String
 }
 
-"A connection to `SystemNotificationNotificationMessage`."
-type SystemNotificationNotificationMessageConnection {
+"A connection to `SystemNotificationCssTemplateConfiguration`."
+type SystemNotificationCssTemplateConfigurationConnection {
     "Information to aid in pagination."
-    edges: [SystemNotificationNotificationMessageEdge]
+    edges: [SystemNotificationCssTemplateConfigurationEdge]
     "Result of grouping the items by attributes."
     groupings: [grouping]
     "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
-    items: [SystemNotificationNotificationMessage]
+    items: [SystemNotificationCssTemplateConfiguration]
     "Information to aid in pagination."
     pageInfo: PageInfo
     "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
     totalCount: Int
 }
 
-"An edge in a connection from an object to another object of type `SystemNotificationNotificationMessage`."
-type SystemNotificationNotificationMessageEdge {
+"An edge in a connection from an object to another object of type `SystemNotificationCssTemplateConfiguration`."
+type SystemNotificationCssTemplateConfigurationEdge {
     "A cursor for use in pagination"
     cursor: String!
     "The item at the end of the edge"
-    node: SystemNotificationNotificationMessage
+    node: SystemNotificationCssTemplateConfiguration
 }
 
-type SystemNotificationNotificationMessageMutations {
-    "Creates new entities of type 'SystemNotificationNotificationMessage'."
-    create(entities: [SystemNotificationNotificationMessageInput]!): [SystemNotificationNotificationMessage]
-    "Deletes an entity of type 'SystemNotificationNotificationMessage'."
+type SystemNotificationCssTemplateConfigurationMutations {
+    "Creates new entities of type 'SystemNotificationCssTemplateConfiguration'."
+    create(entities: [SystemNotificationCssTemplateConfigurationInput]!): [SystemNotificationCssTemplateConfiguration]
+    "Deletes an entity of type 'SystemNotificationCssTemplateConfiguration'."
     delete(entities: [OctoObjectId]!): Boolean
-    "Updates existing entity of type 'SystemNotificationNotificationMessage'."
-    update(entities: [SystemNotificationNotificationMessageInputUpdate]!): [SystemNotificationNotificationMessage]
+    "Updates existing entity of type 'SystemNotificationCssTemplateConfiguration'."
+    update(entities: [SystemNotificationCssTemplateConfigurationInputUpdate]!): [SystemNotificationCssTemplateConfiguration]
 }
 
-type SystemNotificationNotificationMessageUpdate {
+type SystemNotificationCssTemplateConfigurationUpdate {
     "The corresponding item"
-    item: SystemNotificationNotificationMessage
+    item: SystemNotificationCssTemplateConfiguration
     updateState: UpdateType
 }
 
-type SystemNotificationNotificationMessageUpdateMessage {
+type SystemNotificationCssTemplateConfigurationUpdateMessage {
     "The corresponding items"
-    items: [SystemNotificationNotificationMessageUpdate]
+    items: [SystemNotificationCssTemplateConfigurationUpdate]
 }
 
-"Association System.Bot/Configures (Inbound) of entity type SystemNotificationNotificationMessage"
-type SystemNotificationNotificationMessage_ConfiguredByUnion {
+"Association System.Bot/Configures (Inbound) of entity type SystemNotificationCssTemplateConfiguration"
+type SystemNotificationCssTemplateConfiguration_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Runtime entities of construction kit type 'System.Notification/Event'"
+type SystemNotificationEvent {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    ckTypeId: CkTypeId
+    configuredBy: SystemNotificationEvent_ConfiguredByUnion
+    constructionKitType: CkType
+    level: SystemNotificationEventLevels!
+    message: String
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+    source: SystemNotificationEventSources!
+}
+
+"A connection to `SystemNotificationEvent`."
+type SystemNotificationEventConnection {
+    "Information to aid in pagination."
+    edges: [SystemNotificationEventEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [SystemNotificationEvent]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `SystemNotificationEvent`."
+type SystemNotificationEventEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: SystemNotificationEvent
+}
+
+type SystemNotificationEventMutations {
+    "Creates new entities of type 'SystemNotificationEvent'."
+    create(entities: [SystemNotificationEventInput]!): [SystemNotificationEvent]
+    "Deletes an entity of type 'SystemNotificationEvent'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'SystemNotificationEvent'."
+    update(entities: [SystemNotificationEventInputUpdate]!): [SystemNotificationEvent]
+}
+
+type SystemNotificationEventUpdate {
+    "The corresponding item"
+    item: SystemNotificationEvent
+    updateState: UpdateType
+}
+
+type SystemNotificationEventUpdateMessage {
+    "The corresponding items"
+    items: [SystemNotificationEventUpdate]
+}
+
+"Association System.Bot/Configures (Inbound) of entity type SystemNotificationEvent"
+type SystemNotificationEvent_ConfiguredByUnion {
     systemBotAttributeAggregateConfiguration(
         "Only return edges after the specified cursor."
         after: String,
@@ -2549,16 +3649,40 @@ type SystemNotificationNotificationMessage_ConfiguredByUnion {
 
 "Runtime entities of construction kit type 'System.Notification/NotificationTemplate'"
 type SystemNotificationNotificationTemplate {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     bodyTemplate: String
     ckTypeId: CkTypeId
     configuredBy: SystemNotificationNotificationTemplate_ConfiguredByUnion
     constructionKitType: CkType
+    renderingType: SystemNotificationRenderingTypes!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
-    subjectTemplate: String
-    type: SystemNotificationNotificationTypes
+    subjectTemplate: String!
+    type: SystemNotificationNotificationTypes!
 }
 
 "A connection to `SystemNotificationNotificationTemplate`."
@@ -2625,22 +3749,147 @@ type SystemNotificationNotificationTemplate_ConfiguredByUnion {
     ): SystemBotAttributeAggregateConfigurationConnection
 }
 
-"Runtime entities of construction kit type 'System/Query'"
-type SystemQuery {
-    attributeSearchFilter: String
+"Runtime entities of construction kit type 'System.Notification/StatefulEvent'"
+type SystemNotificationStatefulEvent {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
-    columns: String
-    configuredBy: SystemQuery_ConfiguredByUnion
+    configuredBy: SystemNotificationStatefulEvent_ConfiguredByUnion
     constructionKitType: CkType
-    fieldFilter: String
-    name: String
-    queryCkTypeId: String
+    level: SystemNotificationEventLevels!
+    message: String
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
-    sorting: String
-    textSearchFilter: String
+    source: SystemNotificationEventSources!
+    state: SystemNotificationEventStates!
+}
+
+"A connection to `SystemNotificationStatefulEvent`."
+type SystemNotificationStatefulEventConnection {
+    "Information to aid in pagination."
+    edges: [SystemNotificationStatefulEventEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [SystemNotificationStatefulEvent]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `SystemNotificationStatefulEvent`."
+type SystemNotificationStatefulEventEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: SystemNotificationStatefulEvent
+}
+
+type SystemNotificationStatefulEventMutations {
+    "Creates new entities of type 'SystemNotificationStatefulEvent'."
+    create(entities: [SystemNotificationStatefulEventInput]!): [SystemNotificationStatefulEvent]
+    "Deletes an entity of type 'SystemNotificationStatefulEvent'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'SystemNotificationStatefulEvent'."
+    update(entities: [SystemNotificationStatefulEventInputUpdate]!): [SystemNotificationStatefulEvent]
+}
+
+type SystemNotificationStatefulEventUpdate {
+    "The corresponding item"
+    item: SystemNotificationStatefulEvent
+    updateState: UpdateType
+}
+
+type SystemNotificationStatefulEventUpdateMessage {
+    "The corresponding items"
+    items: [SystemNotificationStatefulEventUpdate]
+}
+
+"Association System.Bot/Configures (Inbound) of entity type SystemNotificationStatefulEvent"
+type SystemNotificationStatefulEvent_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Runtime entities of construction kit type 'System/Query'"
+type SystemQuery {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    attributeSearchFilter: SystemAttributeSearchFilter
+    ckTypeId: CkTypeId
+    columns: [String!]!
+    configuredBy: SystemQuery_ConfiguredByUnion
+    constructionKitType: CkType
+    fieldFilter: [SystemFieldFilter!]
+    name: String!
+    queryCkTypeId: String!
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+    sorting: [SystemSortOrderItem!]
+    textSearchFilter: SystemTextSearchFilter
 }
 
 "A connection to `SystemQuery`."
@@ -2707,18 +3956,147 @@ type SystemQuery_ConfiguredByUnion {
     ): SystemBotAttributeAggregateConfigurationConnection
 }
 
+"Runtime entities of construction kit record 'System/SortOrderItem'"
+type SystemSortOrderItem {
+    attributePath: String!
+    constructionKitType: CkType
+    sortOrder: SystemSortOrders!
+}
+
 "Runtime entities of construction kit type 'System/Tenant'"
 type SystemTenant {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
     ckTypeId: CkTypeId
     configuredBy: SystemTenant_ConfiguredByUnion
     constructionKitType: CkType
-    databaseName: String
+    databaseName: String!
     parentTenantId: String
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
+    rtVersion: ULong
     rtWellKnownName: String
-    tenantId: String
+    tenantId: String!
+}
+
+"Runtime entities of construction kit type 'System/TenantConfiguration'"
+type SystemTenantConfiguration {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    ckTypeId: CkTypeId
+    configurationValue: String
+    configuredBy: SystemTenantConfiguration_ConfiguredByUnion
+    constructionKitType: CkType
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `SystemTenantConfiguration`."
+type SystemTenantConfigurationConnection {
+    "Information to aid in pagination."
+    edges: [SystemTenantConfigurationEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [SystemTenantConfiguration]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `SystemTenantConfiguration`."
+type SystemTenantConfigurationEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: SystemTenantConfiguration
+}
+
+type SystemTenantConfigurationMutations {
+    "Creates new entities of type 'SystemTenantConfiguration'."
+    create(entities: [SystemTenantConfigurationInput]!): [SystemTenantConfiguration]
+    "Deletes an entity of type 'SystemTenantConfiguration'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'SystemTenantConfiguration'."
+    update(entities: [SystemTenantConfigurationInputUpdate]!): [SystemTenantConfiguration]
+}
+
+type SystemTenantConfigurationUpdate {
+    "The corresponding item"
+    item: SystemTenantConfiguration
+    updateState: UpdateType
+}
+
+type SystemTenantConfigurationUpdateMessage {
+    "The corresponding items"
+    items: [SystemTenantConfigurationUpdate]
+}
+
+"Association System.Bot/Configures (Inbound) of entity type SystemTenantConfiguration"
+type SystemTenantConfiguration_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
 }
 
 "A connection to `SystemTenant`."
@@ -2785,6 +4163,487 @@ type SystemTenant_ConfiguredByUnion {
     ): SystemBotAttributeAggregateConfigurationConnection
 }
 
+"Runtime entities of construction kit record 'System/TextSearchFilter'"
+type SystemTextSearchFilter {
+    constructionKitType: CkType
+    searchValue: String!
+}
+
+"Runtime entities of construction kit type 'System.UI/Page'"
+type SystemUIPage {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    ckTypeId: CkTypeId
+    configuredBy: SystemUIPage_ConfiguredByUnion
+    constructionKitType: CkType
+    content: String!
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `SystemUIPage`."
+type SystemUIPageConnection {
+    "Information to aid in pagination."
+    edges: [SystemUIPageEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [SystemUIPage]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `SystemUIPage`."
+type SystemUIPageEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: SystemUIPage
+}
+
+type SystemUIPageMutations {
+    "Creates new entities of type 'SystemUIPage'."
+    create(entities: [SystemUIPageInput]!): [SystemUIPage]
+    "Deletes an entity of type 'SystemUIPage'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'SystemUIPage'."
+    update(entities: [SystemUIPageInputUpdate]!): [SystemUIPage]
+}
+
+type SystemUIPageUpdate {
+    "The corresponding item"
+    item: SystemUIPage
+    updateState: UpdateType
+}
+
+type SystemUIPageUpdateMessage {
+    "The corresponding items"
+    items: [SystemUIPageUpdate]
+}
+
+"Association System.Bot/Configures (Inbound) of entity type SystemUIPage"
+type SystemUIPage_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Runtime entities of construction kit type 'System.UI/StudioRoot'"
+type SystemUIStudioRoot {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: SystemUIStudioRoot_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: SystemUIStudioRoot_ConfiguredByUnion
+    constructionKitType: CkType
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+    targetCkTypeId: String!
+    targetRtId: String!
+}
+
+"A connection to `SystemUIStudioRoot`."
+type SystemUIStudioRootConnection {
+    "Information to aid in pagination."
+    edges: [SystemUIStudioRootEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [SystemUIStudioRoot]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `SystemUIStudioRoot`."
+type SystemUIStudioRootEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: SystemUIStudioRoot
+}
+
+type SystemUIStudioRootMutations {
+    "Creates new entities of type 'SystemUIStudioRoot'."
+    create(entities: [SystemUIStudioRootInput]!): [SystemUIStudioRoot]
+    "Deletes an entity of type 'SystemUIStudioRoot'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'SystemUIStudioRoot'."
+    update(entities: [SystemUIStudioRootInputUpdate]!): [SystemUIStudioRoot]
+}
+
+type SystemUIStudioRootUpdate {
+    "The corresponding item"
+    item: SystemUIStudioRoot
+    updateState: UpdateType
+}
+
+type SystemUIStudioRootUpdateMessage {
+    "The corresponding items"
+    items: [SystemUIStudioRootUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type SystemUIStudioRoot"
+type SystemUIStudioRoot_ChildrenUnion {
+    systemUIStudioTreeItem(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioTreeItemConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type SystemUIStudioRoot"
+type SystemUIStudioRoot_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Runtime entities of construction kit type 'System.UI/StudioTreeItem'"
+type SystemUIStudioTreeItem {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: SystemUIStudioTreeItem_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: SystemUIStudioTreeItem_ConfiguredByUnion
+    constructionKitType: CkType
+    parent: SystemUIStudioTreeItem_ParentUnion
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+    targetCkTypeId: String!
+    targetRoleId: String!
+}
+
+"A connection to `SystemUIStudioTreeItem`."
+type SystemUIStudioTreeItemConnection {
+    "Information to aid in pagination."
+    edges: [SystemUIStudioTreeItemEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [SystemUIStudioTreeItem]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `SystemUIStudioTreeItem`."
+type SystemUIStudioTreeItemEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: SystemUIStudioTreeItem
+}
+
+type SystemUIStudioTreeItemMutations {
+    "Creates new entities of type 'SystemUIStudioTreeItem'."
+    create(entities: [SystemUIStudioTreeItemInput]!): [SystemUIStudioTreeItem]
+    "Deletes an entity of type 'SystemUIStudioTreeItem'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'SystemUIStudioTreeItem'."
+    update(entities: [SystemUIStudioTreeItemInputUpdate]!): [SystemUIStudioTreeItem]
+}
+
+type SystemUIStudioTreeItemUpdate {
+    "The corresponding item"
+    item: SystemUIStudioTreeItem
+    updateState: UpdateType
+}
+
+type SystemUIStudioTreeItemUpdateMessage {
+    "The corresponding items"
+    items: [SystemUIStudioTreeItemUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type SystemUIStudioTreeItem"
+type SystemUIStudioTreeItem_ChildrenUnion {
+    systemUIStudioTreeItem(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioTreeItemConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type SystemUIStudioTreeItem"
+type SystemUIStudioTreeItem_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Association System/ParentChild (Outbound) of entity type SystemUIStudioTreeItem"
+type SystemUIStudioTreeItem_ParentUnion {
+    systemUIStudioRoot(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioRootConnection
+    systemUIStudioTreeItem(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemUIStudioTreeItemConnection
+}
+
+"Runtime entities of construction kit type 'System.UI/UIElement'"
+type SystemUIUIElement {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    ckTypeId: CkTypeId
+    configuredBy: SystemUIUIElement_ConfiguredByUnion
+    constructionKitType: CkType
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `SystemUIUIElement`."
+type SystemUIUIElementConnection {
+    "Information to aid in pagination."
+    edges: [SystemUIUIElementEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [SystemUIUIElement]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `SystemUIUIElement`."
+type SystemUIUIElementEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: SystemUIUIElement
+}
+
+type SystemUIUIElementUpdate {
+    "The corresponding item"
+    item: SystemUIUIElement
+    updateState: UpdateType
+}
+
+type SystemUIUIElementUpdateMessage {
+    "The corresponding items"
+    items: [SystemUIUIElementUpdate]
+}
+
+"Association System.Bot/Configures (Inbound) of entity type SystemUIUIElement"
+type SystemUIUIElement_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
 "Grouping of items result"
 type grouping {
     "The average value of the given attribute names."
@@ -2796,7 +4655,7 @@ type grouping {
     "A list of attributes the items are grouped by."
     groupByAttributeNames: [String]!
     "The key value of the group."
-    keys: [SimpleScalarType]!
+    keys: [SimpleScalar]!
     "The maximum value of the given attribute names."
     maxStatistics: [statistics]
     "The minimum value of the given attribute names."
@@ -2808,7 +4667,7 @@ type statistics {
     "Attribute name of the statistic"
     attributeName: String
     "Statistic value"
-    value: SimpleScalarType
+    value: SimpleScalar
 }
 
 "Defines the type of modification during write operations"
@@ -2855,9 +4714,16 @@ enum BasicTypeOfTelephoneEnhanced {
     SUBSTITUTE
 }
 
+"Defines the possible operation operations to extend construction elements."
+enum CkExtensionUpdateOperations {
+    DELETE
+    INSERT
+}
+
 "Defines the operator of field compare"
 enum FieldFilterOperators {
     ANY_EQ
+    ANY_LIKE
     EQUALS
     GREATER_EQUAL_THAN
     GREATER_THAN
@@ -2868,6 +4734,19 @@ enum FieldFilterOperators {
     MATCH_REG_EX
     NOT_EQUALS
     NOT_IN
+}
+
+"Enum of graph directions"
+enum GraphDirection {
+    ANY
+    INBOUND
+    OUTBOUND
+}
+
+"Enum of the availability states of models."
+enum ModelState {
+    AVAILABLE
+    IMPORTING
 }
 
 "The type of search that is used (a text based search using text analysis (high performance, scoring, maybe more false positives) or filtering of attributes (lower performance, more exact results)"
@@ -2883,17 +4762,96 @@ enum SortOrders {
     DESCENDING
 }
 
-"Runtime entities of construction kit enum 'System.Notification/NotificationStates'"
-enum SystemNotificationNotificationStates {
+"Runtime entities of construction kit enum 'System/FieldFilterOperator'"
+enum SystemFieldFilterOperator {
+    "Compares an array field with at least one element that matches the specified value."
+    ANY_EQ
+    "Compares an array field with at least one element that matches the specified value using a pattern matching comparison. Use * as a wildcard character."
+    ANY_LIKE
+    "Compares the specified field to the specified value."
+    EQUALS
+    "Compares the specified field to the specified value and returns true if the field value is greater than or equal to the specified value."
+    GREATER_EQUAL_THAN
+    "Compares the specified field to the specified value and returns true if the field value is greater than the specified value."
+    GREATER_THAN
+    "Compares a field to be equal any value in the specified array."
+    IN
+    "Compares the specified field to the specified value and returns true if the field value is less than or equal to the specified value."
+    LESS_EQUAL_THAN
+    "Compares the specified field to the specified value and returns true if the field value is less than the specified value."
+    LESS_THAN
+    "Compares a field to the specified value using a pattern matching comparison. Use * as a wildcard character."
+    LIKE
+    "Matches an array field with at least one element that matches all the specified query criteria."
+    MATCH
+    "Matches a field containing a value that matches the specified regular expression."
+    MATCH_REG_EX
+    "Compares the specified field to the specified value and returns true if the values are not equal."
+    NOT_EQUALS
+    "Compares a field to be not equal any value in the specified array."
+    NOT_IN
+}
+
+"Runtime entities of construction kit enum 'System.Notification/EventLevels'"
+enum SystemNotificationEventLevels {
+    "Critical"
+    CRITICAL
+    "Debug"
+    DEBUG
+    "Error"
     ERROR
-    PENDING
-    SENT
+    "Information"
+    INFORMATION
+    "Warning"
+    WARNING
+}
+
+"Runtime entities of construction kit enum 'System.Notification/EventSources'"
+enum SystemNotificationEventSources {
+    "The event was generated by the Admin Panel."
+    ADMIN_PANEL
+    "The event was generated by the Asset Repository Service."
+    ASSET_REPOSITORY_SERVICE
+    "The event was generated by the Bot Service."
+    BOT_SERVICE
+    "The event was generated by the Communication Service."
+    COMMUNICATION_SERVICE
+    "The event was generated by the Identity Service."
+    IDENTITY_SERVICE
+    "The event was generated by the Mesh Adapter."
+    MESH_ADAPTER
+    "No source has been assigned to the event."
+    UNDEFINED
+}
+
+"Runtime entities of construction kit enum 'System.Notification/EventStates'"
+enum SystemNotificationEventStates {
+    ACTIVE
+    ERROR
+    INACTIVE
 }
 
 "Runtime entities of construction kit enum 'System.Notification/NotificationTypes'"
 enum SystemNotificationNotificationTypes {
     E_MAIL
+    PUSH
     SMS
+}
+
+"Runtime entities of construction kit enum 'System.Notification/RenderingTypes'"
+enum SystemNotificationRenderingTypes {
+    HTML
+    PLAIN
+}
+
+"Runtime entities of construction kit enum 'System/SortOrders'"
+enum SystemSortOrders {
+    "Ascending order"
+    ASCENDING
+    "Default sorting based on data source type"
+    DEFAULT
+    "Descending order"
+    DESCENDING
 }
 
 "Enum of valid update types"
@@ -2913,6 +4871,9 @@ scalar CkAttributeId
 "A construction kit id of type CkEnumId."
 scalar CkEnumId
 
+"Identifies a construction kit model."
+scalar CkModelId
+
 "A construction kit id of type CkRecordId."
 scalar CkRecordId
 
@@ -2927,13 +4888,15 @@ scalar LargeBinary
 "A unique identifier for an runtime object."
 scalar OctoObjectId
 
-scalar SimpleScalarType
+scalar SimpleScalar
+
+scalar ULong
 
 scalar Uri
 
 input BasicAddressInput {
     addressOfAdditionalLink: String
-    addressRemarks: [String]
+    addressRemarks: [String!]
     cityTown: String
     department: String
     eMail: BasicEMailInput
@@ -2953,7 +4916,7 @@ input BasicAssetInput {
     description: String
     name: String
     parent: [RtAssociationInput]
-    relatesTo: [RtAssociationInput]
+    relatesFrom: [RtAssociationInput]
     rtWellKnownName: String
 }
 
@@ -2976,7 +4939,7 @@ input BasicEquipmentGroupInput {
     description: String
     name: String
     parent: [RtAssociationInput]
-    relatesFrom: [RtAssociationInput]
+    relatesTo: [RtAssociationInput]
     rtWellKnownName: String
 }
 
@@ -3027,16 +4990,32 @@ input BasicPhoneNumberInput {
     type: BasicTypeOfTelephoneEnhanced
 }
 
+input CkEnumUpdate {
+    operation: CkExtensionUpdateOperations
+    value: CkEnumValueInput
+}
+
+"A construction kit enum value"
+input CkEnumValueInput {
+    "Description of enum value"
+    description: String
+    "Unique key of enum value"
+    key: Int
+    "Name of enum value"
+    name: String
+}
+
 input FieldFilter {
-    attributeName: String!
-    comparisonValue: SimpleScalarType
-    operator: FieldFilterOperators
+    attributePath: String!
+    comparisonValue: SimpleScalar
+    operator: FieldFilterOperators!
 }
 
 input FireGuardiansFireReportInput {
     configuredBy: [RtAssociationInput]
     description: String
     image: OctoObjectId
+    initialNotificationSent: Boolean
     location: PointInput
     name: String
     rtWellKnownName: String
@@ -3067,6 +5046,7 @@ input FireGuardiansWalletInput {
     configuredBy: [RtAssociationInput]
     description: String
     identityId: String
+    lastNotificationUpdate: DateTime
     location: PointInput
     name: String
     rtWellKnownName: String
@@ -3118,16 +5098,41 @@ input RtEntityId {
     rtId: OctoObjectId!
 }
 
+"Represents the input for a cell a row within a runtime query."
+input RtQueryCellInput {
+    "Path of the attribute within an entity."
+    attributePath: String
+    "Value of the cell."
+    value: SimpleScalar
+}
+
+input RtQueryRowInput {
+    cells: [RtQueryCellInput]!
+    ckTypeId: CkTypeId!
+    rtWellKnownName: String
+}
+
+input RtQueryRowUpdate {
+    "Row as input to be updated within the query."
+    item: RtQueryRowInput
+    rtId: OctoObjectId
+}
+
 input SearchFilter {
-    attributeNames: [String]
+    attributePaths: [String]
     language: String
     searchTerm: String!
     type: SearchFilterTypes
 }
 
 input Sort {
-    attributeName: String!
+    attributePath: String!
     sortOrder: SortOrders
+}
+
+input SystemAttributeSearchFilterInput {
+    attributePaths: [String!]
+    searchValue: String
 }
 
 input SystemAutoIncrementInput {
@@ -3162,7 +5167,7 @@ input SystemBotAttributeAggregateConfigurationInputUpdate {
 input SystemBotServiceHookInput {
     configuredBy: [RtAssociationInput]
     enabled: Boolean
-    fieldFilter: String
+    fieldFilter: [SystemFieldFilterInput]
     name: String
     queryCkTypeId: String
     rtWellKnownName: String
@@ -3177,40 +5182,42 @@ input SystemBotServiceHookInputUpdate {
     rtId: OctoObjectId
 }
 
-input SystemConfigurationInput {
-    configurationValue: String
+input SystemFieldFilterInput {
+    attributePath: String
+    comparisonValue: String
+    operator: SystemFieldFilterOperator
+}
+
+input SystemNotificationCssTemplateConfigurationInput {
     configuredBy: [RtAssociationInput]
+    cssStyle: String
     rtWellKnownName: String
 }
 
-input SystemConfigurationInputUpdate {
+input SystemNotificationCssTemplateConfigurationInputUpdate {
     "Item to update"
-    item: SystemConfigurationInput!
+    item: SystemNotificationCssTemplateConfigurationInput!
     rtId: OctoObjectId
 }
 
-input SystemNotificationNotificationMessageInput {
-    bodyText: String
+input SystemNotificationEventInput {
     configuredBy: [RtAssociationInput]
-    errorText: String
-    lastTryDateTime: DateTime
-    notificationType: SystemNotificationNotificationTypes
-    recipientAddress: String
+    level: SystemNotificationEventLevels
+    message: String
     rtWellKnownName: String
-    sendStatus: SystemNotificationNotificationStates
-    sentDateTime: DateTime
-    subjectText: String
+    source: SystemNotificationEventSources
 }
 
-input SystemNotificationNotificationMessageInputUpdate {
+input SystemNotificationEventInputUpdate {
     "Item to update"
-    item: SystemNotificationNotificationMessageInput!
+    item: SystemNotificationEventInput!
     rtId: OctoObjectId
 }
 
 input SystemNotificationNotificationTemplateInput {
     bodyTemplate: String
     configuredBy: [RtAssociationInput]
+    renderingType: SystemNotificationRenderingTypes
     rtWellKnownName: String
     subjectTemplate: String
     type: SystemNotificationNotificationTypes
@@ -3222,21 +5229,53 @@ input SystemNotificationNotificationTemplateInputUpdate {
     rtId: OctoObjectId
 }
 
-input SystemQueryInput {
-    attributeSearchFilter: String
-    columns: String
+input SystemNotificationStatefulEventInput {
     configuredBy: [RtAssociationInput]
-    fieldFilter: String
+    level: SystemNotificationEventLevels
+    message: String
+    rtWellKnownName: String
+    source: SystemNotificationEventSources
+    state: SystemNotificationEventStates
+}
+
+input SystemNotificationStatefulEventInputUpdate {
+    "Item to update"
+    item: SystemNotificationStatefulEventInput!
+    rtId: OctoObjectId
+}
+
+input SystemQueryInput {
+    attributeSearchFilter: SystemAttributeSearchFilterInput
+    columns: [String!]
+    configuredBy: [RtAssociationInput]
+    fieldFilter: [SystemFieldFilterInput]
     name: String
     queryCkTypeId: String
     rtWellKnownName: String
-    sorting: String
-    textSearchFilter: String
+    sorting: [SystemSortOrderItemInput]
+    textSearchFilter: SystemTextSearchFilterInput
 }
 
 input SystemQueryInputUpdate {
     "Item to update"
     item: SystemQueryInput!
+    rtId: OctoObjectId
+}
+
+input SystemSortOrderItemInput {
+    attributePath: String
+    sortOrder: SystemSortOrders
+}
+
+input SystemTenantConfigurationInput {
+    configurationValue: String
+    configuredBy: [RtAssociationInput]
+    rtWellKnownName: String
+}
+
+input SystemTenantConfigurationInputUpdate {
+    "Item to update"
+    item: SystemTenantConfigurationInput!
     rtId: OctoObjectId
 }
 
@@ -3251,5 +5290,50 @@ input SystemTenantInput {
 input SystemTenantInputUpdate {
     "Item to update"
     item: SystemTenantInput!
+    rtId: OctoObjectId
+}
+
+input SystemTextSearchFilterInput {
+    searchValue: String
+}
+
+input SystemUIPageInput {
+    configuredBy: [RtAssociationInput]
+    content: String
+    rtWellKnownName: String
+}
+
+input SystemUIPageInputUpdate {
+    "Item to update"
+    item: SystemUIPageInput!
+    rtId: OctoObjectId
+}
+
+input SystemUIStudioRootInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    rtWellKnownName: String
+    targetCkTypeId: String
+    targetRtId: String
+}
+
+input SystemUIStudioRootInputUpdate {
+    "Item to update"
+    item: SystemUIStudioRootInput!
+    rtId: OctoObjectId
+}
+
+input SystemUIStudioTreeItemInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    parent: [RtAssociationInput]
+    rtWellKnownName: String
+    targetCkTypeId: String
+    targetRoleId: String
+}
+
+input SystemUIStudioTreeItemInputUpdate {
+    "Item to update"
+    item: SystemUIStudioTreeItemInput!
     rtId: OctoObjectId
 }

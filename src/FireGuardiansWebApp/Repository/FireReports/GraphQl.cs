@@ -32,7 +32,7 @@ internal static class GraphQl
           fireGuardiansFireReport(
             first: 200,
             geoNearFilter: {
-              attributeName: ""location""
+              attributePath: ""location""
               minDistance: $minDistance
               maxDistance: $maxDistance
               point: { coordinates: $position }

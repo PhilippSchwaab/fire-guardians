@@ -9,7 +9,7 @@ export type UpdateWalletLocationMutationVariablesDto = Types.Exact<{
 }>;
 
 
-export type UpdateWalletLocationMutationDto = { __typename?: 'OctoMutation', runtime?: { __typename?: 'Runtime', fireGuardiansWallets?: { __typename?: 'FireGuardiansWalletMutations', update?: Array<{ __typename?: 'FireGuardiansWallet', rtId: any, identityId?: string | null, name?: string | null, location?: { __typename?: 'RtGeospatialValueDtoType', point?: { __typename?: 'Point', coordinates?: { __typename?: 'Position', latitude: number, longitude: number } | null } | null } | null } | null> | null } | null } | null };
+export type UpdateWalletLocationMutationDto = { __typename?: 'OctoMutation', runtime?: { __typename?: 'Runtime', fireGuardiansWallets?: { __typename?: 'FireGuardiansWalletMutations', update?: Array<{ __typename?: 'FireGuardiansWallet', rtId: any, identityId: string, name: string, location?: { __typename?: 'RtGeospatialValueDto', point?: { __typename?: 'Point', coordinates?: { __typename?: 'Position', latitude: number, longitude: number } | null } | null } | null } | null> | null } | null } | null };
 
 export const UpdateWalletLocationDocumentDto = gql`
     mutation updateWalletLocation($rtId: OctoObjectId!, $position: PositionInput!) {

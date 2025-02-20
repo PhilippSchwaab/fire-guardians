@@ -10,7 +10,7 @@ export type GetFireReportsQueryVariablesDto = Types.Exact<{
 }>;
 
 
-export type GetFireReportsQueryDto = { __typename?: 'OctoQuery', runtime?: { __typename?: 'RuntimeModelQuery', fireGuardiansFireReport?: { __typename?: 'FireGuardiansFireReportConnection', items?: Array<{ __typename?: 'FireGuardiansFireReport', rtId: any, rtCreationDateTime?: any | null, name?: string | null, description?: string | null, location?: { __typename?: 'RtGeospatialValueDtoType', distance?: number | null, point?: { __typename?: 'Point', coordinates?: { __typename?: 'Position', latitude: number, longitude: number, altitude?: number | null } | null } | null } | null } | null> | null } | null } | null };
+export type GetFireReportsQueryDto = { __typename?: 'OctoQuery', runtime?: { __typename?: 'RuntimeModelQuery', fireGuardiansFireReport?: { __typename?: 'FireGuardiansFireReportConnection', items?: Array<{ __typename?: 'FireGuardiansFireReport', rtId: any, rtCreationDateTime?: any | null, name: string, description?: string | null, location: { __typename?: 'RtGeospatialValueDto', distance?: number | null, point?: { __typename?: 'Point', coordinates?: { __typename?: 'Position', latitude: number, longitude: number, altitude?: number | null } | null } | null } } | null> | null } | null } | null };
 
 export const GetFireReportsDocumentDto = gql`
     query getFireReports($position: PositionInput!, $minDistance: Float, $maxDistance: Float) {
