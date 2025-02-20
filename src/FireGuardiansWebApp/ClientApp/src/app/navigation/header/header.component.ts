@@ -22,7 +22,6 @@ import {NotificationService} from "../../services/notification/notification.serv
     MatMenuTrigger,
     MatIconButton,
     NgIf,
-    NgOptimizedImage,
     MatMenuItem,
     MatTooltip
   ],

@@ -20,7 +20,6 @@ import {MatIcon} from "@angular/material/icon";
     MatProgressBar,
     MatToolbar,
     MatButton,
-    MatTooltip,
     ReactiveFormsModule,
     MatFormField,
     MatInput,

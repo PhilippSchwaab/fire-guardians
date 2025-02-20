@@ -19,7 +19,7 @@ import {WalletService} from "../services/wallet/wallet.service";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, CommonModule, NgOptimizedImage, GoogleMapsModule, AsyncPipe, MatProgressBar, MatIcon],
+  imports: [MatButtonModule, CommonModule, GoogleMapsModule, AsyncPipe, MatProgressBar, MatIcon],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

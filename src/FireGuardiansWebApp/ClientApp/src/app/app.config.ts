@@ -63,7 +63,7 @@ export function initServices(configurationService: ConfigurationService, authori
     defaultAuthorizeOptions.clientId = configurationService.config.clientId;
     defaultAuthorizeOptions.showDebugInformation = true;
 
-    await authorizeService.initialize();
+    await authorizeService.initialize(defaultAuthorizeOptions);
 
     const service = configurationService.config.assetServices ?? '';
     const uri = `${service}tenants/${configurationService.config.tenantId}/GraphQL`;
