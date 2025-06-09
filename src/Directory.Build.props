@@ -12,7 +12,7 @@
         <PackageProjectUrl>https://www.meshmakers.io</PackageProjectUrl>
         <PackageTags>Fire Guardians meshmakers</PackageTags>
         <TargetFramework>net9.0</TargetFramework>
-        <OctoVersion>3.2.25</OctoVersion>
+        <OctoVersion>3.2.87</OctoVersion>
         <Version>0.0.0</Version>
         <Version Condition="'$(Configuration)'=='DebugL'">999.0.0</Version>
         <PackageVersion Condition="'$(Configuration)'=='DebugL'">999.0.0</PackageVersion>

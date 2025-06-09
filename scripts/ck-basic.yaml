@@ -1,25 +1,29 @@
 $schema: https://schemas.meshmakers.cloud/construction-kit-compiled.schema.json
 types:
 - typeId: Asset
-  derivedFromCkTypeId: Basic-1.0.0/Equipment-1.0.0
+  derivedFromCkTypeId: Basic-1.0.0/TreeNode-1.0.0
   associations:
-  - id: Basic-1.0.0/RelatedEquipment-1.0.0
-    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
-- typeId: Equipment
-  derivedFromCkTypeId: Basic-1.0.0/NamedEntity-1.0.0
+  - id: Basic-1.0.0/RelatedClassification-1.0.0
+    targetCkTypeId: Basic-1.0.0/TreeNode-1.0.0
+- typeId: City
+  derivedFromCkTypeId: Basic-1.0.0/TreeNode-1.0.0
+  attributes:
+  - id: Basic-1.0.0/AddressZipcode-1.0.0
+    name: Zipcode
+- typeId: Country
+  derivedFromCkTypeId: Basic-1.0.0/TreeNode-1.0.0
+- typeId: District
+  derivedFromCkTypeId: Basic-1.0.0/TreeNode-1.0.0
+- isCollectionRoot: true
+  typeId: Document
+  derivedFromCkTypeId: System-1.0.0/Entity-1.0.0
   isAbstract: true
-  associations:
-  - id: System-1.0.0/ParentChild-1.0.0
-    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
-- typeId: EquipmentGroup
-  derivedFromCkTypeId: Basic-1.0.0/NamedEntity-1.0.0
-  associations:
-  - id: System-1.0.0/ParentChild-1.0.0
-    targetCkTypeId: Basic-1.0.0/EquipmentModel-1.0.0
-  - id: System-1.0.0/ParentChild-1.0.0
-    targetCkTypeId: Basic-1.0.0/EquipmentGroup-1.0.0
-- typeId: EquipmentModel
-  derivedFromCkTypeId: Basic-1.0.0/NamedEntity-1.0.0
+  description: A document that can be used in the system.
+  attributes:
+  - id: Basic-1.0.0/DocumentNumber-1.0.0
+    name: DocumentNumber
+  - id: Basic-1.0.0/DocumentDate-1.0.0
+    name: DocumentDate
 - isCollectionRoot: true
   typeId: NamedEntity
   derivedFromCkTypeId: System-1.0.0/Entity-1.0.0
@@ -30,13 +34,37 @@ types:
   - id: System-1.0.0/Description-1.0.0
     name: Description
     isOptional: true
+- typeId: State
+  derivedFromCkTypeId: Basic-1.0.0/TreeNode-1.0.0
+- typeId: Tree
+  derivedFromCkTypeId: Basic-1.0.0/NamedEntity-1.0.0
+- typeId: TreeNode
+  derivedFromCkTypeId: Basic-1.0.0/NamedEntity-1.0.0
+  associations:
+  - id: System-1.0.0/ParentChild-1.0.0
+    targetCkTypeId: Basic-1.0.0/Tree-1.0.0
+  - id: System-1.0.0/ParentChild-1.0.0
+    targetCkTypeId: Basic-1.0.0/TreeNode-1.0.0
 associationRoles:
-- id: RelatedEquipment
-  inboundName: RelatesTo
-  outboundName: RelatesFrom
+- id: RelatedClassification
+  inboundName: RelatesFrom
+  outboundName: RelatesTo
   inboundMultiplicity: N
   outboundMultiplicity: N
 attributes:
+- id: AcademicTitlePrefix
+  valueType: String
+  description: Academic title prefix associated with the contact
+- id: AcademicTitleSuffix
+  valueType: String
+  description: Academic title suffix associated with the contact
+- id: AccountHolder
+  valueType: String
+  description: Name of the account holder
+- id: Address
+  valueType: Record
+  valueCkRecordId: Basic-1.0.0/Address-1.0.0
+  description: Record containing address information
 - id: AddressCityTown
   valueType: String
   metaData:
@@ -131,6 +159,32 @@ attributes:
     value: °C
   - key: Type
     value: Average
+- id: BankAccount
+  valueType: Record
+  valueCkRecordId: Basic-1.0.0/BankAccount-1.0.0
+  description: Bank account information
+- id: BankName
+  valueType: String
+  description: Name of the bank
+- id: Comment
+  valueType: String
+  description: Optional Comment on the user
+- id: CompanyName
+  valueType: String
+  description: Associated company name
+- id: CompanyRegisterNumber
+  valueType: String
+  description: Public registry number for the legal identification of the company
+- id: Contact
+  valueType: Record
+  valueCkRecordId: Basic-1.0.0/Contact-1.0.0
+  description: Contact data with name and address
+- id: DocumentDate
+  valueType: DateTime
+  description: Date of a document
+- id: DocumentNumber
+  valueType: String
+  description: Identifying number of a document
 - id: EMailAddress
   valueType: String
   metaData:
@@ -158,6 +212,24 @@ attributes:
     description: characterization of a public key according to its encryption process
 - id: File
   valueType: BinaryLinked
+- id: FirstName
+  valueType: String
+  description: The users first name(s)
+- id: From
+  valueType: DateTime
+  description: From date within a time range
+- id: Iban
+  valueType: String
+  description: International Bank Account Number
+- id: LastName
+  valueType: String
+  description: The users last name(s)
+- id: LegalEntityType
+  valueType: Enum
+  valueCkEnumId: Basic-1.0.0/LegalEntityType-1.0.0
+  defaultValues:
+  - 0
+  description: The legal entity type of the contact
 - id: MaxTemperature
   valueType: Double
   metaData:
@@ -227,6 +299,19 @@ attributes:
   - key: semanticId
     value: 0173-1#02-AAP906#001
     description: Year as completion date of object
+- id: Quantity
+  valueType: Double
+  description: Defines the quantity of a resource
+- id: Salutation
+  valueType: Enum
+  valueCkEnumId: Basic-1.0.0/Salutation-1.0.0
+  description: Salutation associated with the contact
+- id: SwiftCode
+  valueType: String
+  description: Bank Identifier Code
+- id: TaxIdentificationNumber
+  valueType: String
+  description: Tax identification number of a entity
 - id: TelephoneNumber
   valueType: String
   metaData:
@@ -242,6 +327,13 @@ attributes:
     value: Current
 - id: Time
   valueType: DateTime
+- id: TimeRange
+  valueType: Record
+  valueCkRecordId: Basic-1.0.0/TimeRange-1.0.0
+  description: A time range with a start and end date
+- id: To
+  valueType: DateTime
+  description: To date within a time range
 - id: TypeOfTelephoneBasic
   valueType: Enum
   valueCkEnumId: Basic-1.0.0/TypeOfTelephoneBasic-1.0.0
@@ -296,6 +388,52 @@ records:
     isOptional: true
   - id: Basic-1.0.0/AddressEMail-1.0.0
     name: EMail
+    isOptional: true
+- recordId: BankAccount
+  description: A bank account with its details
+  attributes:
+  - id: Basic-1.0.0/Iban-1.0.0
+    name: Iban
+  - id: Basic-1.0.0/SwiftCode-1.0.0
+    name: SwiftCode
+    isOptional: true
+  - id: Basic-1.0.0/BankName-1.0.0
+    name: BankName
+    isOptional: true
+  - id: Basic-1.0.0/AccountHolder-1.0.0
+    name: AccountHolder
+- recordId: Contact
+  attributes:
+  - id: Basic-1.0.0/LegalEntityType-1.0.0
+    name: LegalEntityType
+  - id: Basic-1.0.0/Salutation-1.0.0
+    name: Salutation
+    isOptional: true
+  - id: Basic-1.0.0/FirstName-1.0.0
+    name: FirstName
+    isOptional: true
+  - id: Basic-1.0.0/LastName-1.0.0
+    name: LastName
+    isOptional: true
+  - id: Basic-1.0.0/AcademicTitlePrefix-1.0.0
+    name: TitlePrefix
+    isOptional: true
+  - id: Basic-1.0.0/AcademicTitleSuffix-1.0.0
+    name: TitleSuffix
+    isOptional: true
+  - id: Basic-1.0.0/CompanyName-1.0.0
+    name: CompanyName
+    isOptional: true
+  - id: Basic-1.0.0/Address-1.0.0
+    name: Address
+  - id: Basic-1.0.0/TaxIdentificationNumber-1.0.0
+    name: TaxIdentificationNumber
+    isOptional: true
+  - id: Basic-1.0.0/CompanyRegisterNumber-1.0.0
+    name: CompanyRegisterNumber
+    isOptional: true
+  - id: Basic-1.0.0/EMailAddress-1.0.0
+    name: Email
     isOptional: true
 - recordId: EMail
   attributes:
@@ -355,9 +493,46 @@ records:
   - id: Basic-1.0.0/TypeOfTelephoneEnhanced-1.0.0
     name: Type
     isOptional: true
+- recordId: TimeRange
+  description: A time range with a start and end date
+  attributes:
+  - id: Basic-1.0.0/From-1.0.0
+    name: From
+  - id: Basic-1.0.0/To-1.0.0
+    name: To
 enums:
+- enumId: LegalEntityType
+  values:
+  - key: 0
+    name: NaturalPerson
+    description: A natural person is a human being with legal capacity, in contrast to a legal person (such as a company, organization, or government entity).
+  - key: 1
+    name: LegalPerson
+    description: Legal structure with the characteristics of a person
+  - key: 2
+    name: Company
+    description: Actor in economic life, such as any natural or legal person with UGB relevance.
+  - key: 3
+    name: LocalAuthority
+    description: Administrative unit with sovereign power such as municipality, federal state, republic.
+  description: The legal entity type of a contact
+- enumId: Salutation
+  isExtensible: true
+  values:
+  - key: 0
+    name: Unknown
+    description: The salutation is unknown or not defined
+  - key: 1
+    name: Male
+    description: The salutation is male
+  - key: 2
+    name: Female
+    description: The salutation is female
+  - key: 3
+    name: NonBinary
+    description: The salutation is non-binary
+  description: Defines the salutation a Customer wishes to be addressed by
 - enumId: TypeOfTelephoneBasic
-  useFlags: false
   values:
   - key: 1
     name: Office
@@ -368,7 +543,6 @@ enums:
   - key: 5
     name: Home
 - enumId: TypeOfTelephoneEnhanced
-  useFlags: false
   values:
   - key: 1
     name: Office
@@ -382,6 +556,6 @@ enums:
     name: Home
   - key: 6
     name: PrivateMobile
-modelId: Basic-1.0.0
 dependencies:
 - System-1.0.0
+modelId: Basic-1.0.0

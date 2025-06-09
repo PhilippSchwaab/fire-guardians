@@ -13,13 +13,20 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   BigInt: { input: any; output: any; }
+  /** A construction kit id of type CkAttributeId. */
   CkAttributeId: { input: string; output: string; }
+  /** A construction kit id of type CkEnumId. */
   CkEnumId: { input: string; output: string; }
+  /** Identifies a construction kit model. */
   CkModelId: { input: any; output: any; }
+  /** A construction kit id of type CkRecordId. */
   CkRecordId: { input: string; output: string; }
+  /** A construction kit id of type CkTypeId. */
   CkTypeId: { input: string; output: string; }
+  /** The `DateTime` scalar type represents a date and time. `DateTime` expects timestamps to be formatted in accordance with the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) standard. */
   DateTime: { input: any; output: any; }
   LargeBinary: { input: any; output: any; }
+  /** A unique identifier for an runtime object. */
   OctoObjectId: { input: string; output: string; }
   SimpleScalar: { input: any; output: any; }
   ULong: { input: any; output: any; }
@@ -43,6 +50,9 @@ export enum AttributeValueTypeDto {
   EnumDto = 'ENUM',
   GeospatialPointDto = 'GEOSPATIAL_POINT',
   IntDto = 'INT',
+  IntegerDto = 'INTEGER',
+  Integer_64Dto = 'INTEGER_64',
+  IntegerArrayDto = 'INTEGER_ARRAY',
   Int_64Dto = 'INT_64',
   IntArrayDto = 'INT_ARRAY',
   RecordDto = 'RECORD',
@@ -93,6 +103,7 @@ export type BasicAddressInputDto = {
 export type BasicAssetDto = {
   __typename?: 'BasicAsset';
   associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  children?: Maybe<BasicAsset_ChildrenUnionDto>;
   ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
   configuredBy?: Maybe<BasicAsset_ConfiguredByUnionDto>;
   constructionKitType?: Maybe<CkTypeDto>;
@@ -100,6 +111,7 @@ export type BasicAssetDto = {
   name: Scalars['String']['output'];
   parent?: Maybe<BasicAsset_ParentUnionDto>;
   relatesFrom?: Maybe<BasicAsset_RelatesFromUnionDto>;
+  relatesTo?: Maybe<BasicAsset_RelatesToUnionDto>;
   rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
   rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
   rtId: Scalars['OctoObjectId']['output'];
@@ -147,11 +159,13 @@ export type BasicAssetEdgeDto = {
 };
 
 export type BasicAssetInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   relatesFrom?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  relatesTo?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -199,6 +213,95 @@ export type BasicAssetUpdateMessageDto = {
   items?: Maybe<Array<Maybe<BasicAssetUpdateDto>>>;
 };
 
+/** Association System/ParentChild (Inbound) of entity type BasicAsset */
+export type BasicAsset_ChildrenUnionDto = {
+  __typename?: 'BasicAsset_ChildrenUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicAsset */
+export type BasicAsset_ChildrenUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicAsset */
+export type BasicAsset_ChildrenUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicAsset */
+export type BasicAsset_ChildrenUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicAsset */
+export type BasicAsset_ChildrenUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicAsset */
+export type BasicAsset_ChildrenUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicAsset */
+export type BasicAsset_ChildrenUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
 /** Association System.Bot/Configures (Inbound) of entity type BasicAsset */
 export type BasicAsset_ConfiguredByUnionDto = {
   __typename?: 'BasicAsset_ConfiguredByUnion';
@@ -221,12 +324,18 @@ export type BasicAsset_ConfiguredByUnionSystemBotAttributeAggregateConfiguration
 /** Association System/ParentChild (Outbound) of entity type BasicAsset */
 export type BasicAsset_ParentUnionDto = {
   __typename?: 'BasicAsset_ParentUnion';
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
 };
 
 
 /** Association System/ParentChild (Outbound) of entity type BasicAsset */
-export type BasicAsset_ParentUnionBasicEquipmentGroupArgsDto = {
+export type BasicAsset_ParentUnionBasicAssetArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -237,15 +346,1345 @@ export type BasicAsset_ParentUnionBasicEquipmentGroupArgsDto = {
   sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
 };
 
-/** Association Basic/RelatedEquipment (Outbound) of entity type BasicAsset */
-export type BasicAsset_RelatesFromUnionDto = {
-  __typename?: 'BasicAsset_RelatesFromUnion';
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
+
+/** Association System/ParentChild (Outbound) of entity type BasicAsset */
+export type BasicAsset_ParentUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
 };
 
 
-/** Association Basic/RelatedEquipment (Outbound) of entity type BasicAsset */
-export type BasicAsset_RelatesFromUnionBasicEquipmentGroupArgsDto = {
+/** Association System/ParentChild (Outbound) of entity type BasicAsset */
+export type BasicAsset_ParentUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicAsset */
+export type BasicAsset_ParentUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicAsset */
+export type BasicAsset_ParentUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicAsset */
+export type BasicAsset_ParentUnionBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicAsset */
+export type BasicAsset_ParentUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicAsset */
+export type BasicAsset_RelatesFromUnionDto = {
+  __typename?: 'BasicAsset_RelatesFromUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+};
+
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicAsset */
+export type BasicAsset_RelatesFromUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association Basic/RelatedClassification (Outbound) of entity type BasicAsset */
+export type BasicAsset_RelatesToUnionDto = {
+  __typename?: 'BasicAsset_RelatesToUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association Basic/RelatedClassification (Outbound) of entity type BasicAsset */
+export type BasicAsset_RelatesToUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association Basic/RelatedClassification (Outbound) of entity type BasicAsset */
+export type BasicAsset_RelatesToUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association Basic/RelatedClassification (Outbound) of entity type BasicAsset */
+export type BasicAsset_RelatesToUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association Basic/RelatedClassification (Outbound) of entity type BasicAsset */
+export type BasicAsset_RelatesToUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association Basic/RelatedClassification (Outbound) of entity type BasicAsset */
+export type BasicAsset_RelatesToUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association Basic/RelatedClassification (Outbound) of entity type BasicAsset */
+export type BasicAsset_RelatesToUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Runtime entities of construction kit record 'Basic/BankAccount' */
+export type BasicBankAccountDto = {
+  __typename?: 'BasicBankAccount';
+  accountHolder: Scalars['String']['output'];
+  bankName?: Maybe<Scalars['String']['output']>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  iban: Scalars['String']['output'];
+  swiftCode?: Maybe<Scalars['String']['output']>;
+};
+
+export type BasicBankAccountInputDto = {
+  accountHolder?: InputMaybe<Scalars['String']['input']>;
+  bankName?: InputMaybe<Scalars['String']['input']>;
+  iban?: InputMaybe<Scalars['String']['input']>;
+  swiftCode?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Runtime entities of construction kit type 'Basic/City' */
+export type BasicCityDto = {
+  __typename?: 'BasicCity';
+  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  children?: Maybe<BasicCity_ChildrenUnionDto>;
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<BasicCity_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  parent?: Maybe<BasicCity_ParentUnionDto>;
+  relatesFrom?: Maybe<BasicCity_RelatesFromUnionDto>;
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtVersion?: Maybe<Scalars['ULong']['output']>;
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+  zipcode: Scalars['Int']['output'];
+};
+
+
+/** Runtime entities of construction kit type 'Basic/City' */
+export type BasicCityAssociationsArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  ckId: Scalars['String']['input'];
+  direction: GraphDirectionDto;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
+  roleId: Scalars['String']['input'];
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** A connection to `BasicCity`. */
+export type BasicCityConnectionDto = {
+  __typename?: 'BasicCityConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<BasicCityEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<BasicCityDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `BasicCity`. */
+export type BasicCityEdgeDto = {
+  __typename?: 'BasicCityEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<BasicCityDto>;
+};
+
+export type BasicCityInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  relatesFrom?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
+  zipcode?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type BasicCityInputUpdateDto = {
+  /** Item to update */
+  item: BasicCityInputDto;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+};
+
+export type BasicCityMutationsDto = {
+  __typename?: 'BasicCityMutations';
+  /** Creates new entities of type 'BasicCity'. */
+  create?: Maybe<Array<Maybe<BasicCityDto>>>;
+  /** Deletes an entity of type 'BasicCity'. */
+  delete?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates existing entity of type 'BasicCity'. */
+  update?: Maybe<Array<Maybe<BasicCityDto>>>;
+};
+
+
+export type BasicCityMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<BasicCityInputDto>>;
+};
+
+
+export type BasicCityMutationsDeleteArgsDto = {
+  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
+};
+
+
+export type BasicCityMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<BasicCityInputUpdateDto>>;
+};
+
+export type BasicCityUpdateDto = {
+  __typename?: 'BasicCityUpdate';
+  /** The corresponding item */
+  item?: Maybe<BasicCityDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type BasicCityUpdateMessageDto = {
+  __typename?: 'BasicCityUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<BasicCityUpdateDto>>>;
+};
+
+/** Association System/ParentChild (Inbound) of entity type BasicCity */
+export type BasicCity_ChildrenUnionDto = {
+  __typename?: 'BasicCity_ChildrenUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCity */
+export type BasicCity_ChildrenUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCity */
+export type BasicCity_ChildrenUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCity */
+export type BasicCity_ChildrenUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCity */
+export type BasicCity_ChildrenUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCity */
+export type BasicCity_ChildrenUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCity */
+export type BasicCity_ChildrenUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicCity */
+export type BasicCity_ConfiguredByUnionDto = {
+  __typename?: 'BasicCity_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicCity */
+export type BasicCity_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionDto = {
+  __typename?: 'BasicCity_ParentUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCity */
+export type BasicCity_ParentUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicCity */
+export type BasicCity_RelatesFromUnionDto = {
+  __typename?: 'BasicCity_RelatesFromUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+};
+
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicCity */
+export type BasicCity_RelatesFromUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Runtime entities of construction kit record 'Basic/Contact' */
+export type BasicContactDto = {
+  __typename?: 'BasicContact';
+  address: BasicAddressDto;
+  companyName?: Maybe<Scalars['String']['output']>;
+  companyRegisterNumber?: Maybe<Scalars['String']['output']>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  email?: Maybe<Scalars['String']['output']>;
+  firstName?: Maybe<Scalars['String']['output']>;
+  lastName?: Maybe<Scalars['String']['output']>;
+  legalEntityType: BasicLegalEntityTypeDto;
+  salutation?: Maybe<BasicSalutationDto>;
+  taxIdentificationNumber?: Maybe<Scalars['String']['output']>;
+  titlePrefix?: Maybe<Scalars['String']['output']>;
+  titleSuffix?: Maybe<Scalars['String']['output']>;
+};
+
+export type BasicContactInputDto = {
+  address?: InputMaybe<BasicAddressInputDto>;
+  companyName?: InputMaybe<Scalars['String']['input']>;
+  companyRegisterNumber?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  legalEntityType?: InputMaybe<BasicLegalEntityTypeDto>;
+  salutation?: InputMaybe<BasicSalutationDto>;
+  taxIdentificationNumber?: InputMaybe<Scalars['String']['input']>;
+  titlePrefix?: InputMaybe<Scalars['String']['input']>;
+  titleSuffix?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Runtime entities of construction kit type 'Basic/Country' */
+export type BasicCountryDto = {
+  __typename?: 'BasicCountry';
+  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  children?: Maybe<BasicCountry_ChildrenUnionDto>;
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<BasicCountry_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  parent?: Maybe<BasicCountry_ParentUnionDto>;
+  relatesFrom?: Maybe<BasicCountry_RelatesFromUnionDto>;
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtVersion?: Maybe<Scalars['ULong']['output']>;
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Runtime entities of construction kit type 'Basic/Country' */
+export type BasicCountryAssociationsArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  ckId: Scalars['String']['input'];
+  direction: GraphDirectionDto;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
+  roleId: Scalars['String']['input'];
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** A connection to `BasicCountry`. */
+export type BasicCountryConnectionDto = {
+  __typename?: 'BasicCountryConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<BasicCountryEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<BasicCountryDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `BasicCountry`. */
+export type BasicCountryEdgeDto = {
+  __typename?: 'BasicCountryEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<BasicCountryDto>;
+};
+
+export type BasicCountryInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  relatesFrom?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BasicCountryInputUpdateDto = {
+  /** Item to update */
+  item: BasicCountryInputDto;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+};
+
+export type BasicCountryMutationsDto = {
+  __typename?: 'BasicCountryMutations';
+  /** Creates new entities of type 'BasicCountry'. */
+  create?: Maybe<Array<Maybe<BasicCountryDto>>>;
+  /** Deletes an entity of type 'BasicCountry'. */
+  delete?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates existing entity of type 'BasicCountry'. */
+  update?: Maybe<Array<Maybe<BasicCountryDto>>>;
+};
+
+
+export type BasicCountryMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<BasicCountryInputDto>>;
+};
+
+
+export type BasicCountryMutationsDeleteArgsDto = {
+  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
+};
+
+
+export type BasicCountryMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<BasicCountryInputUpdateDto>>;
+};
+
+export type BasicCountryUpdateDto = {
+  __typename?: 'BasicCountryUpdate';
+  /** The corresponding item */
+  item?: Maybe<BasicCountryDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type BasicCountryUpdateMessageDto = {
+  __typename?: 'BasicCountryUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<BasicCountryUpdateDto>>>;
+};
+
+/** Association System/ParentChild (Inbound) of entity type BasicCountry */
+export type BasicCountry_ChildrenUnionDto = {
+  __typename?: 'BasicCountry_ChildrenUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCountry */
+export type BasicCountry_ChildrenUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCountry */
+export type BasicCountry_ChildrenUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCountry */
+export type BasicCountry_ChildrenUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCountry */
+export type BasicCountry_ChildrenUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCountry */
+export type BasicCountry_ChildrenUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicCountry */
+export type BasicCountry_ChildrenUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicCountry */
+export type BasicCountry_ConfiguredByUnionDto = {
+  __typename?: 'BasicCountry_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicCountry */
+export type BasicCountry_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionDto = {
+  __typename?: 'BasicCountry_ParentUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicCountry */
+export type BasicCountry_ParentUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicCountry */
+export type BasicCountry_RelatesFromUnionDto = {
+  __typename?: 'BasicCountry_RelatesFromUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+};
+
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicCountry */
+export type BasicCountry_RelatesFromUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Runtime entities of construction kit type 'Basic/District' */
+export type BasicDistrictDto = {
+  __typename?: 'BasicDistrict';
+  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  children?: Maybe<BasicDistrict_ChildrenUnionDto>;
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<BasicDistrict_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  parent?: Maybe<BasicDistrict_ParentUnionDto>;
+  relatesFrom?: Maybe<BasicDistrict_RelatesFromUnionDto>;
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtVersion?: Maybe<Scalars['ULong']['output']>;
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Runtime entities of construction kit type 'Basic/District' */
+export type BasicDistrictAssociationsArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  ckId: Scalars['String']['input'];
+  direction: GraphDirectionDto;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
+  roleId: Scalars['String']['input'];
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** A connection to `BasicDistrict`. */
+export type BasicDistrictConnectionDto = {
+  __typename?: 'BasicDistrictConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<BasicDistrictEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<BasicDistrictDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `BasicDistrict`. */
+export type BasicDistrictEdgeDto = {
+  __typename?: 'BasicDistrictEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<BasicDistrictDto>;
+};
+
+export type BasicDistrictInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  relatesFrom?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BasicDistrictInputUpdateDto = {
+  /** Item to update */
+  item: BasicDistrictInputDto;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+};
+
+export type BasicDistrictMutationsDto = {
+  __typename?: 'BasicDistrictMutations';
+  /** Creates new entities of type 'BasicDistrict'. */
+  create?: Maybe<Array<Maybe<BasicDistrictDto>>>;
+  /** Deletes an entity of type 'BasicDistrict'. */
+  delete?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates existing entity of type 'BasicDistrict'. */
+  update?: Maybe<Array<Maybe<BasicDistrictDto>>>;
+};
+
+
+export type BasicDistrictMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<BasicDistrictInputDto>>;
+};
+
+
+export type BasicDistrictMutationsDeleteArgsDto = {
+  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
+};
+
+
+export type BasicDistrictMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<BasicDistrictInputUpdateDto>>;
+};
+
+export type BasicDistrictUpdateDto = {
+  __typename?: 'BasicDistrictUpdate';
+  /** The corresponding item */
+  item?: Maybe<BasicDistrictDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type BasicDistrictUpdateMessageDto = {
+  __typename?: 'BasicDistrictUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<BasicDistrictUpdateDto>>>;
+};
+
+/** Association System/ParentChild (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ChildrenUnionDto = {
+  __typename?: 'BasicDistrict_ChildrenUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ChildrenUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ChildrenUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ChildrenUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ChildrenUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ChildrenUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ChildrenUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ConfiguredByUnionDto = {
+  __typename?: 'BasicDistrict_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionDto = {
+  __typename?: 'BasicDistrict_ParentUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicDistrict */
+export type BasicDistrict_ParentUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_RelatesFromUnionDto = {
+  __typename?: 'BasicDistrict_RelatesFromUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+};
+
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicDistrict */
+export type BasicDistrict_RelatesFromUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Runtime entities of construction kit type 'Basic/Document' */
+export type BasicDocumentDto = {
+  __typename?: 'BasicDocument';
+  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<BasicDocument_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  documentDate: Scalars['DateTime']['output'];
+  documentNumber: Scalars['String']['output'];
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtVersion?: Maybe<Scalars['ULong']['output']>;
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Runtime entities of construction kit type 'Basic/Document' */
+export type BasicDocumentAssociationsArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  ckId: Scalars['String']['input'];
+  direction: GraphDirectionDto;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
+  roleId: Scalars['String']['input'];
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** A connection to `BasicDocument`. */
+export type BasicDocumentConnectionDto = {
+  __typename?: 'BasicDocumentConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<BasicDocumentEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<BasicDocumentDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `BasicDocument`. */
+export type BasicDocumentEdgeDto = {
+  __typename?: 'BasicDocumentEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<BasicDocumentDto>;
+};
+
+export type BasicDocumentUpdateDto = {
+  __typename?: 'BasicDocumentUpdate';
+  /** The corresponding item */
+  item?: Maybe<BasicDocumentDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type BasicDocumentUpdateMessageDto = {
+  __typename?: 'BasicDocumentUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<BasicDocumentUpdateDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicDocument */
+export type BasicDocument_ConfiguredByUnionDto = {
+  __typename?: 'BasicDocument_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicDocument */
+export type BasicDocument_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -273,489 +1712,6 @@ export type BasicEMailInputDto = {
   typeOfPublicKey?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Runtime entities of construction kit type 'Basic/Equipment' */
-export type BasicEquipmentDto = {
-  __typename?: 'BasicEquipment';
-  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
-  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
-  configuredBy?: Maybe<BasicEquipment_ConfiguredByUnionDto>;
-  constructionKitType?: Maybe<CkTypeDto>;
-  description?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  parent?: Maybe<BasicEquipment_ParentUnionDto>;
-  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
-  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
-  rtId: Scalars['OctoObjectId']['output'];
-  rtVersion?: Maybe<Scalars['ULong']['output']>;
-  rtWellKnownName?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** Runtime entities of construction kit type 'Basic/Equipment' */
-export type BasicEquipmentAssociationsArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  ckId: Scalars['String']['input'];
-  direction: GraphDirectionDto;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
-  roleId: Scalars['String']['input'];
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** A connection to `BasicEquipment`. */
-export type BasicEquipmentConnectionDto = {
-  __typename?: 'BasicEquipmentConnection';
-  /** Information to aid in pagination. */
-  edges?: Maybe<Array<Maybe<BasicEquipmentEdgeDto>>>;
-  /** Result of grouping the items by attributes. */
-  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
-  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
-  items?: Maybe<Array<Maybe<BasicEquipmentDto>>>;
-  /** Information to aid in pagination. */
-  pageInfo?: Maybe<PageInfoDto>;
-  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
-  totalCount?: Maybe<Scalars['Int']['output']>;
-};
-
-/** An edge in a connection from an object to another object of type `BasicEquipment`. */
-export type BasicEquipmentEdgeDto = {
-  __typename?: 'BasicEquipmentEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge */
-  node?: Maybe<BasicEquipmentDto>;
-};
-
-/** Runtime entities of construction kit type 'Basic/EquipmentGroup' */
-export type BasicEquipmentGroupDto = {
-  __typename?: 'BasicEquipmentGroup';
-  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
-  children?: Maybe<BasicEquipmentGroup_ChildrenUnionDto>;
-  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
-  configuredBy?: Maybe<BasicEquipmentGroup_ConfiguredByUnionDto>;
-  constructionKitType?: Maybe<CkTypeDto>;
-  description?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  parent?: Maybe<BasicEquipmentGroup_ParentUnionDto>;
-  relatesTo?: Maybe<BasicEquipmentGroup_RelatesToUnionDto>;
-  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
-  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
-  rtId: Scalars['OctoObjectId']['output'];
-  rtVersion?: Maybe<Scalars['ULong']['output']>;
-  rtWellKnownName?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** Runtime entities of construction kit type 'Basic/EquipmentGroup' */
-export type BasicEquipmentGroupAssociationsArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  ckId: Scalars['String']['input'];
-  direction: GraphDirectionDto;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
-  roleId: Scalars['String']['input'];
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** A connection to `BasicEquipmentGroup`. */
-export type BasicEquipmentGroupConnectionDto = {
-  __typename?: 'BasicEquipmentGroupConnection';
-  /** Information to aid in pagination. */
-  edges?: Maybe<Array<Maybe<BasicEquipmentGroupEdgeDto>>>;
-  /** Result of grouping the items by attributes. */
-  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
-  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
-  items?: Maybe<Array<Maybe<BasicEquipmentGroupDto>>>;
-  /** Information to aid in pagination. */
-  pageInfo?: Maybe<PageInfoDto>;
-  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
-  totalCount?: Maybe<Scalars['Int']['output']>;
-};
-
-/** An edge in a connection from an object to another object of type `BasicEquipmentGroup`. */
-export type BasicEquipmentGroupEdgeDto = {
-  __typename?: 'BasicEquipmentGroupEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge */
-  node?: Maybe<BasicEquipmentGroupDto>;
-};
-
-export type BasicEquipmentGroupInputDto = {
-  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
-  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
-  relatesTo?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
-  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type BasicEquipmentGroupInputUpdateDto = {
-  /** Item to update */
-  item: BasicEquipmentGroupInputDto;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-};
-
-export type BasicEquipmentGroupMutationsDto = {
-  __typename?: 'BasicEquipmentGroupMutations';
-  /** Creates new entities of type 'BasicEquipmentGroup'. */
-  create?: Maybe<Array<Maybe<BasicEquipmentGroupDto>>>;
-  /** Deletes an entity of type 'BasicEquipmentGroup'. */
-  delete?: Maybe<Scalars['Boolean']['output']>;
-  /** Updates existing entity of type 'BasicEquipmentGroup'. */
-  update?: Maybe<Array<Maybe<BasicEquipmentGroupDto>>>;
-};
-
-
-export type BasicEquipmentGroupMutationsCreateArgsDto = {
-  entities: Array<InputMaybe<BasicEquipmentGroupInputDto>>;
-};
-
-
-export type BasicEquipmentGroupMutationsDeleteArgsDto = {
-  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
-};
-
-
-export type BasicEquipmentGroupMutationsUpdateArgsDto = {
-  entities: Array<InputMaybe<BasicEquipmentGroupInputUpdateDto>>;
-};
-
-export type BasicEquipmentGroupUpdateDto = {
-  __typename?: 'BasicEquipmentGroupUpdate';
-  /** The corresponding item */
-  item?: Maybe<BasicEquipmentGroupDto>;
-  updateState?: Maybe<UpdateTypeDto>;
-};
-
-export type BasicEquipmentGroupUpdateMessageDto = {
-  __typename?: 'BasicEquipmentGroupUpdateMessage';
-  /** The corresponding items */
-  items?: Maybe<Array<Maybe<BasicEquipmentGroupUpdateDto>>>;
-};
-
-/** Association System/ParentChild (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ChildrenUnionDto = {
-  __typename?: 'BasicEquipmentGroup_ChildrenUnion';
-  basicAsset?: Maybe<BasicAssetConnectionDto>;
-  basicEquipment?: Maybe<BasicEquipmentConnectionDto>;
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
-};
-
-
-/** Association System/ParentChild (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ChildrenUnionBasicAssetArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-
-/** Association System/ParentChild (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ChildrenUnionBasicEquipmentArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-
-/** Association System/ParentChild (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ChildrenUnionBasicEquipmentGroupArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** Association System.Bot/Configures (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ConfiguredByUnionDto = {
-  __typename?: 'BasicEquipmentGroup_ConfiguredByUnion';
-  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
-};
-
-
-/** Association System.Bot/Configures (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** Association System/ParentChild (Outbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ParentUnionDto = {
-  __typename?: 'BasicEquipmentGroup_ParentUnion';
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
-  basicEquipmentModel?: Maybe<BasicEquipmentModelConnectionDto>;
-};
-
-
-/** Association System/ParentChild (Outbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ParentUnionBasicEquipmentGroupArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-
-/** Association System/ParentChild (Outbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_ParentUnionBasicEquipmentModelArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** Association Basic/RelatedEquipment (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_RelatesToUnionDto = {
-  __typename?: 'BasicEquipmentGroup_RelatesToUnion';
-  basicAsset?: Maybe<BasicAssetConnectionDto>;
-};
-
-
-/** Association Basic/RelatedEquipment (Inbound) of entity type BasicEquipmentGroup */
-export type BasicEquipmentGroup_RelatesToUnionBasicAssetArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** Runtime entities of construction kit type 'Basic/EquipmentModel' */
-export type BasicEquipmentModelDto = {
-  __typename?: 'BasicEquipmentModel';
-  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
-  children?: Maybe<BasicEquipmentModel_ChildrenUnionDto>;
-  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
-  configuredBy?: Maybe<BasicEquipmentModel_ConfiguredByUnionDto>;
-  constructionKitType?: Maybe<CkTypeDto>;
-  description?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
-  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
-  rtId: Scalars['OctoObjectId']['output'];
-  rtVersion?: Maybe<Scalars['ULong']['output']>;
-  rtWellKnownName?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** Runtime entities of construction kit type 'Basic/EquipmentModel' */
-export type BasicEquipmentModelAssociationsArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  ckId: Scalars['String']['input'];
-  direction: GraphDirectionDto;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
-  roleId: Scalars['String']['input'];
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** A connection to `BasicEquipmentModel`. */
-export type BasicEquipmentModelConnectionDto = {
-  __typename?: 'BasicEquipmentModelConnection';
-  /** Information to aid in pagination. */
-  edges?: Maybe<Array<Maybe<BasicEquipmentModelEdgeDto>>>;
-  /** Result of grouping the items by attributes. */
-  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
-  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
-  items?: Maybe<Array<Maybe<BasicEquipmentModelDto>>>;
-  /** Information to aid in pagination. */
-  pageInfo?: Maybe<PageInfoDto>;
-  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
-  totalCount?: Maybe<Scalars['Int']['output']>;
-};
-
-/** An edge in a connection from an object to another object of type `BasicEquipmentModel`. */
-export type BasicEquipmentModelEdgeDto = {
-  __typename?: 'BasicEquipmentModelEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge */
-  node?: Maybe<BasicEquipmentModelDto>;
-};
-
-export type BasicEquipmentModelInputDto = {
-  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
-  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type BasicEquipmentModelInputUpdateDto = {
-  /** Item to update */
-  item: BasicEquipmentModelInputDto;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-};
-
-export type BasicEquipmentModelMutationsDto = {
-  __typename?: 'BasicEquipmentModelMutations';
-  /** Creates new entities of type 'BasicEquipmentModel'. */
-  create?: Maybe<Array<Maybe<BasicEquipmentModelDto>>>;
-  /** Deletes an entity of type 'BasicEquipmentModel'. */
-  delete?: Maybe<Scalars['Boolean']['output']>;
-  /** Updates existing entity of type 'BasicEquipmentModel'. */
-  update?: Maybe<Array<Maybe<BasicEquipmentModelDto>>>;
-};
-
-
-export type BasicEquipmentModelMutationsCreateArgsDto = {
-  entities: Array<InputMaybe<BasicEquipmentModelInputDto>>;
-};
-
-
-export type BasicEquipmentModelMutationsDeleteArgsDto = {
-  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
-};
-
-
-export type BasicEquipmentModelMutationsUpdateArgsDto = {
-  entities: Array<InputMaybe<BasicEquipmentModelInputUpdateDto>>;
-};
-
-export type BasicEquipmentModelUpdateDto = {
-  __typename?: 'BasicEquipmentModelUpdate';
-  /** The corresponding item */
-  item?: Maybe<BasicEquipmentModelDto>;
-  updateState?: Maybe<UpdateTypeDto>;
-};
-
-export type BasicEquipmentModelUpdateMessageDto = {
-  __typename?: 'BasicEquipmentModelUpdateMessage';
-  /** The corresponding items */
-  items?: Maybe<Array<Maybe<BasicEquipmentModelUpdateDto>>>;
-};
-
-/** Association System/ParentChild (Inbound) of entity type BasicEquipmentModel */
-export type BasicEquipmentModel_ChildrenUnionDto = {
-  __typename?: 'BasicEquipmentModel_ChildrenUnion';
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
-};
-
-
-/** Association System/ParentChild (Inbound) of entity type BasicEquipmentModel */
-export type BasicEquipmentModel_ChildrenUnionBasicEquipmentGroupArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** Association System.Bot/Configures (Inbound) of entity type BasicEquipmentModel */
-export type BasicEquipmentModel_ConfiguredByUnionDto = {
-  __typename?: 'BasicEquipmentModel_ConfiguredByUnion';
-  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
-};
-
-
-/** Association System.Bot/Configures (Inbound) of entity type BasicEquipmentModel */
-export type BasicEquipmentModel_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-export type BasicEquipmentUpdateDto = {
-  __typename?: 'BasicEquipmentUpdate';
-  /** The corresponding item */
-  item?: Maybe<BasicEquipmentDto>;
-  updateState?: Maybe<UpdateTypeDto>;
-};
-
-export type BasicEquipmentUpdateMessageDto = {
-  __typename?: 'BasicEquipmentUpdateMessage';
-  /** The corresponding items */
-  items?: Maybe<Array<Maybe<BasicEquipmentUpdateDto>>>;
-};
-
-/** Association System.Bot/Configures (Inbound) of entity type BasicEquipment */
-export type BasicEquipment_ConfiguredByUnionDto = {
-  __typename?: 'BasicEquipment_ConfiguredByUnion';
-  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
-};
-
-
-/** Association System.Bot/Configures (Inbound) of entity type BasicEquipment */
-export type BasicEquipment_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
-/** Association System/ParentChild (Outbound) of entity type BasicEquipment */
-export type BasicEquipment_ParentUnionDto = {
-  __typename?: 'BasicEquipment_ParentUnion';
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
-};
-
-
-/** Association System/ParentChild (Outbound) of entity type BasicEquipment */
-export type BasicEquipment_ParentUnionBasicEquipmentGroupArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<GroupByDto>;
-  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
-  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
-  searchFilter?: InputMaybe<SearchFilterDto>;
-  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
-};
-
 /** Runtime entities of construction kit record 'Basic/FaxNumber' */
 export type BasicFaxNumberDto = {
   __typename?: 'BasicFaxNumber';
@@ -769,18 +1725,30 @@ export type BasicFaxNumberInputDto = {
   type?: InputMaybe<BasicTypeOfTelephoneBasicDto>;
 };
 
+/** Runtime entities of construction kit enum 'Basic/LegalEntityType' */
+export enum BasicLegalEntityTypeDto {
+  /** Actor in economic life, such as any natural or legal person with UGB relevance. */
+  CompanyDto = 'COMPANY',
+  /** Legal structure with the characteristics of a person */
+  LegalPersonDto = 'LEGAL_PERSON',
+  /** Administrative unit with sovereign power such as municipality, federal state, republic. */
+  LocalAuthorityDto = 'LOCAL_AUTHORITY',
+  /** A natural person is a human being with legal capacity, in contrast to a legal person (such as a company, organization, or government entity). */
+  NaturalPersonDto = 'NATURAL_PERSON'
+}
+
 /** Runtime entities of construction kit record 'Basic/Marking' */
 export type BasicMarkingDto = {
   __typename?: 'BasicMarking';
   additionalText?: Maybe<Scalars['String']['output']>;
   constructionKitType?: Maybe<CkTypeDto>;
-  file: Scalars['OctoObjectId']['output'];
+  file: LargeBinaryInfoDto;
   name: Scalars['String']['output'];
 };
 
 export type BasicMarkingInputDto = {
   additionalText?: InputMaybe<Scalars['String']['input']>;
-  file?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  file?: InputMaybe<Scalars['LargeBinary']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -907,6 +1875,931 @@ export type BasicPhoneNumberDto = {
 export type BasicPhoneNumberInputDto = {
   number?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<BasicTypeOfTelephoneEnhancedDto>;
+};
+
+/** Runtime entities of construction kit enum 'Basic/Salutation' */
+export enum BasicSalutationDto {
+  /** The salutation is female */
+  FemaleDto = 'FEMALE',
+  /** The salutation is male */
+  MaleDto = 'MALE',
+  /** The salutation is non-binary */
+  NonBinaryDto = 'NON_BINARY',
+  /** The salutation is unknown or not defined */
+  UnknownDto = 'UNKNOWN'
+}
+
+/** Runtime entities of construction kit type 'Basic/State' */
+export type BasicStateDto = {
+  __typename?: 'BasicState';
+  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  children?: Maybe<BasicState_ChildrenUnionDto>;
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<BasicState_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  parent?: Maybe<BasicState_ParentUnionDto>;
+  relatesFrom?: Maybe<BasicState_RelatesFromUnionDto>;
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtVersion?: Maybe<Scalars['ULong']['output']>;
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Runtime entities of construction kit type 'Basic/State' */
+export type BasicStateAssociationsArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  ckId: Scalars['String']['input'];
+  direction: GraphDirectionDto;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
+  roleId: Scalars['String']['input'];
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** A connection to `BasicState`. */
+export type BasicStateConnectionDto = {
+  __typename?: 'BasicStateConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<BasicStateEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<BasicStateDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `BasicState`. */
+export type BasicStateEdgeDto = {
+  __typename?: 'BasicStateEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<BasicStateDto>;
+};
+
+export type BasicStateInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  relatesFrom?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BasicStateInputUpdateDto = {
+  /** Item to update */
+  item: BasicStateInputDto;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+};
+
+export type BasicStateMutationsDto = {
+  __typename?: 'BasicStateMutations';
+  /** Creates new entities of type 'BasicState'. */
+  create?: Maybe<Array<Maybe<BasicStateDto>>>;
+  /** Deletes an entity of type 'BasicState'. */
+  delete?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates existing entity of type 'BasicState'. */
+  update?: Maybe<Array<Maybe<BasicStateDto>>>;
+};
+
+
+export type BasicStateMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<BasicStateInputDto>>;
+};
+
+
+export type BasicStateMutationsDeleteArgsDto = {
+  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
+};
+
+
+export type BasicStateMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<BasicStateInputUpdateDto>>;
+};
+
+export type BasicStateUpdateDto = {
+  __typename?: 'BasicStateUpdate';
+  /** The corresponding item */
+  item?: Maybe<BasicStateDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type BasicStateUpdateMessageDto = {
+  __typename?: 'BasicStateUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<BasicStateUpdateDto>>>;
+};
+
+/** Association System/ParentChild (Inbound) of entity type BasicState */
+export type BasicState_ChildrenUnionDto = {
+  __typename?: 'BasicState_ChildrenUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicState */
+export type BasicState_ChildrenUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicState */
+export type BasicState_ChildrenUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicState */
+export type BasicState_ChildrenUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicState */
+export type BasicState_ChildrenUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicState */
+export type BasicState_ChildrenUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicState */
+export type BasicState_ChildrenUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicState */
+export type BasicState_ConfiguredByUnionDto = {
+  __typename?: 'BasicState_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicState */
+export type BasicState_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionDto = {
+  __typename?: 'BasicState_ParentUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicState */
+export type BasicState_ParentUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicState */
+export type BasicState_RelatesFromUnionDto = {
+  __typename?: 'BasicState_RelatesFromUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+};
+
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicState */
+export type BasicState_RelatesFromUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Runtime entities of construction kit record 'Basic/TimeRange' */
+export type BasicTimeRangeDto = {
+  __typename?: 'BasicTimeRange';
+  constructionKitType?: Maybe<CkTypeDto>;
+  from: Scalars['DateTime']['output'];
+  to: Scalars['DateTime']['output'];
+};
+
+export type BasicTimeRangeInputDto = {
+  from?: InputMaybe<Scalars['DateTime']['input']>;
+  to?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+/** Runtime entities of construction kit type 'Basic/Tree' */
+export type BasicTreeDto = {
+  __typename?: 'BasicTree';
+  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  children?: Maybe<BasicTree_ChildrenUnionDto>;
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<BasicTree_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtVersion?: Maybe<Scalars['ULong']['output']>;
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Runtime entities of construction kit type 'Basic/Tree' */
+export type BasicTreeAssociationsArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  ckId: Scalars['String']['input'];
+  direction: GraphDirectionDto;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
+  roleId: Scalars['String']['input'];
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** A connection to `BasicTree`. */
+export type BasicTreeConnectionDto = {
+  __typename?: 'BasicTreeConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<BasicTreeEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<BasicTreeDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `BasicTree`. */
+export type BasicTreeEdgeDto = {
+  __typename?: 'BasicTreeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<BasicTreeDto>;
+};
+
+export type BasicTreeInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BasicTreeInputUpdateDto = {
+  /** Item to update */
+  item: BasicTreeInputDto;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+};
+
+export type BasicTreeMutationsDto = {
+  __typename?: 'BasicTreeMutations';
+  /** Creates new entities of type 'BasicTree'. */
+  create?: Maybe<Array<Maybe<BasicTreeDto>>>;
+  /** Deletes an entity of type 'BasicTree'. */
+  delete?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates existing entity of type 'BasicTree'. */
+  update?: Maybe<Array<Maybe<BasicTreeDto>>>;
+};
+
+
+export type BasicTreeMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<BasicTreeInputDto>>;
+};
+
+
+export type BasicTreeMutationsDeleteArgsDto = {
+  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
+};
+
+
+export type BasicTreeMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<BasicTreeInputUpdateDto>>;
+};
+
+/** Runtime entities of construction kit type 'Basic/TreeNode' */
+export type BasicTreeNodeDto = {
+  __typename?: 'BasicTreeNode';
+  associations?: Maybe<RtEntityGenericDtoConnectionDto>;
+  children?: Maybe<BasicTreeNode_ChildrenUnionDto>;
+  ckTypeId?: Maybe<Scalars['CkTypeId']['output']>;
+  configuredBy?: Maybe<BasicTreeNode_ConfiguredByUnionDto>;
+  constructionKitType?: Maybe<CkTypeDto>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  parent?: Maybe<BasicTreeNode_ParentUnionDto>;
+  relatesFrom?: Maybe<BasicTreeNode_RelatesFromUnionDto>;
+  rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
+  rtId: Scalars['OctoObjectId']['output'];
+  rtVersion?: Maybe<Scalars['ULong']['output']>;
+  rtWellKnownName?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Runtime entities of construction kit type 'Basic/TreeNode' */
+export type BasicTreeNodeAssociationsArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  ckId: Scalars['String']['input'];
+  direction: GraphDirectionDto;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  includeIndirect?: InputMaybe<Scalars['Boolean']['input']>;
+  roleId: Scalars['String']['input'];
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** A connection to `BasicTreeNode`. */
+export type BasicTreeNodeConnectionDto = {
+  __typename?: 'BasicTreeNodeConnection';
+  /** Information to aid in pagination. */
+  edges?: Maybe<Array<Maybe<BasicTreeNodeEdgeDto>>>;
+  /** Result of grouping the items by attributes. */
+  groupings?: Maybe<Array<Maybe<GroupingDto>>>;
+  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
+  items?: Maybe<Array<Maybe<BasicTreeNodeDto>>>;
+  /** Information to aid in pagination. */
+  pageInfo?: Maybe<PageInfoDto>;
+  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+/** An edge in a connection from an object to another object of type `BasicTreeNode`. */
+export type BasicTreeNodeEdgeDto = {
+  __typename?: 'BasicTreeNodeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node?: Maybe<BasicTreeNodeDto>;
+};
+
+export type BasicTreeNodeInputDto = {
+  children?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  relatesFrom?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
+  rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BasicTreeNodeInputUpdateDto = {
+  /** Item to update */
+  item: BasicTreeNodeInputDto;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+};
+
+export type BasicTreeNodeMutationsDto = {
+  __typename?: 'BasicTreeNodeMutations';
+  /** Creates new entities of type 'BasicTreeNode'. */
+  create?: Maybe<Array<Maybe<BasicTreeNodeDto>>>;
+  /** Deletes an entity of type 'BasicTreeNode'. */
+  delete?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates existing entity of type 'BasicTreeNode'. */
+  update?: Maybe<Array<Maybe<BasicTreeNodeDto>>>;
+};
+
+
+export type BasicTreeNodeMutationsCreateArgsDto = {
+  entities: Array<InputMaybe<BasicTreeNodeInputDto>>;
+};
+
+
+export type BasicTreeNodeMutationsDeleteArgsDto = {
+  entities: Array<InputMaybe<Scalars['OctoObjectId']['input']>>;
+};
+
+
+export type BasicTreeNodeMutationsUpdateArgsDto = {
+  entities: Array<InputMaybe<BasicTreeNodeInputUpdateDto>>;
+};
+
+export type BasicTreeNodeUpdateDto = {
+  __typename?: 'BasicTreeNodeUpdate';
+  /** The corresponding item */
+  item?: Maybe<BasicTreeNodeDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type BasicTreeNodeUpdateMessageDto = {
+  __typename?: 'BasicTreeNodeUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<BasicTreeNodeUpdateDto>>>;
+};
+
+/** Association System/ParentChild (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ChildrenUnionDto = {
+  __typename?: 'BasicTreeNode_ChildrenUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ChildrenUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ChildrenUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ChildrenUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ChildrenUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ChildrenUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ChildrenUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ConfiguredByUnionDto = {
+  __typename?: 'BasicTreeNode_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionDto = {
+  __typename?: 'BasicTreeNode_ParentUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Outbound) of entity type BasicTreeNode */
+export type BasicTreeNode_ParentUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_RelatesFromUnionDto = {
+  __typename?: 'BasicTreeNode_RelatesFromUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+};
+
+
+/** Association Basic/RelatedClassification (Inbound) of entity type BasicTreeNode */
+export type BasicTreeNode_RelatesFromUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+export type BasicTreeUpdateDto = {
+  __typename?: 'BasicTreeUpdate';
+  /** The corresponding item */
+  item?: Maybe<BasicTreeDto>;
+  updateState?: Maybe<UpdateTypeDto>;
+};
+
+export type BasicTreeUpdateMessageDto = {
+  __typename?: 'BasicTreeUpdateMessage';
+  /** The corresponding items */
+  items?: Maybe<Array<Maybe<BasicTreeUpdateDto>>>;
+};
+
+/** Association System/ParentChild (Inbound) of entity type BasicTree */
+export type BasicTree_ChildrenUnionDto = {
+  __typename?: 'BasicTree_ChildrenUnion';
+  basicAsset?: Maybe<BasicAssetConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTree */
+export type BasicTree_ChildrenUnionBasicAssetArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTree */
+export type BasicTree_ChildrenUnionBasicCityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTree */
+export type BasicTree_ChildrenUnionBasicCountryArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTree */
+export type BasicTree_ChildrenUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTree */
+export type BasicTree_ChildrenUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System/ParentChild (Inbound) of entity type BasicTree */
+export type BasicTree_ChildrenUnionBasicTreeNodeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicTree */
+export type BasicTree_ConfiguredByUnionDto = {
+  __typename?: 'BasicTree_ConfiguredByUnion';
+  systemBotAttributeAggregateConfiguration?: Maybe<SystemBotAttributeAggregateConfigurationConnectionDto>;
+};
+
+
+/** Association System.Bot/Configures (Inbound) of entity type BasicTree */
+export type BasicTree_ConfiguredByUnionSystemBotAttributeAggregateConfigurationArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
 };
 
 /** Runtime entities of construction kit enum 'Basic/TypeOfTelephoneBasic' */
@@ -1217,6 +3110,8 @@ export type CkTypeDto = {
   derivedTypes?: Maybe<CkTypeDtoConnectionDto>;
   /** Optional description of the type. */
   description?: Maybe<Scalars['String']['output']>;
+  /** Lists types that are derived directly or indirectly from the current construction kit type. */
+  directAndIndirectDerivedTypes?: Maybe<CkTypeDtoConnectionDto>;
   /** Indicates if the type is abstract. */
   isAbstract: Scalars['Boolean']['output'];
   /** Indicates if the type is final. */
@@ -1236,8 +3131,8 @@ export type CkTypeAttributesArgsDto = {
 /** Definition of a construction kit type with name, associations and attributes. */
 export type CkTypeAvailableQueryColumnsArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
-  attributeNameContains?: InputMaybe<Scalars['String']['input']>;
-  attributeNames?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  attributePathContains?: InputMaybe<Scalars['String']['input']>;
+  attributePaths?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
 };
 
@@ -1246,6 +3141,16 @@ export type CkTypeAvailableQueryColumnsArgsDto = {
 export type CkTypeDerivedTypesArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
+  ignoreAbstractTypes?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Definition of a construction kit type with name, associations and attributes. */
+export type CkTypeDirectAndIndirectDerivedTypesArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  ignoreAbstractTypes?: InputMaybe<Scalars['Boolean']['input']>;
+  includeSelf?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Attributes of a construction kit type */
@@ -1453,7 +3358,7 @@ export type FireGuardiansFireReportDto = {
   configuredBy?: Maybe<FireGuardiansFireReport_ConfiguredByUnionDto>;
   constructionKitType?: Maybe<CkTypeDto>;
   description?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['OctoObjectId']['output']>;
+  image?: Maybe<LargeBinaryInfoDto>;
   initialNotificationSent?: Maybe<Scalars['Boolean']['output']>;
   location: RtGeospatialValueDtoDto;
   name: Scalars['String']['output'];
@@ -1506,7 +3411,7 @@ export type FireGuardiansFireReportEdgeDto = {
 export type FireGuardiansFireReportInputDto = {
   configuredBy?: InputMaybe<Array<InputMaybe<RtAssociationInputDto>>>;
   description?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  image?: InputMaybe<Scalars['LargeBinary']['input']>;
   initialNotificationSent?: InputMaybe<Scalars['Boolean']['input']>;
   location?: InputMaybe<PointInputDto>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -1900,32 +3805,8 @@ export type LargeBinaryInfoDto = {
   downloadUri: Scalars['Uri']['output'];
   /** Returns the filename of the binary */
   filename: Scalars['String']['output'];
-  /** Returns the lengths of the binary */
-  length: Scalars['BigInt']['output'];
-  /** Returns the uploaded date time of the binary */
-  uploadDateTime: Scalars['DateTime']['output'];
-};
-
-/** A connection from an object to a list of objects of type `LargeBinaryInfoDto`. */
-export type LargeBinaryInfoDtoConnectionDto = {
-  __typename?: 'LargeBinaryInfoDtoConnection';
-  /** A list of all of the edges returned in the connection. */
-  edges?: Maybe<Array<Maybe<LargeBinaryInfoDtoEdgeDto>>>;
-  /** A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for "{ edges { node } }" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the "cursor" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full "{ edges { node } } " version should be used instead. */
-  items?: Maybe<Array<Maybe<LargeBinaryInfoDto>>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfoDto;
-  /** A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing "5" as the argument to `first`, then fetch the total count so it could display "5 of 83", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`. */
-  totalCount?: Maybe<Scalars['Int']['output']>;
-};
-
-/** An edge in a connection from an object to another object of type `LargeBinaryInfoDto`. */
-export type LargeBinaryInfoDtoEdgeDto = {
-  __typename?: 'LargeBinaryInfoDtoEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge */
-  node?: Maybe<LargeBinaryInfoDto>;
+  /** Returns the size of the binary */
+  size: Scalars['BigInt']['output'];
 };
 
 /** Enum of the availability states of models. */
@@ -1945,36 +3826,25 @@ export type OctoMutationDto = {
   __typename?: 'OctoMutation';
   constructionKit?: Maybe<ConstructionKitMutationsDto>;
   runtime?: Maybe<RuntimeDto>;
-  /** Uploads a large binary and stores it. ID of file is returned. */
-  sysCreateLargeBinary?: Maybe<Scalars['OctoObjectId']['output']>;
-};
-
-
-export type OctoMutationSysCreateLargeBinaryArgsDto = {
-  binaryData: Scalars['LargeBinary']['input'];
 };
 
 export type OctoQueryDto = {
   __typename?: 'OctoQuery';
   constructionKit?: Maybe<ConstructionKitQueryDto>;
   runtime?: Maybe<RuntimeModelQueryDto>;
-  sysLargeBinaries?: Maybe<LargeBinaryInfoDtoConnectionDto>;
-};
-
-
-export type OctoQuerySysLargeBinariesArgsDto = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  largeBinaryId?: InputMaybe<Scalars['OctoObjectId']['input']>;
 };
 
 export type OctoSubscriptionsDto = {
   __typename?: 'OctoSubscriptions';
   basicAssetEvents?: Maybe<BasicAssetUpdateMessageDto>;
-  basicEquipmentEvents?: Maybe<BasicEquipmentUpdateMessageDto>;
-  basicEquipmentGroupEvents?: Maybe<BasicEquipmentGroupUpdateMessageDto>;
-  basicEquipmentModelEvents?: Maybe<BasicEquipmentModelUpdateMessageDto>;
+  basicCityEvents?: Maybe<BasicCityUpdateMessageDto>;
+  basicCountryEvents?: Maybe<BasicCountryUpdateMessageDto>;
+  basicDistrictEvents?: Maybe<BasicDistrictUpdateMessageDto>;
+  basicDocumentEvents?: Maybe<BasicDocumentUpdateMessageDto>;
   basicNamedEntityEvents?: Maybe<BasicNamedEntityUpdateMessageDto>;
+  basicStateEvents?: Maybe<BasicStateUpdateMessageDto>;
+  basicTreeEvents?: Maybe<BasicTreeUpdateMessageDto>;
+  basicTreeNodeEvents?: Maybe<BasicTreeNodeUpdateMessageDto>;
   fireGuardiansFireReportEvents?: Maybe<FireGuardiansFireReportUpdateMessageDto>;
   fireGuardiansNotificationSubscriptionEvents?: Maybe<FireGuardiansNotificationSubscriptionUpdateMessageDto>;
   fireGuardiansWalletEvents?: Maybe<FireGuardiansWalletUpdateMessageDto>;
@@ -2005,7 +3875,7 @@ export type OctoSubscriptionsBasicAssetEventsArgsDto = {
 };
 
 
-export type OctoSubscriptionsBasicEquipmentEventsArgsDto = {
+export type OctoSubscriptionsBasicCityEventsArgsDto = {
   beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
@@ -2013,7 +3883,7 @@ export type OctoSubscriptionsBasicEquipmentEventsArgsDto = {
 };
 
 
-export type OctoSubscriptionsBasicEquipmentGroupEventsArgsDto = {
+export type OctoSubscriptionsBasicCountryEventsArgsDto = {
   beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
@@ -2021,7 +3891,15 @@ export type OctoSubscriptionsBasicEquipmentGroupEventsArgsDto = {
 };
 
 
-export type OctoSubscriptionsBasicEquipmentModelEventsArgsDto = {
+export type OctoSubscriptionsBasicDistrictEventsArgsDto = {
+  beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  updateTypes: Array<InputMaybe<UpdateTypeDto>>;
+};
+
+
+export type OctoSubscriptionsBasicDocumentEventsArgsDto = {
   beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
@@ -2030,6 +3908,30 @@ export type OctoSubscriptionsBasicEquipmentModelEventsArgsDto = {
 
 
 export type OctoSubscriptionsBasicNamedEntityEventsArgsDto = {
+  beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  updateTypes: Array<InputMaybe<UpdateTypeDto>>;
+};
+
+
+export type OctoSubscriptionsBasicStateEventsArgsDto = {
+  beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  updateTypes: Array<InputMaybe<UpdateTypeDto>>;
+};
+
+
+export type OctoSubscriptionsBasicTreeEventsArgsDto = {
+  beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  updateTypes: Array<InputMaybe<UpdateTypeDto>>;
+};
+
+
+export type OctoSubscriptionsBasicTreeNodeEventsArgsDto = {
   beforeFieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
@@ -2537,10 +4439,18 @@ export type RuntimeDto = {
   __typename?: 'Runtime';
   /** Mutation for entities of type 'BasicAsset'. */
   basicAssets?: Maybe<BasicAssetMutationsDto>;
-  /** Mutation for entities of type 'BasicEquipmentGroup'. */
-  basicEquipmentGroups?: Maybe<BasicEquipmentGroupMutationsDto>;
-  /** Mutation for entities of type 'BasicEquipmentModel'. */
-  basicEquipmentModels?: Maybe<BasicEquipmentModelMutationsDto>;
+  /** Mutation for entities of type 'BasicCity'. */
+  basicCitys?: Maybe<BasicCityMutationsDto>;
+  /** Mutation for entities of type 'BasicCountry'. */
+  basicCountrys?: Maybe<BasicCountryMutationsDto>;
+  /** Mutation for entities of type 'BasicDistrict'. */
+  basicDistricts?: Maybe<BasicDistrictMutationsDto>;
+  /** Mutation for entities of type 'BasicState'. */
+  basicStates?: Maybe<BasicStateMutationsDto>;
+  /** Mutation for entities of type 'BasicTreeNode'. */
+  basicTreeNodes?: Maybe<BasicTreeNodeMutationsDto>;
+  /** Mutation for entities of type 'BasicTree'. */
+  basicTrees?: Maybe<BasicTreeMutationsDto>;
   /** Mutation for entities of type 'FireGuardiansFireReport'. */
   fireGuardiansFireReports?: Maybe<FireGuardiansFireReportMutationsDto>;
   /** Mutation for entities of type 'FireGuardiansNotificationSubscription'. */
@@ -2584,10 +4494,14 @@ export type RuntimeRuntimeQueryArgsDto = {
 export type RuntimeModelQueryDto = {
   __typename?: 'RuntimeModelQuery';
   basicAsset?: Maybe<BasicAssetConnectionDto>;
-  basicEquipment?: Maybe<BasicEquipmentConnectionDto>;
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
-  basicEquipmentModel?: Maybe<BasicEquipmentModelConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicDocument?: Maybe<BasicDocumentConnectionDto>;
   basicNamedEntity?: Maybe<BasicNamedEntityConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
   fireGuardiansFireReport?: Maybe<FireGuardiansFireReportConnectionDto>;
   fireGuardiansNotificationSubscription?: Maybe<FireGuardiansNotificationSubscriptionConnectionDto>;
   fireGuardiansWallet?: Maybe<FireGuardiansWalletConnectionDto>;
@@ -2626,7 +4540,7 @@ export type RuntimeModelQueryBasicAssetArgsDto = {
 };
 
 
-export type RuntimeModelQueryBasicEquipmentArgsDto = {
+export type RuntimeModelQueryBasicCityArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2639,7 +4553,7 @@ export type RuntimeModelQueryBasicEquipmentArgsDto = {
 };
 
 
-export type RuntimeModelQueryBasicEquipmentGroupArgsDto = {
+export type RuntimeModelQueryBasicCountryArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2652,7 +4566,20 @@ export type RuntimeModelQueryBasicEquipmentGroupArgsDto = {
 };
 
 
-export type RuntimeModelQueryBasicEquipmentModelArgsDto = {
+export type RuntimeModelQueryBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  geoNearFilter?: InputMaybe<NearGeospatialFilterDto>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+export type RuntimeModelQueryBasicDocumentArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2666,6 +4593,45 @@ export type RuntimeModelQueryBasicEquipmentModelArgsDto = {
 
 
 export type RuntimeModelQueryBasicNamedEntityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  geoNearFilter?: InputMaybe<NearGeospatialFilterDto>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+export type RuntimeModelQueryBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  geoNearFilter?: InputMaybe<NearGeospatialFilterDto>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+export type RuntimeModelQueryBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  geoNearFilter?: InputMaybe<NearGeospatialFilterDto>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+export type RuntimeModelQueryBasicTreeNodeArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -3253,10 +5219,14 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguredByUnionSystemBotA
 export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionDto = {
   __typename?: 'SystemBotAttributeAggregateConfiguration_ConfiguresUnion';
   basicAsset?: Maybe<BasicAssetConnectionDto>;
-  basicEquipment?: Maybe<BasicEquipmentConnectionDto>;
-  basicEquipmentGroup?: Maybe<BasicEquipmentGroupConnectionDto>;
-  basicEquipmentModel?: Maybe<BasicEquipmentModelConnectionDto>;
+  basicCity?: Maybe<BasicCityConnectionDto>;
+  basicCountry?: Maybe<BasicCountryConnectionDto>;
+  basicDistrict?: Maybe<BasicDistrictConnectionDto>;
+  basicDocument?: Maybe<BasicDocumentConnectionDto>;
   basicNamedEntity?: Maybe<BasicNamedEntityConnectionDto>;
+  basicState?: Maybe<BasicStateConnectionDto>;
+  basicTree?: Maybe<BasicTreeConnectionDto>;
+  basicTreeNode?: Maybe<BasicTreeNodeConnectionDto>;
   fireGuardiansFireReport?: Maybe<FireGuardiansFireReportConnectionDto>;
   fireGuardiansNotificationSubscription?: Maybe<FireGuardiansNotificationSubscriptionConnectionDto>;
   fireGuardiansWallet?: Maybe<FireGuardiansWalletConnectionDto>;
@@ -3293,7 +5263,7 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicAssetAr
 
 
 /** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
-export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicEquipmentArgsDto = {
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicCityArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -3306,7 +5276,7 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicEquipme
 
 
 /** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
-export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicEquipmentGroupArgsDto = {
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicCountryArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -3319,7 +5289,20 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicEquipme
 
 
 /** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
-export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicEquipmentModelArgsDto = {
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicDistrictArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicDocumentArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -3333,6 +5316,45 @@ export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicEquipme
 
 /** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
 export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicNamedEntityArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicStateArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicTreeArgsDto = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  groupBy?: InputMaybe<GroupByDto>;
+  rtId?: InputMaybe<Scalars['OctoObjectId']['input']>;
+  rtIds?: InputMaybe<Array<InputMaybe<Scalars['OctoObjectId']['input']>>>;
+  searchFilter?: InputMaybe<SearchFilterDto>;
+  sortOrder?: InputMaybe<Array<InputMaybe<SortDto>>>;
+};
+
+
+/** Association System.Bot/Configures (Outbound) of entity type SystemBotAttributeAggregateConfiguration */
+export type SystemBotAttributeAggregateConfiguration_ConfiguresUnionBasicTreeNodeArgsDto = {
   after?: InputMaybe<Scalars['String']['input']>;
   fieldFilter?: InputMaybe<Array<InputMaybe<FieldFilterDto>>>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -4512,6 +6534,7 @@ export type SystemQueryDto = {
   fieldFilter?: Maybe<Array<SystemFieldFilterDto>>;
   name: Scalars['String']['output'];
   queryCkTypeId: Scalars['String']['output'];
+  queryType: SystemQueryTypesDto;
   rtChangedDateTime?: Maybe<Scalars['DateTime']['output']>;
   rtCreationDateTime?: Maybe<Scalars['DateTime']['output']>;
   rtId: Scalars['OctoObjectId']['output'];
@@ -4567,6 +6590,7 @@ export type SystemQueryInputDto = {
   fieldFilter?: InputMaybe<Array<InputMaybe<SystemFieldFilterInputDto>>>;
   name?: InputMaybe<Scalars['String']['input']>;
   queryCkTypeId?: InputMaybe<Scalars['String']['input']>;
+  queryType?: InputMaybe<SystemQueryTypesDto>;
   rtWellKnownName?: InputMaybe<Scalars['String']['input']>;
   sorting?: InputMaybe<Array<InputMaybe<SystemSortOrderItemInputDto>>>;
   textSearchFilter?: InputMaybe<SystemTextSearchFilterInputDto>;
@@ -4602,6 +6626,14 @@ export type SystemQueryMutationsDeleteArgsDto = {
 export type SystemQueryMutationsUpdateArgsDto = {
   entities: Array<InputMaybe<SystemQueryInputUpdateDto>>;
 };
+
+/** Runtime entities of construction kit enum 'System/QueryTypes' */
+export enum SystemQueryTypesDto {
+  /** A flat query */
+  FlatDto = 'FLAT',
+  /** A tree query that returns results from a tree */
+  TreeDto = 'TREE'
+}
 
 export type SystemQueryUpdateDto = {
   __typename?: 'SystemQueryUpdate';

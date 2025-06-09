@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meshmakers.Octo.Communication.Contracts" Version="3.2.25" />
-    <PackageReference Include="Meshmakers.Octo.Sdk.ServiceClient" Version="3.2.25" />
+    <PackageReference Include="Meshmakers.Octo.Communication.Contracts" Version="$(OctoVersion)" />
+    <PackageReference Include="Meshmakers.Octo.Sdk.ServiceClient" Version="$(OctoVersion)" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="9.0.2" />
     <PackageReference Include="Lib.Net.Http.WebPush" Version="3.3.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.5.0" />

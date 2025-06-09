@@ -1,7 +1,13 @@
-import {APP_INITIALIZER, ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  inject,
+  isDevMode,
+  provideAppInitializer
+} from '@angular/core';
+import {provideRouter} from '@angular/router';
 
-import { routes } from './app.routes';
+import {routes} from './app.routes';
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {ConfigurationService} from "./services/configuration/configuration.service";
 import {AuthorizeInterceptor, AuthorizeService, SharedAuthModule} from "@meshmakers/shared-auth";
@@ -12,69 +18,66 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withJsonpSupport} from "@angular/c
 import {HttpErrorInterceptor} from "./shared/httpErrorInterceptor";
 import {OctoServicesModule} from "@meshmakers/octo-services";
 import {MmSharedUiModule} from "@meshmakers/shared-ui";
-import {Apollo, ApolloModule} from "apollo-angular";
+import {provideApollo} from "apollo-angular";
 import {HttpLink} from "apollo-angular/http";
-import { InMemoryCache } from '@apollo/client/core';
-import { provideServiceWorker } from '@angular/service-worker';
+import {InMemoryCache} from '@apollo/client/core';
+import {provideServiceWorker} from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withJsonpSupport()),
     ConfigurationService,
     provideRouter(routes),
-    importProvidersFrom(ApolloModule, SharedServicesModule.forRoot(), OctoServicesModule.forRoot(defaultOctoServiceOptions), SharedAuthModule.forRoot(defaultAuthorizeOptions), MmSharedUiModule),
+    importProvidersFrom(SharedServicesModule.forRoot(), OctoServicesModule.forRoot(defaultOctoServiceOptions), SharedAuthModule.forRoot(defaultAuthorizeOptions), MmSharedUiModule),
     provideAnimations(),
+    provideAppInitializer(initServices),
+    {provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true},
     {
-        provide: APP_INITIALIZER,
-        useFactory: initServices,
-        deps: [ConfigurationService, AuthorizeService, HttpLink, Apollo],
-        multi: true
-    },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    {
-        provide: HTTP_INTERCEPTORS,
-        useClass: HttpErrorInterceptor,
-        deps: [MessageService],
-        multi: true
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      deps: [MessageService],
+      multi: true
     },
     provideServiceWorker('ngsw-worker.js', {
-        enabled: !isDevMode(),
-        registrationStrategy: 'registerWhenStable:30000'
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    provideApollo(() => {
+      const httpLink = inject(HttpLink);
+      const configurationService = inject(ConfigurationService);
+
+      const service = configurationService.config.assetServices ?? '';
+      const uri = `${service}tenants/${configurationService.config.tenantId}/GraphQL`;
+
+      return {
+        link: httpLink.create({uri: uri}),
+        cache: new InMemoryCache({
+          dataIdFromObject: (o) => <string>o['rtId'],
+        }),
+      };
     })
-]
+  ]
 };
 
-export function initServices(configurationService: ConfigurationService, authorizeService: AuthorizeService, httpLink: HttpLink,
-                             apollo: Apollo) {
-  return async () => {
-    await configurationService.loadConfig();
+export async function initServices(): Promise<void> {
+  const configurationService = inject(ConfigurationService);
+  const authorizeService = inject(AuthorizeService);
 
-    defaultAuthorizeOptions.wellKnownServiceUris = [
-      configurationService.config.assetServices,
-      configurationService.config.issuer
-    ];
+  await configurationService.loadConfig();
 
-    defaultOctoServiceOptions.assetServices = configurationService.config.assetServices;
+  defaultAuthorizeOptions.wellKnownServiceUris = [
+    configurationService.config.assetServices,
+    configurationService.config.issuer
+  ];
 
-    defaultAuthorizeOptions.issuer = configurationService.config.issuer;
-    defaultAuthorizeOptions.scope = configurationService.config.scope;
-    defaultAuthorizeOptions.redirectUri = configurationService.config.redirectUri;
-    defaultAuthorizeOptions.postLogoutRedirectUri = configurationService.config.postLogoutRedirectUri;
-    defaultAuthorizeOptions.clientId = configurationService.config.clientId;
-    defaultAuthorizeOptions.showDebugInformation = true;
+  defaultOctoServiceOptions.assetServices = configurationService.config.assetServices;
 
-    await authorizeService.initialize(defaultAuthorizeOptions);
+  defaultAuthorizeOptions.issuer = configurationService.config.issuer;
+  defaultAuthorizeOptions.scope = configurationService.config.scope;
+  defaultAuthorizeOptions.redirectUri = configurationService.config.redirectUri;
+  defaultAuthorizeOptions.postLogoutRedirectUri = configurationService.config.postLogoutRedirectUri;
+  defaultAuthorizeOptions.clientId = configurationService.config.clientId;
+  defaultAuthorizeOptions.showDebugInformation = true;
 
-    const service = configurationService.config.assetServices ?? '';
-    const uri = `${service}tenants/${configurationService.config.tenantId}/GraphQL`;
-
-    apollo.create({
-      cache: new InMemoryCache({
-        dataIdFromObject: (o) => <string>o['rtId']
-      }),
-      link: httpLink.create({
-        uri
-      })
-    });
-  };
+  await authorizeService.initialize(defaultAuthorizeOptions);
 }

@@ -49,6 +49,7 @@ type BasicAsset {
         "Sort order for items"
         sortOrder: [Sort]
     ): RtEntityGenericDtoConnection
+    children: BasicAsset_ChildrenUnion
     ckTypeId: CkTypeId
     configuredBy: BasicAsset_ConfiguredByUnion
     constructionKitType: CkType
@@ -56,6 +57,7 @@ type BasicAsset {
     name: String!
     parent: BasicAsset_ParentUnion
     relatesFrom: BasicAsset_RelatesFromUnion
+    relatesTo: BasicAsset_RelatesToUnion
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
@@ -105,6 +107,118 @@ type BasicAssetUpdateMessage {
     items: [BasicAssetUpdate]
 }
 
+"Association System/ParentChild (Inbound) of entity type BasicAsset"
+type BasicAsset_ChildrenUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
 "Association System.Bot/Configures (Inbound) of entity type BasicAsset"
 type BasicAsset_ConfiguredByUnion {
     systemBotAttributeAggregateConfiguration(
@@ -129,7 +243,7 @@ type BasicAsset_ConfiguredByUnion {
 
 "Association System/ParentChild (Outbound) of entity type BasicAsset"
 type BasicAsset_ParentUnion {
-    basicEquipmentGroup(
+    basicAsset(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -146,12 +260,120 @@ type BasicAsset_ParentUnion {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
 }
 
-"Association Basic/RelatedEquipment (Outbound) of entity type BasicAsset"
+"Association Basic/RelatedClassification (Inbound) of entity type BasicAsset"
 type BasicAsset_RelatesFromUnion {
-    basicEquipmentGroup(
+    basicAsset(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -168,7 +390,1337 @@ type BasicAsset_RelatesFromUnion {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
+    ): BasicAssetConnection
+}
+
+"Association Basic/RelatedClassification (Outbound) of entity type BasicAsset"
+type BasicAsset_RelatesToUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Runtime entities of construction kit record 'Basic/BankAccount'"
+type BasicBankAccount {
+    accountHolder: String!
+    bankName: String
+    constructionKitType: CkType
+    iban: String!
+    swiftCode: String
+}
+
+"Runtime entities of construction kit type 'Basic/City'"
+type BasicCity {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: BasicCity_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: BasicCity_ConfiguredByUnion
+    constructionKitType: CkType
+    description: String
+    name: String!
+    parent: BasicCity_ParentUnion
+    relatesFrom: BasicCity_RelatesFromUnion
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+    zipcode: Int!
+}
+
+"A connection to `BasicCity`."
+type BasicCityConnection {
+    "Information to aid in pagination."
+    edges: [BasicCityEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [BasicCity]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `BasicCity`."
+type BasicCityEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: BasicCity
+}
+
+type BasicCityMutations {
+    "Creates new entities of type 'BasicCity'."
+    create(entities: [BasicCityInput]!): [BasicCity]
+    "Deletes an entity of type 'BasicCity'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'BasicCity'."
+    update(entities: [BasicCityInputUpdate]!): [BasicCity]
+}
+
+type BasicCityUpdate {
+    "The corresponding item"
+    item: BasicCity
+    updateState: UpdateType
+}
+
+type BasicCityUpdateMessage {
+    "The corresponding items"
+    items: [BasicCityUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type BasicCity"
+type BasicCity_ChildrenUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type BasicCity"
+type BasicCity_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Association System/ParentChild (Outbound) of entity type BasicCity"
+type BasicCity_ParentUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association Basic/RelatedClassification (Inbound) of entity type BasicCity"
+type BasicCity_RelatesFromUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+}
+
+"Runtime entities of construction kit record 'Basic/Contact'"
+type BasicContact {
+    address: BasicAddress!
+    companyName: String
+    companyRegisterNumber: String
+    constructionKitType: CkType
+    email: String
+    firstName: String
+    lastName: String
+    legalEntityType: BasicLegalEntityType!
+    salutation: BasicSalutation
+    taxIdentificationNumber: String
+    titlePrefix: String
+    titleSuffix: String
+}
+
+"Runtime entities of construction kit type 'Basic/Country'"
+type BasicCountry {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: BasicCountry_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: BasicCountry_ConfiguredByUnion
+    constructionKitType: CkType
+    description: String
+    name: String!
+    parent: BasicCountry_ParentUnion
+    relatesFrom: BasicCountry_RelatesFromUnion
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `BasicCountry`."
+type BasicCountryConnection {
+    "Information to aid in pagination."
+    edges: [BasicCountryEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [BasicCountry]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `BasicCountry`."
+type BasicCountryEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: BasicCountry
+}
+
+type BasicCountryMutations {
+    "Creates new entities of type 'BasicCountry'."
+    create(entities: [BasicCountryInput]!): [BasicCountry]
+    "Deletes an entity of type 'BasicCountry'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'BasicCountry'."
+    update(entities: [BasicCountryInputUpdate]!): [BasicCountry]
+}
+
+type BasicCountryUpdate {
+    "The corresponding item"
+    item: BasicCountry
+    updateState: UpdateType
+}
+
+type BasicCountryUpdateMessage {
+    "The corresponding items"
+    items: [BasicCountryUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type BasicCountry"
+type BasicCountry_ChildrenUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type BasicCountry"
+type BasicCountry_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Association System/ParentChild (Outbound) of entity type BasicCountry"
+type BasicCountry_ParentUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association Basic/RelatedClassification (Inbound) of entity type BasicCountry"
+type BasicCountry_RelatesFromUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+}
+
+"Runtime entities of construction kit type 'Basic/District'"
+type BasicDistrict {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: BasicDistrict_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: BasicDistrict_ConfiguredByUnion
+    constructionKitType: CkType
+    description: String
+    name: String!
+    parent: BasicDistrict_ParentUnion
+    relatesFrom: BasicDistrict_RelatesFromUnion
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `BasicDistrict`."
+type BasicDistrictConnection {
+    "Information to aid in pagination."
+    edges: [BasicDistrictEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [BasicDistrict]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `BasicDistrict`."
+type BasicDistrictEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: BasicDistrict
+}
+
+type BasicDistrictMutations {
+    "Creates new entities of type 'BasicDistrict'."
+    create(entities: [BasicDistrictInput]!): [BasicDistrict]
+    "Deletes an entity of type 'BasicDistrict'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'BasicDistrict'."
+    update(entities: [BasicDistrictInputUpdate]!): [BasicDistrict]
+}
+
+type BasicDistrictUpdate {
+    "The corresponding item"
+    item: BasicDistrict
+    updateState: UpdateType
+}
+
+type BasicDistrictUpdateMessage {
+    "The corresponding items"
+    items: [BasicDistrictUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type BasicDistrict"
+type BasicDistrict_ChildrenUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type BasicDistrict"
+type BasicDistrict_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Association System/ParentChild (Outbound) of entity type BasicDistrict"
+type BasicDistrict_ParentUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association Basic/RelatedClassification (Inbound) of entity type BasicDistrict"
+type BasicDistrict_RelatesFromUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+}
+
+"Runtime entities of construction kit type 'Basic/Document'"
+type BasicDocument {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    ckTypeId: CkTypeId
+    configuredBy: BasicDocument_ConfiguredByUnion
+    constructionKitType: CkType
+    documentDate: DateTime!
+    documentNumber: String!
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `BasicDocument`."
+type BasicDocumentConnection {
+    "Information to aid in pagination."
+    edges: [BasicDocumentEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [BasicDocument]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `BasicDocument`."
+type BasicDocumentEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: BasicDocument
+}
+
+type BasicDocumentUpdate {
+    "The corresponding item"
+    item: BasicDocument
+    updateState: UpdateType
+}
+
+type BasicDocumentUpdateMessage {
+    "The corresponding items"
+    items: [BasicDocumentUpdate]
+}
+
+"Association System.Bot/Configures (Inbound) of entity type BasicDocument"
+type BasicDocument_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
 }
 
 "Runtime entities of construction kit record 'Basic/EMail'"
@@ -178,466 +1730,6 @@ type BasicEMail {
     publicKey: String
     typeOfEMail: BasicTypeOfTelephoneBasic
     typeOfPublicKey: String
-}
-
-"Runtime entities of construction kit type 'Basic/Equipment'"
-type BasicEquipment {
-    associations(
-        "Only return edges after the specified cursor."
-        after: String,
-        "The construction kit type with the given id."
-        ckId: String!,
-        "The direction of the association."
-        direction: GraphDirection!,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Include indirect associations, otherwise direct associations are returned."
-        includeIndirect: Boolean,
-        "The role id of the association."
-        roleId: String!,
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): RtEntityGenericDtoConnection
-    ckTypeId: CkTypeId
-    configuredBy: BasicEquipment_ConfiguredByUnion
-    constructionKitType: CkType
-    description: String
-    name: String!
-    parent: BasicEquipment_ParentUnion
-    rtChangedDateTime: DateTime
-    rtCreationDateTime: DateTime
-    rtId: OctoObjectId!
-    rtVersion: ULong
-    rtWellKnownName: String
-}
-
-"A connection to `BasicEquipment`."
-type BasicEquipmentConnection {
-    "Information to aid in pagination."
-    edges: [BasicEquipmentEdge]
-    "Result of grouping the items by attributes."
-    groupings: [grouping]
-    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
-    items: [BasicEquipment]
-    "Information to aid in pagination."
-    pageInfo: PageInfo
-    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
-    totalCount: Int
-}
-
-"An edge in a connection from an object to another object of type `BasicEquipment`."
-type BasicEquipmentEdge {
-    "A cursor for use in pagination"
-    cursor: String!
-    "The item at the end of the edge"
-    node: BasicEquipment
-}
-
-"Runtime entities of construction kit type 'Basic/EquipmentGroup'"
-type BasicEquipmentGroup {
-    associations(
-        "Only return edges after the specified cursor."
-        after: String,
-        "The construction kit type with the given id."
-        ckId: String!,
-        "The direction of the association."
-        direction: GraphDirection!,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Include indirect associations, otherwise direct associations are returned."
-        includeIndirect: Boolean,
-        "The role id of the association."
-        roleId: String!,
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): RtEntityGenericDtoConnection
-    children: BasicEquipmentGroup_ChildrenUnion
-    ckTypeId: CkTypeId
-    configuredBy: BasicEquipmentGroup_ConfiguredByUnion
-    constructionKitType: CkType
-    description: String
-    name: String!
-    parent: BasicEquipmentGroup_ParentUnion
-    relatesTo: BasicEquipmentGroup_RelatesToUnion
-    rtChangedDateTime: DateTime
-    rtCreationDateTime: DateTime
-    rtId: OctoObjectId!
-    rtVersion: ULong
-    rtWellKnownName: String
-}
-
-"A connection to `BasicEquipmentGroup`."
-type BasicEquipmentGroupConnection {
-    "Information to aid in pagination."
-    edges: [BasicEquipmentGroupEdge]
-    "Result of grouping the items by attributes."
-    groupings: [grouping]
-    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
-    items: [BasicEquipmentGroup]
-    "Information to aid in pagination."
-    pageInfo: PageInfo
-    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
-    totalCount: Int
-}
-
-"An edge in a connection from an object to another object of type `BasicEquipmentGroup`."
-type BasicEquipmentGroupEdge {
-    "A cursor for use in pagination"
-    cursor: String!
-    "The item at the end of the edge"
-    node: BasicEquipmentGroup
-}
-
-type BasicEquipmentGroupMutations {
-    "Creates new entities of type 'BasicEquipmentGroup'."
-    create(entities: [BasicEquipmentGroupInput]!): [BasicEquipmentGroup]
-    "Deletes an entity of type 'BasicEquipmentGroup'."
-    delete(entities: [OctoObjectId]!): Boolean
-    "Updates existing entity of type 'BasicEquipmentGroup'."
-    update(entities: [BasicEquipmentGroupInputUpdate]!): [BasicEquipmentGroup]
-}
-
-type BasicEquipmentGroupUpdate {
-    "The corresponding item"
-    item: BasicEquipmentGroup
-    updateState: UpdateType
-}
-
-type BasicEquipmentGroupUpdateMessage {
-    "The corresponding items"
-    items: [BasicEquipmentGroupUpdate]
-}
-
-"Association System/ParentChild (Inbound) of entity type BasicEquipmentGroup"
-type BasicEquipmentGroup_ChildrenUnion {
-    basicAsset(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicAssetConnection
-    basicEquipment(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicEquipmentConnection
-    basicEquipmentGroup(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
-}
-
-"Association System.Bot/Configures (Inbound) of entity type BasicEquipmentGroup"
-type BasicEquipmentGroup_ConfiguredByUnion {
-    systemBotAttributeAggregateConfiguration(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): SystemBotAttributeAggregateConfigurationConnection
-}
-
-"Association System/ParentChild (Outbound) of entity type BasicEquipmentGroup"
-type BasicEquipmentGroup_ParentUnion {
-    basicEquipmentGroup(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
-    basicEquipmentModel(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicEquipmentModelConnection
-}
-
-"Association Basic/RelatedEquipment (Inbound) of entity type BasicEquipmentGroup"
-type BasicEquipmentGroup_RelatesToUnion {
-    basicAsset(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicAssetConnection
-}
-
-"Runtime entities of construction kit type 'Basic/EquipmentModel'"
-type BasicEquipmentModel {
-    associations(
-        "Only return edges after the specified cursor."
-        after: String,
-        "The construction kit type with the given id."
-        ckId: String!,
-        "The direction of the association."
-        direction: GraphDirection!,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Include indirect associations, otherwise direct associations are returned."
-        includeIndirect: Boolean,
-        "The role id of the association."
-        roleId: String!,
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): RtEntityGenericDtoConnection
-    children: BasicEquipmentModel_ChildrenUnion
-    ckTypeId: CkTypeId
-    configuredBy: BasicEquipmentModel_ConfiguredByUnion
-    constructionKitType: CkType
-    description: String
-    name: String!
-    rtChangedDateTime: DateTime
-    rtCreationDateTime: DateTime
-    rtId: OctoObjectId!
-    rtVersion: ULong
-    rtWellKnownName: String
-}
-
-"A connection to `BasicEquipmentModel`."
-type BasicEquipmentModelConnection {
-    "Information to aid in pagination."
-    edges: [BasicEquipmentModelEdge]
-    "Result of grouping the items by attributes."
-    groupings: [grouping]
-    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
-    items: [BasicEquipmentModel]
-    "Information to aid in pagination."
-    pageInfo: PageInfo
-    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
-    totalCount: Int
-}
-
-"An edge in a connection from an object to another object of type `BasicEquipmentModel`."
-type BasicEquipmentModelEdge {
-    "A cursor for use in pagination"
-    cursor: String!
-    "The item at the end of the edge"
-    node: BasicEquipmentModel
-}
-
-type BasicEquipmentModelMutations {
-    "Creates new entities of type 'BasicEquipmentModel'."
-    create(entities: [BasicEquipmentModelInput]!): [BasicEquipmentModel]
-    "Deletes an entity of type 'BasicEquipmentModel'."
-    delete(entities: [OctoObjectId]!): Boolean
-    "Updates existing entity of type 'BasicEquipmentModel'."
-    update(entities: [BasicEquipmentModelInputUpdate]!): [BasicEquipmentModel]
-}
-
-type BasicEquipmentModelUpdate {
-    "The corresponding item"
-    item: BasicEquipmentModel
-    updateState: UpdateType
-}
-
-type BasicEquipmentModelUpdateMessage {
-    "The corresponding items"
-    items: [BasicEquipmentModelUpdate]
-}
-
-"Association System/ParentChild (Inbound) of entity type BasicEquipmentModel"
-type BasicEquipmentModel_ChildrenUnion {
-    basicEquipmentGroup(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
-}
-
-"Association System.Bot/Configures (Inbound) of entity type BasicEquipmentModel"
-type BasicEquipmentModel_ConfiguredByUnion {
-    systemBotAttributeAggregateConfiguration(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): SystemBotAttributeAggregateConfigurationConnection
-}
-
-type BasicEquipmentUpdate {
-    "The corresponding item"
-    item: BasicEquipment
-    updateState: UpdateType
-}
-
-type BasicEquipmentUpdateMessage {
-    "The corresponding items"
-    items: [BasicEquipmentUpdate]
-}
-
-"Association System.Bot/Configures (Inbound) of entity type BasicEquipment"
-type BasicEquipment_ConfiguredByUnion {
-    systemBotAttributeAggregateConfiguration(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): SystemBotAttributeAggregateConfigurationConnection
-}
-
-"Association System/ParentChild (Outbound) of entity type BasicEquipment"
-type BasicEquipment_ParentUnion {
-    basicEquipmentGroup(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Filters items based on field compare"
-        fieldFilter: [FieldFilter],
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "Groups items based on attributes"
-        groupBy: GroupBy,
-        "Returns the entity with the given rtId."
-        rtId: OctoObjectId,
-        "Returns entities with the given rtIds."
-        rtIds: [OctoObjectId],
-        "Filters items based on text search"
-        searchFilter: SearchFilter,
-        "Sort order for items"
-        sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
 }
 
 "Runtime entities of construction kit record 'Basic/FaxNumber'"
@@ -651,7 +1743,7 @@ type BasicFaxNumber {
 type BasicMarking {
     additionalText: String
     constructionKitType: CkType
-    file: OctoObjectId!
+    file: LargeBinaryInfo!
     name: String!
 }
 
@@ -764,6 +1856,960 @@ type BasicPhoneNumber {
     constructionKitType: CkType
     number: String!
     type: BasicTypeOfTelephoneEnhanced
+}
+
+"Runtime entities of construction kit type 'Basic/State'"
+type BasicState {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: BasicState_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: BasicState_ConfiguredByUnion
+    constructionKitType: CkType
+    description: String
+    name: String!
+    parent: BasicState_ParentUnion
+    relatesFrom: BasicState_RelatesFromUnion
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `BasicState`."
+type BasicStateConnection {
+    "Information to aid in pagination."
+    edges: [BasicStateEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [BasicState]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `BasicState`."
+type BasicStateEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: BasicState
+}
+
+type BasicStateMutations {
+    "Creates new entities of type 'BasicState'."
+    create(entities: [BasicStateInput]!): [BasicState]
+    "Deletes an entity of type 'BasicState'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'BasicState'."
+    update(entities: [BasicStateInputUpdate]!): [BasicState]
+}
+
+type BasicStateUpdate {
+    "The corresponding item"
+    item: BasicState
+    updateState: UpdateType
+}
+
+type BasicStateUpdateMessage {
+    "The corresponding items"
+    items: [BasicStateUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type BasicState"
+type BasicState_ChildrenUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type BasicState"
+type BasicState_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Association System/ParentChild (Outbound) of entity type BasicState"
+type BasicState_ParentUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association Basic/RelatedClassification (Inbound) of entity type BasicState"
+type BasicState_RelatesFromUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+}
+
+"Runtime entities of construction kit record 'Basic/TimeRange'"
+type BasicTimeRange {
+    constructionKitType: CkType
+    from: DateTime!
+    to: DateTime!
+}
+
+"Runtime entities of construction kit type 'Basic/Tree'"
+type BasicTree {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: BasicTree_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: BasicTree_ConfiguredByUnion
+    constructionKitType: CkType
+    description: String
+    name: String!
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `BasicTree`."
+type BasicTreeConnection {
+    "Information to aid in pagination."
+    edges: [BasicTreeEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [BasicTree]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `BasicTree`."
+type BasicTreeEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: BasicTree
+}
+
+type BasicTreeMutations {
+    "Creates new entities of type 'BasicTree'."
+    create(entities: [BasicTreeInput]!): [BasicTree]
+    "Deletes an entity of type 'BasicTree'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'BasicTree'."
+    update(entities: [BasicTreeInputUpdate]!): [BasicTree]
+}
+
+"Runtime entities of construction kit type 'Basic/TreeNode'"
+type BasicTreeNode {
+    associations(
+        "Only return edges after the specified cursor."
+        after: String,
+        "The construction kit type with the given id."
+        ckId: String!,
+        "The direction of the association."
+        direction: GraphDirection!,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Include indirect associations, otherwise direct associations are returned."
+        includeIndirect: Boolean,
+        "The role id of the association."
+        roleId: String!,
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): RtEntityGenericDtoConnection
+    children: BasicTreeNode_ChildrenUnion
+    ckTypeId: CkTypeId
+    configuredBy: BasicTreeNode_ConfiguredByUnion
+    constructionKitType: CkType
+    description: String
+    name: String!
+    parent: BasicTreeNode_ParentUnion
+    relatesFrom: BasicTreeNode_RelatesFromUnion
+    rtChangedDateTime: DateTime
+    rtCreationDateTime: DateTime
+    rtId: OctoObjectId!
+    rtVersion: ULong
+    rtWellKnownName: String
+}
+
+"A connection to `BasicTreeNode`."
+type BasicTreeNodeConnection {
+    "Information to aid in pagination."
+    edges: [BasicTreeNodeEdge]
+    "Result of grouping the items by attributes."
+    groupings: [grouping]
+    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
+    items: [BasicTreeNode]
+    "Information to aid in pagination."
+    pageInfo: PageInfo
+    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
+    totalCount: Int
+}
+
+"An edge in a connection from an object to another object of type `BasicTreeNode`."
+type BasicTreeNodeEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: BasicTreeNode
+}
+
+type BasicTreeNodeMutations {
+    "Creates new entities of type 'BasicTreeNode'."
+    create(entities: [BasicTreeNodeInput]!): [BasicTreeNode]
+    "Deletes an entity of type 'BasicTreeNode'."
+    delete(entities: [OctoObjectId]!): Boolean
+    "Updates existing entity of type 'BasicTreeNode'."
+    update(entities: [BasicTreeNodeInputUpdate]!): [BasicTreeNode]
+}
+
+type BasicTreeNodeUpdate {
+    "The corresponding item"
+    item: BasicTreeNode
+    updateState: UpdateType
+}
+
+type BasicTreeNodeUpdateMessage {
+    "The corresponding items"
+    items: [BasicTreeNodeUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type BasicTreeNode"
+type BasicTreeNode_ChildrenUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type BasicTreeNode"
+type BasicTreeNode_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
+}
+
+"Association System/ParentChild (Outbound) of entity type BasicTreeNode"
+type BasicTreeNode_ParentUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association Basic/RelatedClassification (Inbound) of entity type BasicTreeNode"
+type BasicTreeNode_RelatesFromUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+}
+
+type BasicTreeUpdate {
+    "The corresponding item"
+    item: BasicTree
+    updateState: UpdateType
+}
+
+type BasicTreeUpdateMessage {
+    "The corresponding items"
+    items: [BasicTreeUpdate]
+}
+
+"Association System/ParentChild (Inbound) of entity type BasicTree"
+type BasicTree_ChildrenUnion {
+    basicAsset(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicAssetConnection
+    basicCity(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCityConnection
+    basicCountry(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicCountryConnection
+    basicDistrict(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDistrictConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
+}
+
+"Association System.Bot/Configures (Inbound) of entity type BasicTree"
+type BasicTree_ConfiguredByUnion {
+    systemBotAttributeAggregateConfiguration(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): SystemBotAttributeAggregateConfigurationConnection
 }
 
 "Construction kit attribute definitions"
@@ -1019,7 +3065,7 @@ type CkType {
     attributes(
         "Only return edges after the specified cursor."
         after: String,
-        "Filters for attributes containing the given termin as attribute name."
+        "Filters for attributes containing the given term in an attribute name."
         attributeNameContains: String,
         "Allows to filter for specific attribute names within construction kit types."
         attributeNames: [String],
@@ -1029,10 +3075,10 @@ type CkType {
     availableQueryColumns(
         "Only return edges after the specified cursor."
         after: String,
-        "Filters for attributes containing the given termin as attribute name."
-        attributeNameContains: String,
-        "Allows to filter for specific attribute names within construction kit types."
-        attributeNames: [String],
+        "Filters for attributes containing the given term in an attribute path."
+        attributePathContains: String,
+        "Allows to filter for specific attribute paths within construction kit types."
+        attributePaths: [String],
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
         first: Int
     ): CkTypeQueryColumnDtoConnection
@@ -1045,10 +3091,23 @@ type CkType {
         "Only return edges after the specified cursor."
         after: String,
         "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int
+        first: Int,
+        "When true, abstract constrution kit types are not returned in result set."
+        ignoreAbstractTypes: Boolean
     ): CkTypeDtoConnection
     "Optional description of the type."
     description: String
+    "Lists types that are derived directly or indirectly from the current construction kit type."
+    directAndIndirectDerivedTypes(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "When true, abstract constrution kit types are not returned in result set."
+        ignoreAbstractTypes: Boolean,
+        "When true, the current construction kit type is included in the result set."
+        includeSelf: Boolean
+    ): CkTypeDtoConnection
     "Indicates if the type is abstract."
     isAbstract: Boolean!
     "Indicates if the type is final."
@@ -1270,7 +3329,7 @@ type FireGuardiansFireReport {
     configuredBy: FireGuardiansFireReport_ConfiguredByUnion
     constructionKitType: CkType
     description: String
-    image: OctoObjectId
+    image: LargeBinaryInfo
     initialNotificationSent: Boolean
     location: RtGeospatialValueDto!
     name: String!
@@ -1604,58 +3663,30 @@ type LargeBinaryInfo {
     downloadUri: Uri!
     "Returns the filename of the binary"
     filename: String!
-    "Returns the lengths of the binary"
-    length: BigInt!
-    "Returns the uploaded date time of the binary"
-    uploadDateTime: DateTime!
-}
-
-"A connection from an object to a list of objects of type `LargeBinaryInfoDto`."
-type LargeBinaryInfoDtoConnection {
-    "A list of all of the edges returned in the connection."
-    edges: [LargeBinaryInfoDtoEdge]
-    "A list of all of the objects returned in the connection. This is a convenience field provided for quickly exploring the API; rather than querying for \"{ edges { node } }\" when no edge data is needed, this field can be used instead. Note that when clients like Relay need to fetch the \"cursor\" field on the edge to enable efficient pagination, this shortcut cannot be used, and the full \"{ edges { node } } \" version should be used instead."
-    items: [LargeBinaryInfo]
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
-    "A count of the total number of objects in this connection, ignoring pagination. This allows a client to fetch the first five objects by passing \"5\" as the argument to `first`, then fetch the total count so it could display \"5 of 83\", for example. In cases where we employ infinite scrolling or don't have an exact count of entries, this field will return `null`."
-    totalCount: Int
-}
-
-"An edge in a connection from an object to another object of type `LargeBinaryInfoDto`."
-type LargeBinaryInfoDtoEdge {
-    "A cursor for use in pagination"
-    cursor: String!
-    "The item at the end of the edge"
-    node: LargeBinaryInfo
+    "Returns the size of the binary"
+    size: BigInt!
 }
 
 type OctoMutation {
     constructionKit: ConstructionKitMutations
     runtime: Runtime
-    "Uploads a large binary and stores it. ID of file is returned."
-    sysCreateLargeBinary(binaryData: LargeBinary!): OctoObjectId
 }
 
 type OctoQuery {
     constructionKit: ConstructionKitQuery
     runtime: RuntimeModelQuery
-    sysLargeBinaries(
-        "Only return edges after the specified cursor."
-        after: String,
-        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
-        first: Int,
-        "ID of large binary that is requested."
-        largeBinaryId: OctoObjectId
-    ): LargeBinaryInfoDtoConnection
 }
 
 type OctoSubscriptions {
     basicAssetEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicAssetUpdateMessage
-    basicEquipmentEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentUpdateMessage
-    basicEquipmentGroupEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentGroupUpdateMessage
-    basicEquipmentModelEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicEquipmentModelUpdateMessage
+    basicCityEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicCityUpdateMessage
+    basicCountryEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicCountryUpdateMessage
+    basicDistrictEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicDistrictUpdateMessage
+    basicDocumentEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicDocumentUpdateMessage
     basicNamedEntityEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicNamedEntityUpdateMessage
+    basicStateEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicStateUpdateMessage
+    basicTreeEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicTreeUpdateMessage
+    basicTreeNodeEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): BasicTreeNodeUpdateMessage
     fireGuardiansFireReportEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansFireReportUpdateMessage
     fireGuardiansNotificationSubscriptionEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansNotificationSubscriptionUpdateMessage
     fireGuardiansWalletEvents(beforeFieldFilter: [FieldFilter], fieldFilter: [FieldFilter], rtId: OctoObjectId, updateTypes: [UpdateType]!): FireGuardiansWalletUpdateMessage
@@ -1941,10 +3972,18 @@ type RtTransientQueryDtoEdge {
 type Runtime {
     "Mutation for entities of type 'BasicAsset'."
     basicAssets: BasicAssetMutations
-    "Mutation for entities of type 'BasicEquipmentGroup'."
-    basicEquipmentGroups: BasicEquipmentGroupMutations
-    "Mutation for entities of type 'BasicEquipmentModel'."
-    basicEquipmentModels: BasicEquipmentModelMutations
+    "Mutation for entities of type 'BasicCity'."
+    basicCitys: BasicCityMutations
+    "Mutation for entities of type 'BasicCountry'."
+    basicCountrys: BasicCountryMutations
+    "Mutation for entities of type 'BasicDistrict'."
+    basicDistricts: BasicDistrictMutations
+    "Mutation for entities of type 'BasicState'."
+    basicStates: BasicStateMutations
+    "Mutation for entities of type 'BasicTreeNode'."
+    basicTreeNodes: BasicTreeNodeMutations
+    "Mutation for entities of type 'BasicTree'."
+    basicTrees: BasicTreeMutations
     "Mutation for entities of type 'FireGuardiansFireReport'."
     fireGuardiansFireReports: FireGuardiansFireReportMutations
     "Mutation for entities of type 'FireGuardiansNotificationSubscription'."
@@ -2004,7 +4043,7 @@ type RuntimeModelQuery {
         "Sort order for items"
         sortOrder: [Sort]
     ): BasicAssetConnection
-    basicEquipment(
+    basicCity(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -2023,8 +4062,8 @@ type RuntimeModelQuery {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentConnection
-    basicEquipmentGroup(
+    ): BasicCityConnection
+    basicCountry(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -2043,8 +4082,8 @@ type RuntimeModelQuery {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
-    basicEquipmentModel(
+    ): BasicCountryConnection
+    basicDistrict(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -2063,7 +4102,27 @@ type RuntimeModelQuery {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentModelConnection
+    ): BasicDistrictConnection
+    basicDocument(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDocumentConnection
     basicNamedEntity(
         "Only return edges after the specified cursor."
         after: String,
@@ -2084,6 +4143,66 @@ type RuntimeModelQuery {
         "Sort order for items"
         sortOrder: [Sort]
     ): BasicNamedEntityConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Geospatial filter for items, that searches for items near a point"
+        geoNearFilter: NearGeospatialFilter,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
     fireGuardiansFireReport(
         "Only return edges after the specified cursor."
         after: String,
@@ -2740,7 +4859,7 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         "Sort order for items"
         sortOrder: [Sort]
     ): BasicAssetConnection
-    basicEquipment(
+    basicCity(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -2757,8 +4876,8 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentConnection
-    basicEquipmentGroup(
+    ): BasicCityConnection
+    basicCountry(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -2775,8 +4894,8 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentGroupConnection
-    basicEquipmentModel(
+    ): BasicCountryConnection
+    basicDistrict(
         "Only return edges after the specified cursor."
         after: String,
         "Filters items based on field compare"
@@ -2793,7 +4912,25 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         searchFilter: SearchFilter,
         "Sort order for items"
         sortOrder: [Sort]
-    ): BasicEquipmentModelConnection
+    ): BasicDistrictConnection
+    basicDocument(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicDocumentConnection
     basicNamedEntity(
         "Only return edges after the specified cursor."
         after: String,
@@ -2812,6 +4949,60 @@ type SystemBotAttributeAggregateConfiguration_ConfiguresUnion {
         "Sort order for items"
         sortOrder: [Sort]
     ): BasicNamedEntityConnection
+    basicState(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicStateConnection
+    basicTree(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeConnection
+    basicTreeNode(
+        "Only return edges after the specified cursor."
+        after: String,
+        "Filters items based on field compare"
+        fieldFilter: [FieldFilter],
+        "Specifies the maximum number of edges to return, starting after the cursor specified by 'after', or the first number of edges if 'after' is not specified."
+        first: Int,
+        "Groups items based on attributes"
+        groupBy: GroupBy,
+        "Returns the entity with the given rtId."
+        rtId: OctoObjectId,
+        "Returns entities with the given rtIds."
+        rtIds: [OctoObjectId],
+        "Filters items based on text search"
+        searchFilter: SearchFilter,
+        "Sort order for items"
+        sortOrder: [Sort]
+    ): BasicTreeNodeConnection
     fireGuardiansFireReport(
         "Only return edges after the specified cursor."
         after: String,
@@ -3883,6 +6074,7 @@ type SystemQuery {
     fieldFilter: [SystemFieldFilter!]
     name: String!
     queryCkTypeId: String!
+    queryType: SystemQueryTypes!
     rtChangedDateTime: DateTime
     rtCreationDateTime: DateTime
     rtId: OctoObjectId!
@@ -4687,6 +6879,9 @@ enum AttributeValueType {
     ENUM
     GEOSPATIAL_POINT
     INT
+    INTEGER
+    INTEGER_64
+    INTEGER_ARRAY
     INT_64
     INT_ARRAY
     RECORD
@@ -4694,6 +6889,30 @@ enum AttributeValueType {
     STRING
     STRING_ARRAY
     TIME_SPAN
+}
+
+"Runtime entities of construction kit enum 'Basic/LegalEntityType'"
+enum BasicLegalEntityType {
+    "Actor in economic life, such as any natural or legal person with UGB relevance."
+    COMPANY
+    "Legal structure with the characteristics of a person"
+    LEGAL_PERSON
+    "Administrative unit with sovereign power such as municipality, federal state, republic."
+    LOCAL_AUTHORITY
+    "A natural person is a human being with legal capacity, in contrast to a legal person (such as a company, organization, or government entity)."
+    NATURAL_PERSON
+}
+
+"Runtime entities of construction kit enum 'Basic/Salutation'"
+enum BasicSalutation {
+    "The salutation is female"
+    FEMALE
+    "The salutation is male"
+    MALE
+    "The salutation is non-binary"
+    NON_BINARY
+    "The salutation is unknown or not defined"
+    UNKNOWN
 }
 
 "Runtime entities of construction kit enum 'Basic/TypeOfTelephoneBasic'"
@@ -4844,6 +7063,14 @@ enum SystemNotificationRenderingTypes {
     PLAIN
 }
 
+"Runtime entities of construction kit enum 'System/QueryTypes'"
+enum SystemQueryTypes {
+    "A flat query"
+    FLAT
+    "A tree query that returns results from a tree"
+    TREE
+}
+
 "Runtime entities of construction kit enum 'System/SortOrders'"
 enum SystemSortOrders {
     "Ascending order"
@@ -4912,6 +7139,62 @@ input BasicAddressInput {
 }
 
 input BasicAssetInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    description: String
+    name: String
+    parent: [RtAssociationInput]
+    relatesFrom: [RtAssociationInput]
+    relatesTo: [RtAssociationInput]
+    rtWellKnownName: String
+}
+
+input BasicAssetInputUpdate {
+    "Item to update"
+    item: BasicAssetInput!
+    rtId: OctoObjectId
+}
+
+input BasicBankAccountInput {
+    accountHolder: String
+    bankName: String
+    iban: String
+    swiftCode: String
+}
+
+input BasicCityInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    description: String
+    name: String
+    parent: [RtAssociationInput]
+    relatesFrom: [RtAssociationInput]
+    rtWellKnownName: String
+    zipcode: Int
+}
+
+input BasicCityInputUpdate {
+    "Item to update"
+    item: BasicCityInput!
+    rtId: OctoObjectId
+}
+
+input BasicContactInput {
+    address: BasicAddressInput
+    companyName: String
+    companyRegisterNumber: String
+    email: String
+    firstName: String
+    lastName: String
+    legalEntityType: BasicLegalEntityType
+    salutation: BasicSalutation
+    taxIdentificationNumber: String
+    titlePrefix: String
+    titleSuffix: String
+}
+
+input BasicCountryInput {
+    children: [RtAssociationInput]
     configuredBy: [RtAssociationInput]
     description: String
     name: String
@@ -4920,9 +7203,25 @@ input BasicAssetInput {
     rtWellKnownName: String
 }
 
-input BasicAssetInputUpdate {
+input BasicCountryInputUpdate {
     "Item to update"
-    item: BasicAssetInput!
+    item: BasicCountryInput!
+    rtId: OctoObjectId
+}
+
+input BasicDistrictInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    description: String
+    name: String
+    parent: [RtAssociationInput]
+    relatesFrom: [RtAssociationInput]
+    rtWellKnownName: String
+}
+
+input BasicDistrictInputUpdate {
+    "Item to update"
+    item: BasicDistrictInput!
     rtId: OctoObjectId
 }
 
@@ -4933,36 +7232,6 @@ input BasicEMailInput {
     typeOfPublicKey: String
 }
 
-input BasicEquipmentGroupInput {
-    children: [RtAssociationInput]
-    configuredBy: [RtAssociationInput]
-    description: String
-    name: String
-    parent: [RtAssociationInput]
-    relatesTo: [RtAssociationInput]
-    rtWellKnownName: String
-}
-
-input BasicEquipmentGroupInputUpdate {
-    "Item to update"
-    item: BasicEquipmentGroupInput!
-    rtId: OctoObjectId
-}
-
-input BasicEquipmentModelInput {
-    children: [RtAssociationInput]
-    configuredBy: [RtAssociationInput]
-    description: String
-    name: String
-    rtWellKnownName: String
-}
-
-input BasicEquipmentModelInputUpdate {
-    "Item to update"
-    item: BasicEquipmentModelInput!
-    rtId: OctoObjectId
-}
-
 input BasicFaxNumberInput {
     number: String
     type: BasicTypeOfTelephoneBasic
@@ -4970,7 +7239,7 @@ input BasicFaxNumberInput {
 
 input BasicMarkingInput {
     additionalText: String
-    file: OctoObjectId
+    file: LargeBinary
     name: String
 }
 
@@ -4988,6 +7257,57 @@ input BasicNamePlateInput {
 input BasicPhoneNumberInput {
     number: String
     type: BasicTypeOfTelephoneEnhanced
+}
+
+input BasicStateInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    description: String
+    name: String
+    parent: [RtAssociationInput]
+    relatesFrom: [RtAssociationInput]
+    rtWellKnownName: String
+}
+
+input BasicStateInputUpdate {
+    "Item to update"
+    item: BasicStateInput!
+    rtId: OctoObjectId
+}
+
+input BasicTimeRangeInput {
+    from: DateTime
+    to: DateTime
+}
+
+input BasicTreeInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    description: String
+    name: String
+    rtWellKnownName: String
+}
+
+input BasicTreeInputUpdate {
+    "Item to update"
+    item: BasicTreeInput!
+    rtId: OctoObjectId
+}
+
+input BasicTreeNodeInput {
+    children: [RtAssociationInput]
+    configuredBy: [RtAssociationInput]
+    description: String
+    name: String
+    parent: [RtAssociationInput]
+    relatesFrom: [RtAssociationInput]
+    rtWellKnownName: String
+}
+
+input BasicTreeNodeInputUpdate {
+    "Item to update"
+    item: BasicTreeNodeInput!
+    rtId: OctoObjectId
 }
 
 input CkEnumUpdate {
@@ -5014,7 +7334,7 @@ input FieldFilter {
 input FireGuardiansFireReportInput {
     configuredBy: [RtAssociationInput]
     description: String
-    image: OctoObjectId
+    image: LargeBinary
     initialNotificationSent: Boolean
     location: PointInput
     name: String
@@ -5251,6 +7571,7 @@ input SystemQueryInput {
     fieldFilter: [SystemFieldFilterInput]
     name: String
     queryCkTypeId: String
+    queryType: SystemQueryTypes
     rtWellKnownName: String
     sorting: [SystemSortOrderItemInput]
     textSearchFilter: SystemTextSearchFilterInput
