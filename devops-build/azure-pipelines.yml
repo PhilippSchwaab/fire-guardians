@@ -11,7 +11,7 @@ trigger:
       - refs/tags/r*
 
 variables:
-  - group: ApiKeys
+  - group: ApiKeys-mm-cloud
   - group: GitSSHGroup
   - group: OctoDefault
   - name: solutionFile
@@ -25,7 +25,7 @@ stages:
       - job: linux
         displayName: Docker build
         pool:
-          name: Gerald-Local-Linux
+          name: meshmakers-ci-agents
         steps:
           - template: update-build-number.yml
           - checkout: self
