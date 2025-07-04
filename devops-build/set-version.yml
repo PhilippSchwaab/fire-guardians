@@ -12,6 +12,9 @@ steps:
     InformationalVersion: $(Build.BuildNumber)
     PackageVersion: $(BuildNumberLong)
     DisableTelemetry: true
+    Authors: $(Authors)
+    Company: $(Company)
+    Copyright: $(Copyright)
 - task: VersionJSONFile@3
   displayName: Set Version package.json
   inputs:
