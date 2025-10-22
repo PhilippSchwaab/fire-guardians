@@ -4,7 +4,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM meshmakers/dotnet_sdk-node:20250108.6 AS build
+FROM meshmakers/dotnet_sdk-node:20250703.1 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Directory.Build.props", "src/Directory.Build.props"]
