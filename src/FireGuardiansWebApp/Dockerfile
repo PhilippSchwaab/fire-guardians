@@ -1,4 +1,4 @@
-﻿FROM meshmakers/dotnet_aspnetcore-runtime-node:20250108.6 AS base
+﻿FROM meshmakers/dotnet_aspnetcore-runtime-node:20250703.1 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 80
