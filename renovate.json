@@ -17,6 +17,16 @@
       "extends": ["monorepo:ionic-native"],
       "matchUpdateTypes": ["patch", "minor"],
       "automerge": true
+    },
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "groupName": "all patch dependencies",
+      "groupSlug": "all-patch"
     }
   ]
 }
