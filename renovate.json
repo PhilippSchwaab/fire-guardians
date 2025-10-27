@@ -27,6 +27,16 @@
       ],
       "groupName": "all patch dependencies",
       "groupSlug": "all-patch"
+    },
+        {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "groupName": "all minor dependencies",
+      "groupSlug": "all-minor"
     }
   ]
 }
