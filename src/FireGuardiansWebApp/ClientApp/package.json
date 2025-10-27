@@ -32,7 +32,7 @@
     "@meshmakers/shared-auth": "^3.2.85-0",
     "@meshmakers/shared-services": "^3.2.85-0",
     "@meshmakers/shared-ui": "^3.2.85-0",
-    "angular-oauth2-oidc": "^19.0.0",
+    "angular-oauth2-oidc": "^20.0.0",
     "apollo-angular": "12.1.0",
     "aspnet-prerendering": "^3.0.1",
     "date-fns": "^4.1.0",
